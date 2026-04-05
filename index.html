@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML & CSS Rehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1c1c27;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --text: #f0f0f8;
+    --muted: #8888aa;
+    --accent: #7c6aff;
+    --accent2: #ff6a9b;
+    --green: #4fffb0;
+    --amber: #ffb84f;
+    --red: #ff5a5a;
+    --code-bg: #0d0d18;
+    --radius: 12px;
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* === NAV === */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding: 1rem 1.5rem 1rem 0;
+    border-right: 1px solid var(--border);
+    margin-right: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 0;
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-tab {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 13px;
+    padding: 1rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+    letter-spacing: 0.02em;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* === LAYOUT === */
+  .app { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 57px;
+    height: calc(100vh - 57px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border2) transparent;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+  .sidebar-section {
+    padding: 0.4rem 1.5rem;
+    font-size: 10px;
+    font-family: var(--mono);
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 1.2rem;
+  }
+  .sidebar-section:first-child { margin-top: 0; }
+
+  .sidebar-item {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 13px;
+    padding: 0.45rem 1.5rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+  }
+  .sidebar-item:hover { color: var(--text); background: var(--surface); }
+  .sidebar-item.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: rgba(124,106,255,0.06);
+  }
+
+  /* === MAIN === */
+  main {
+    flex: 1;
+    min-width: 0;
+    padding: 3rem 3.5rem;
+    max-width: 860px;
+  }
+
+  /* === SECTION HEADER === */
+  .section-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: rgba(124,106,255,0.12);
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  h1 { font-size: 2.2rem; font-weight: 600; line-height: 1.2; margin-bottom: 0.75rem; }
+  h2 { font-size: 1.5rem; font-weight: 600; margin: 2.5rem 0 1rem; }
+  h3 { font-size: 1.1rem; font-weight: 500; margin: 1.8rem 0 0.6rem; color: var(--text); }
+
+  p { color: var(--muted); margin-bottom: 1rem; }
+  p strong { color: var(--text); font-weight: 500; }
+
+  /* === CONTENT PAGE === */
+  .content-page { display: none; }
+  .content-page.active { display: block; }
+
+  /* === CODE BLOCK === */
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin: 1.2rem 0;
+    overflow: hidden;
+  }
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .code-lang {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .copy-btn {
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { color: var(--text); border-color: var(--text); }
+  .copy-btn.copied { color: var(--green); border-color: var(--green); }
+
+  pre {
+    padding: 1.2rem 1.2rem;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #c8c8f0;
+  }
+
+  /* syntax highlight colors */
+  .t-tag { color: #ff6a9b; }
+  .t-attr { color: #7c6aff; }
+  .t-val { color: #4fffb0; }
+  .t-comment { color: #444466; font-style: italic; }
+  .t-prop { color: #7c6aff; }
+  .t-num { color: #ffb84f; }
+  .t-str { color: #4fffb0; }
+  .t-sel { color: #ff6a9b; }
+  .t-kw { color: #ffb84f; }
+
+  /* === TIP BOX === */
+  .tip {
+    border-left: 3px solid var(--accent);
+    background: rgba(124,106,255,0.08);
+    padding: 1rem 1.2rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.2rem 0;
+    font-size: 14px;
+  }
+  .tip strong { color: var(--accent); }
+  .tip.warn { border-left-color: var(--amber); background: rgba(255,184,79,0.08); }
+  .tip.warn strong { color: var(--amber); }
+  .tip.good { border-left-color: var(--green); background: rgba(79,255,176,0.08); }
+  .tip.good strong { color: var(--green); }
+  .tip.bad { border-left-color: var(--red); background: rgba(255,90,90,0.08); }
+  .tip.bad strong { color: var(--red); }
+
+  /* === DEMO PANEL === */
+  .demo-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.2rem 0;
+  }
+  .demo-preview {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid var(--border);
+  }
+
+  /* === BOX MODEL VİZ === */
+  .box-model-viz {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem 0;
+    padding: 2rem;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .bm-margin {
+    background: rgba(255,184,79,0.15);
+    border: 2px dashed var(--amber);
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+  }
+  .bm-margin::after {
+    content: 'margin';
+    position: absolute;
+    top: 4px; left: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--amber);
+    letter-spacing: 0.05em;
+  }
+  .bm-border {
+    background: rgba(255,90,90,0.15);
+    border: 3px solid var(--red);
+    padding: 20px;
+    border-radius: 6px;
+    position: relative;
+  }
+  .bm-border::after {
+    content: 'border';
+    position: absolute;
+    top: 4px; left: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--red);
+  }
+  .bm-padding {
+    background: rgba(79,255,176,0.15);
+    border: 2px dashed var(--green);
+    padding: 20px;
+    border-radius: 4px;
+    position: relative;
+  }
+  .bm-padding::after {
+    content: 'padding';
+    position: absolute;
+    top: 4px; left: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--green);
+  }
+  .bm-content {
+    background: rgba(124,106,255,0.3);
+    border: 2px solid var(--accent);
+    padding: 16px 28px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* === FLEX DEMO === */
+  .flex-demo {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  .flex-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .flex-control label {
+    display: block;
+    font-size: 10px;
+    font-family: var(--mono);
+    color: var(--muted);
+    margin-bottom: 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .flex-control select {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .flex-container {
+    display: flex;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    min-height: 80px;
+    gap: 8px;
+    transition: all 0.3s;
+  }
+  .flex-item {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .flex-item:nth-child(1) { width: 50px; height: 50px; }
+  .flex-item:nth-child(2) { width: 70px; height: 50px; }
+  .flex-item:nth-child(3) { width: 40px; height: 50px; }
+
+  /* === SPECIFICITY VİZ === */
+  .spec-bars { margin: 1.2rem 0; }
+  .spec-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 10px;
+  }
+  .spec-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    width: 120px;
+    flex-shrink: 0;
+  }
+  .spec-fill {
+    height: 8px;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+  .spec-val {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* === QUIZ === */
+  .quiz-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .quiz-q {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+  .quiz-q code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent2);
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .quiz-opt {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s;
+  }
+  .quiz-opt:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: rgba(124,106,255,0.08);
+  }
+  .quiz-opt.correct { border-color: var(--green); background: rgba(79,255,176,0.1); color: var(--green); }
+  .quiz-opt.wrong { border-color: var(--red); background: rgba(255,90,90,0.1); color: var(--red); }
+  .quiz-opt.show-answer { border-color: var(--green); opacity: 0.5; }
+  .quiz-opt:disabled { cursor: default; }
+
+  .quiz-explanation {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(124,106,255,0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    color: var(--muted);
+    display: none;
+  }
+  .quiz-explanation.show { display: block; }
+  .quiz-explanation strong { color: var(--text); }
+
+  .quiz-score {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    display: none;
+  }
+  .quiz-score.show { display: block; }
+  .score-number {
+    font-family: var(--mono);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  .score-label { color: var(--muted); font-size: 14px; margin-top: 0.5rem; }
+  .score-msg { font-size: 1.1rem; font-weight: 500; margin: 1rem 0; }
+
+  .restart-btn {
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: opacity 0.2s;
+  }
+  .restart-btn:hover { opacity: 0.85; }
+
+  /* === TAGS === */
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 2px;
+  }
+  .tag-html { background: rgba(255,106,155,0.15); color: var(--accent2); border: 1px solid rgba(255,106,155,0.3); }
+  .tag-css { background: rgba(124,106,255,0.15); color: var(--accent); border: 1px solid rgba(124,106,255,0.3); }
+  .tag-pro { background: rgba(79,255,176,0.15); color: var(--green); border: 1px solid rgba(79,255,176,0.3); }
+
+  /* === GRID DEMO === */
+  .grid-demo-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 1rem 0;
+  }
+  .grid-demo-item {
+    background: rgba(124,106,255,0.2);
+    border: 1px solid rgba(124,106,255,0.4);
+    border-radius: 6px;
+    padding: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-align: center;
+  }
+
+  /* === SCROLLBAR === */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    main { padding: 2rem 1.5rem; }
+    .demo-split { grid-template-columns: 1fr; }
+  }
+
+  /* === PROGRESS BAR === */
+  .progress-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 1rem 0 2rem;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  /* === HERO === */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(124,106,255,0.1);
+    border: 1px solid rgba(124,106,255,0.3);
+    border-radius: 99px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: var(--accent);
+    font-family: var(--mono);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+    margin: 1.5rem 0;
+  }
+  .topic-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .topic-card:hover {
+    border-color: var(--accent);
+    background: rgba(124,106,255,0.06);
+    transform: translateY(-2px);
+  }
+  .topic-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .topic-title { font-size: 13px; font-weight: 500; color: var(--text); }
+  .topic-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* inline code */
+  code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: rgba(124,106,255,0.15);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+
+  .next-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: all 0.2s;
+  }
+  .next-btn:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">&lt;html.rehber/&gt;</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('learn')">Öğren</button>
+    <button class="nav-tab" onclick="showTab('quiz')">Test</button>
+    <button class="nav-tab" onclick="showTab('cheatsheet')">Cheat Sheet</button>
+  </div>
+</nav>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-section">HTML Temelleri</div>
+    <button class="sidebar-item active" onclick="showPage('intro')">Giriş & Yapı</button>
+    <button class="sidebar-item" onclick="showPage('tags')">Temel Etiketler</button>
+    <button class="sidebar-item" onclick="showPage('semantic')">Semantic HTML</button>
+    <button class="sidebar-item" onclick="showPage('forms')">Formlar</button>
+
+    <div class="sidebar-section">CSS Temelleri</div>
+    <button class="sidebar-item" onclick="showPage('css-intro')">CSS Nedir?</button>
+    <button class="sidebar-item" onclick="showPage('selectors')">Selector'lar</button>
+    <button class="sidebar-item" onclick="showPage('boxmodel')">Box Model</button>
+    <button class="sidebar-item" onclick="showPage('display')">Display & Position</button>
+
+    <div class="sidebar-section">Layout</div>
+    <button class="sidebar-item" onclick="showPage('flexbox')">Flexbox</button>
+    <button class="sidebar-item" onclick="showPage('grid')">CSS Grid</button>
+    <button class="sidebar-item" onclick="showPage('responsive')">Responsive</button>
+
+    <div class="sidebar-section">İleri Seviye</div>
+    <button class="sidebar-item" onclick="showPage('specificity')">Specificity</button>
+    <button class="sidebar-item" onclick="showPage('variables')">CSS Variables</button>
+    <button class="sidebar-item" onclick="showPage('animation')">Animasyon</button>
+    <button class="sidebar-item" onclick="showPage('bem')">BEM Mimarisi</button>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- ===== TAB: LEARN ===== -->
+    <div id="tab-learn">
+
+      <!-- INTRO PAGE -->
+      <div id="page-intro" class="content-page active">
+        <div class="hero-badge"><div class="hero-dot"></div>Başlangıç Noktası</div>
+        <h1>HTML & CSS<br>Tam Rehber</h1>
+        <p>Sıfırdan pro seviyeye, her konuyu canlı örnekler ve görsellerle öğren. Yanında test bölümü de var.</p>
+
+        <div class="progress-bar"><div class="progress-fill" style="width:6%"></div></div>
+
+        <h2 style="margin-top:0">Konulara Hızlı Geç</h2>
+        <div class="topic-grid">
+          <div class="topic-card" onclick="showPage('tags')">
+            <div class="topic-icon">🏷️</div>
+            <div class="topic-title">HTML Etiketler</div>
+            <div class="topic-sub">Temel yapı taşları</div>
+          </div>
+          <div class="topic-card" onclick="showPage('semantic')">
+            <div class="topic-icon">🧩</div>
+            <div class="topic-title">Semantic</div>
+            <div class="topic-sub">Anlamlı etiketler</div>
+          </div>
+          <div class="topic-card" onclick="showPage('forms')">
+            <div class="topic-icon">📝</div>
+            <div class="topic-title">Formlar</div>
+            <div class="topic-sub">input, label, button</div>
+          </div>
+          <div class="topic-card" onclick="showPage('boxmodel')">
+            <div class="topic-icon">📦</div>
+            <div class="topic-title">Box Model</div>
+            <div class="topic-sub">Sınavın kalbi</div>
+          </div>
+          <div class="topic-card" onclick="showPage('flexbox')">
+            <div class="topic-icon">↔️</div>
+            <div class="topic-title">Flexbox</div>
+            <div class="topic-sub">En kritik konu</div>
+          </div>
+          <div class="topic-card" onclick="showPage('grid')">
+            <div class="topic-icon">⬛</div>
+            <div class="topic-title">Grid</div>
+            <div class="topic-sub">Kompleks layout</div>
+          </div>
+          <div class="topic-card" onclick="showPage('responsive')">
+            <div class="topic-icon">📱</div>
+            <div class="topic-title">Responsive</div>
+            <div class="topic-sub">Media queries</div>
+          </div>
+          <div class="topic-card" onclick="showPage('specificity')">
+            <div class="topic-icon">⚡</div>
+            <div class="topic-title">Specificity</div>
+            <div class="topic-sub">Pro seviye</div>
+          </div>
+        </div>
+
+        <h2>HTML Nedir?</h2>
+        <p>HTML (HyperText Markup Language) web sayfalarının <strong>iskeletidir</strong>. İçeriği tanımlar ama görünümü değil. Görünüm CSS'in işi.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">HTML — Temel Sayfa Yapısı</span>
+            <button class="copy-btn" onclick="copyCode(this)">kopyala</button>
+          </div>
+          <pre><span class="t-tag">&lt;!DOCTYPE html&gt;</span>          <span class="t-comment">← Tarayıcıya "HTML5 kullanıyorum" der</span>
+<span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-val">"tr"</span><span class="t-tag">&gt;</span>            <span class="t-comment">← Kök eleman, dil belirt</span>
+  <span class="t-tag">&lt;head&gt;</span>                      <span class="t-comment">← Görünmez meta bilgiler</span>
+    <span class="t-tag">&lt;meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;title&gt;</span>Sayfam<span class="t-tag">&lt;/title&gt;</span>
+  <span class="t-tag">&lt;/head&gt;</span>
+  <span class="t-tag">&lt;body&gt;</span>                      <span class="t-comment">← Görünen her şey burada</span>
+    <span class="t-tag">&lt;h1&gt;</span>Merhaba Dünya!<span class="t-tag">&lt;/h1&gt;</span>
+  <span class="t-tag">&lt;/body&gt;</span>
+<span class="t-tag">&lt;/html&gt;</span></pre>
+        </div>
+
+        <div class="tip good">
+          <strong>Altın Kural:</strong> HTML = yapı, CSS = görünüm, JavaScript = davranış. Bu ayrımı asla karıştırma.
+        </div>
+
+        <button class="next-btn" onclick="showPage('tags')">Sıradaki: Temel Etiketler →</button>
+      </div>
+
+      <!-- TAGS PAGE -->
+      <div id="page-tags" class="content-page">
+        <div class="section-tag">HTML Temelleri</div>
+        <h1>Temel Etiketler</h1>
+        <p>Her HTML belgesi etiketlerden oluşur. Etiketler <code>&lt;etiket&gt;</code> ve <code>&lt;/etiket&gt;</code> şeklinde açılıp kapanır.</p>
+
+        <h2>Başlık Hiyerarşisi</h2>
+        <p><code>h1</code>'den <code>h6</code>'ya doğru önem azalır. Bir sayfada <strong>tek bir h1</strong> olmalı.</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">HTML</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-tag">&lt;h1&gt;</span>En büyük başlık<span class="t-tag">&lt;/h1&gt;</span>      <span class="t-comment">← Sayfa başlığı, tek olmalı</span>
+<span class="t-tag">&lt;h2&gt;</span>Bölüm başlığı<span class="t-tag">&lt;/h2&gt;</span>
+<span class="t-tag">&lt;h3&gt;</span>Alt bölüm<span class="t-tag">&lt;/h3&gt;</span>
+<span class="t-tag">&lt;p&gt;</span>Normal paragraf metni buraya gelir.<span class="t-tag">&lt;/p&gt;</span></pre>
+        </div>
+
+        <div class="demo-preview" style="background:#fff; border-radius:12px; padding:1.5rem; margin:1rem 0; border:1px solid var(--border);">
+          <h1 style="font-size:28px;color:#111;margin:0 0 4px;font-family:sans-serif">Büyük Başlık (h1)</h1>
+          <h2 style="font-size:20px;color:#222;margin:0 0 4px;font-family:sans-serif">Bölüm (h2)</h2>
+          <h3 style="font-size:16px;color:#333;margin:0 0 4px;font-family:sans-serif">Alt Bölüm (h3)</h3>
+          <p style="font-size:14px;color:#555;margin:0;font-family:sans-serif">Paragraf metni böyle görünür.</p>
+        </div>
+
+        <h2>Link & Resim</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">HTML</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-comment"><!-- Link --></span>
+<span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"https://google.com"</span> <span class="t-attr">target</span>=<span class="t-val">"_blank"</span><span class="t-tag">&gt;</span>Google<span class="t-tag">&lt;/a&gt;</span>
+
+<span class="t-comment"><!-- Resim --></span>
+<span class="t-tag">&lt;img</span> <span class="t-attr">src</span>=<span class="t-val">"foto.jpg"</span> <span class="t-attr">alt</span>=<span class="t-val">"Açıklama"</span> <span class="t-attr">width</span>=<span class="t-val">"300"</span><span class="t-tag">&gt;</span>
+<span class="t-comment">← img kapanmaz! alt = erişilebilirlik için zorunlu</span></pre>
+        </div>
+
+        <h2>Listeler</h2>
+        <div class="demo-split">
+          <div>
+            <div class="code-block">
+              <div class="code-header"><span class="code-lang">Sırasız Liste</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+              <pre><span class="t-tag">&lt;ul&gt;</span>
+  <span class="t-tag">&lt;li&gt;</span>Elma<span class="t-tag">&lt;/li&gt;</span>
+  <span class="t-tag">&lt;li&gt;</span>Armut<span class="t-tag">&lt;/li&gt;</span>
+<span class="t-tag">&lt;/ul&gt;</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="code-block">
+              <div class="code-header"><span class="code-lang">Sıralı Liste</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+              <pre><span class="t-tag">&lt;ol&gt;</span>
+  <span class="t-tag">&lt;li&gt;</span>Birinci<span class="t-tag">&lt;/li&gt;</span>
+  <span class="t-tag">&lt;li&gt;</span>İkinci<span class="t-tag">&lt;/li&gt;</span>
+<span class="t-tag">&lt;/ol&gt;</span></pre>
+            </div>
+          </div>
+        </div>
+
+        <h2>div ve span — Fark Ne?</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">HTML</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-comment"><!-- div = block → tam satır kaplar, yeni satırda başlar --></span>
+<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"kart"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;p&gt;</span>Kart içeriği<span class="t-tag">&lt;/p&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span>
+
+<span class="t-comment"><!-- span = inline → satır içinde, yalnızca içerik kadar yer kaplar --></span>
+<span class="t-tag">&lt;p&gt;</span>Bu kelime <span class="t-tag">&lt;span</span> <span class="t-attr">style</span>=<span class="t-val">"color:red"</span><span class="t-tag">&gt;</span>kırmızı<span class="t-tag">&lt;/span&gt;</span>.<span class="t-tag">&lt;/p&gt;</span></pre>
+        </div>
+
+        <div class="tip">
+          <strong>Kural:</strong> <code>div</code> bölümleri gruplamak için, <code>span</code> ise metin içinde küçük parçaları hedeflemek için kullan.
+        </div>
+
+        <button class="next-btn" onclick="showPage('semantic')">Sıradaki: Semantic HTML →</button>
+      </div>
+
+      <!-- SEMANTIC PAGE -->
+      <div id="page-semantic" class="content-page">
+        <div class="section-tag">HTML Temelleri</div>
+        <h1>Semantic HTML</h1>
+        <p><strong>Semantic</strong> = anlamlı. Her şeyi <code>div</code> yapmak yerine, içeriği tanımlayan etiketleri kullanmak hem okunabilirliği hem SEO'yu iyileştirir.</p>
+
+        <div class="demo-split">
+          <div>
+            <div class="tip bad"><strong>❌ Kötü (amatör):</strong><br>Her şey div</div>
+            <div class="code-block">
+              <div class="code-header"><span class="code-lang">HTML — Yanlış</span></div>
+              <pre><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"header"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"nav"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"content"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"footer"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span></pre>
+            </div>
+          </div>
+          <div>
+            <div class="tip good"><strong>✅ İyi (pro):</strong><br>Anlamlı etiketler</div>
+            <div class="code-block">
+              <div class="code-header"><span class="code-lang">HTML — Doğru</span></div>
+              <pre><span class="t-tag">&lt;header&gt;</span>...<span class="t-tag">&lt;/header&gt;</span>
+<span class="t-tag">&lt;nav&gt;</span>...<span class="t-tag">&lt;/nav&gt;</span>
+<span class="t-tag">&lt;main&gt;</span>...<span class="t-tag">&lt;/main&gt;</span>
+<span class="t-tag">&lt;footer&gt;</span>...<span class="t-tag">&lt;/footer&gt;</span></pre>
+            </div>
+          </div>
+        </div>
+
+        <h2>Semantic Etiket Haritası</h2>
+        <div style="background:var(--code-bg); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin:1rem 0; font-family:var(--mono); font-size:12px;">
+          <div style="border:2px solid var(--accent2); border-radius:6px; padding:8px 12px; margin-bottom:8px; color:var(--accent2);">
+            &lt;header&gt; — Logo, site başlığı, üst menü
+          </div>
+          <div style="border:2px solid var(--accent); border-radius:6px; padding:8px 12px; margin-bottom:8px; color:var(--accent);">
+            &lt;nav&gt; — Navigasyon linkleri
+          </div>
+          <div style="border:2px solid var(--muted); border-radius:6px; padding:8px 12px; margin-bottom:8px; display:flex; gap:8px;">
+            <div style="flex:2; border:1px solid var(--green); border-radius:4px; padding:8px; color:var(--green);">
+              &lt;main&gt;<br>
+              <div style="margin:8px 0; border:1px solid rgba(79,255,176,0.4); border-radius:4px; padding:6px;">&lt;section&gt; — Bölümler</div>
+              <div style="border:1px solid rgba(79,255,176,0.4); border-radius:4px; padding:6px;">&lt;article&gt; — Bağımsız içerik</div>
+            </div>
+            <div style="flex:1; border:1px solid var(--amber); border-radius:4px; padding:8px; color:var(--amber);">
+              &lt;aside&gt;<br>Yan panel
+            </div>
+          </div>
+          <div style="border:2px solid var(--accent2); border-radius:6px; padding:8px 12px; color:var(--accent2);">
+            &lt;footer&gt; — Alt bilgi, telif, iletişim
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>Sınav Trick:</strong> Hoca semantic etiket kullanımını kontrol eder. <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code> kullan → puan garantili.
+        </div>
+
+        <button class="next-btn" onclick="showPage('forms')">Sıradaki: Formlar →</button>
+      </div>
+
+      <!-- FORMS PAGE -->
+      <div id="page-forms" class="content-page">
+        <div class="section-tag">HTML Temelleri</div>
+        <h1>Form Yapıları</h1>
+        <p>Formlar kullanıcıdan veri toplayan en temel araç. Her input bir <code>label</code> ile eşleşmeli.</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">HTML — Tam Form Örneği</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-tag">&lt;form</span> <span class="t-attr">action</span>=<span class="t-val">"/gonder"</span> <span class="t-attr">method</span>=<span class="t-val">"POST"</span><span class="t-tag">&gt;</span>
+
+  <span class="t-comment"><!-- label for="..." ↔ input id="..." = erişilebilirlik --></span>
+  <span class="t-tag">&lt;label</span> <span class="t-attr">for</span>=<span class="t-val">"isim"</span><span class="t-tag">&gt;</span>Adınız<span class="t-tag">&lt;/label&gt;</span>
+  <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-val">"text"</span> <span class="t-attr">id</span>=<span class="t-val">"isim"</span> <span class="t-attr">name</span>=<span class="t-val">"isim"</span> <span class="t-attr">placeholder</span>=<span class="t-val">"Adınızı girin"</span><span class="t-tag">&gt;</span>
+
+  <span class="t-tag">&lt;label</span> <span class="t-attr">for</span>=<span class="t-val">"email"</span><span class="t-tag">&gt;</span>E-posta<span class="t-tag">&lt;/label&gt;</span>
+  <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-val">"email"</span> <span class="t-attr">id</span>=<span class="t-val">"email"</span> <span class="t-attr">required</span><span class="t-tag">&gt;</span>
+
+  <span class="t-tag">&lt;label</span> <span class="t-attr">for</span>=<span class="t-val">"mesaj"</span><span class="t-tag">&gt;</span>Mesaj<span class="t-tag">&lt;/label&gt;</span>
+  <span class="t-tag">&lt;textarea</span> <span class="t-attr">id</span>=<span class="t-val">"mesaj"</span> <span class="t-attr">rows</span>=<span class="t-val">"4"</span><span class="t-tag">&gt;&lt;/textarea&gt;</span>
+
+  <span class="t-tag">&lt;button</span> <span class="t-attr">type</span>=<span class="t-val">"submit"</span><span class="t-tag">&gt;</span>Gönder<span class="t-tag">&lt;/button&gt;</span>
+<span class="t-tag">&lt;/form&gt;</span></pre>
+        </div>
+
+        <h2>Input Türleri</h2>
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap:10px; margin:1rem 0;">
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:6px;">type="text"</div>
+            <div style="font-size:12px; color:var(--muted);">Normal metin girişi</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent2); margin-bottom:6px;">type="email"</div>
+            <div style="font-size:12px; color:var(--muted);">E-posta, otomatik validate</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--green); margin-bottom:6px;">type="password"</div>
+            <div style="font-size:12px; color:var(--muted);">Şifreli input</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:6px;">type="number"</div>
+            <div style="font-size:12px; color:var(--muted);">Sayısal değer</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:6px;">type="checkbox"</div>
+            <div style="font-size:12px; color:var(--muted);">Çoklu seçim</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent2); margin-bottom:6px;">type="radio"</div>
+            <div style="font-size:12px; color:var(--muted);">Tek seçim</div>
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>Pro Trick:</strong> <code>label for="id"</code> ve <code>input id="id"</code> eşleşmesi şart. Bu olmadan erişilebilirlik bozulur ve hoca puan kırar.
+        </div>
+
+        <button class="next-btn" onclick="showPage('css-intro')">Sıradaki: CSS'e Geçiş →</button>
+      </div>
+
+      <!-- CSS INTRO -->
+      <div id="page-css-intro" class="content-page">
+        <div class="section-tag">CSS Temelleri</div>
+        <h1>CSS Nedir?</h1>
+        <p>CSS (Cascading Style Sheets) HTML iskeletine görünüm kazandırır. Renk, boyut, konum, animasyon — hepsi CSS.</p>
+
+        <h2>CSS Nasıl Eklenir?</h2>
+        <div style="display:grid; gap:12px; margin:1rem 0;">
+          <div style="background:var(--surface); border:1px solid rgba(255,90,90,0.3); border-radius:10px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--red); margin-bottom:6px;">❌ INLINE — kullanma</div>
+            <pre style="font-family:var(--mono); font-size:12px; color:#aaa;"><span class="t-tag">&lt;p</span> <span class="t-attr">style</span>=<span class="t-val">"color:red"</span><span class="t-tag">&gt;</span>Metin<span class="t-tag">&lt;/p&gt;</span></pre>
+          </div>
+          <div style="background:var(--surface); border:1px solid rgba(255,184,79,0.3); border-radius:10px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:6px;">⚠️ INTERNAL — küçük projeler</div>
+            <pre style="font-family:var(--mono); font-size:12px; color:#aaa;"><span class="t-tag">&lt;style&gt;</span>
+  p { color: red; }
+<span class="t-tag">&lt;/style&gt;</span></pre>
+          </div>
+          <div style="background:var(--surface); border:1px solid rgba(79,255,176,0.3); border-radius:10px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--green); margin-bottom:6px;">✅ EXTERNAL — her zaman bu</div>
+            <pre style="font-family:var(--mono); font-size:12px; color:#aaa;"><span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"style.css"</span><span class="t-tag">&gt;</span></pre>
+          </div>
+        </div>
+
+        <h2>CSS Sözdizimi</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">selector</span> {         <span class="t-comment">← Kimi hedefliyoruz?</span>
+  <span class="t-prop">property</span>: <span class="t-val">value</span>;  <span class="t-comment">← Ne değişiyor?</span>
+}
+
+<span class="t-comment">/* Örnek: */</span>
+<span class="t-sel">p</span> {
+  <span class="t-prop">color</span>: <span class="t-val">red</span>;
+  <span class="t-prop">font-size</span>: <span class="t-val">16px</span>;
+}
+
+<span class="t-sel">.kart</span> {            <span class="t-comment">← class seçici</span>
+  <span class="t-prop">background</span>: <span class="t-val">#fff</span>;
+}
+
+<span class="t-sel">#logo</span> {            <span class="t-comment">← id seçici</span>
+  <span class="t-prop">width</span>: <span class="t-val">200px</span>;
+}</pre>
+        </div>
+
+        <button class="next-btn" onclick="showPage('selectors')">Sıradaki: Selector'lar →</button>
+      </div>
+
+      <!-- SELECTORS -->
+      <div id="page-selectors" class="content-page">
+        <div class="section-tag">CSS Temelleri</div>
+        <h1>Selector'lar</h1>
+        <p>CSS hangi HTML elemanını hedefleyeceğini selector'larla bilir.</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — Temel Selector'lar</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">p</span> { }               <span class="t-comment">← Tüm p etiketleri</span>
+<span class="t-sel">.kart</span> { }          <span class="t-comment">← class="kart" olan elemanlar</span>
+<span class="t-sel">#logo</span> { }          <span class="t-comment">← id="logo" olan TEK eleman</span>
+<span class="t-sel">*</span> { }               <span class="t-comment">← Her şey (evrensel)</span>
+
+<span class="t-comment">/* Kombinasyonlar */</span>
+<span class="t-sel">div p</span> { }          <span class="t-comment">← div içindeki TÜM p'ler</span>
+<span class="t-sel">div > p</span> { }        <span class="t-comment">← div'in DOĞRUDAN çocuğu p</span>
+<span class="t-sel">h1, h2</span> { }         <span class="t-comment">← h1 VE h2 (virgül = liste)</span>
+
+<span class="t-comment">/* Pseudo-class (durum seçici) */</span>
+<span class="t-sel">a:hover</span> { }        <span class="t-comment">← Üzerine gelince</span>
+<span class="t-sel">li:first-child</span> { } <span class="t-comment">← İlk li</span>
+<span class="t-sel">li:nth-child(2)</span> { }<span class="t-comment">← 2. li</span>
+<span class="t-sel">p:not(.ozel)</span> { }  <span class="t-comment">← .ozel sınıfı olmayan p'ler</span>
+
+<span class="t-comment">/* Attribute Selector */</span>
+<span class="t-sel">[type="text"]</span> { }  <span class="t-comment">← type="text" olan input</span></pre>
+        </div>
+
+        <div class="tip">
+          <strong>Kural:</strong> <code>id</code> = sayfada tek olmalı → <code>#id</code>. <code>class</code> = birden fazla eleman paylaşabilir → <code>.class</code>
+        </div>
+
+        <h2>Pseudo Elements</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">p::before</span> {
+  <span class="t-prop">content</span>: <span class="t-val">"→ "</span>;    <span class="t-comment">← p'nin ÖNÜNE ekle</span>
+  <span class="t-prop">color</span>: <span class="t-val">purple</span>;
+}
+
+<span class="t-sel">p::after</span> {
+  <span class="t-prop">content</span>: <span class="t-val">" ✓"</span>;   <span class="t-comment">← p'nin SONUNA ekle</span>
+}</pre>
+        </div>
+
+        <button class="next-btn" onclick="showPage('boxmodel')">Sıradaki: Box Model →</button>
+      </div>
+
+      <!-- BOX MODEL -->
+      <div id="page-boxmodel" class="content-page">
+        <div class="section-tag">CSS Temelleri</div>
+        <h1>Box Model</h1>
+        <p>CSS'de her eleman bir <strong>kutudur</strong>. Bu kutunun 4 katmanı var.</p>
+
+        <div class="box-model-viz">
+          <div class="bm-margin">
+            <div class="bm-border">
+              <div class="bm-padding">
+                <div class="bm-content">content</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(2,1fr); gap:10px; margin:1rem 0;">
+          <div style="background:rgba(79,255,176,0.08); border:1px solid rgba(79,255,176,0.2); border-radius:8px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--green); margin-bottom:4px;">padding</div>
+            <div style="font-size:13px; color:var(--muted);">İçerik ile border arasındaki boşluk. <strong style="color:var(--text)">İç boşluk.</strong></div>
+          </div>
+          <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--red); margin-bottom:4px;">border</div>
+            <div style="font-size:13px; color:var(--muted);">Kutunun çerçevesi. Kalınlık, renk, stil belirlenebilir.</div>
+          </div>
+          <div style="background:rgba(255,184,79,0.08); border:1px solid rgba(255,184,79,0.2); border-radius:8px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:4px;">margin</div>
+            <div style="font-size:13px; color:var(--muted);">Diğer elemanlarla arasındaki boşluk. <strong style="color:var(--text)">Dış boşluk.</strong></div>
+          </div>
+          <div style="background:rgba(124,106,255,0.08); border:1px solid rgba(124,106,255,0.2); border-radius:8px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:4px;">content</div>
+            <div style="font-size:13px; color:var(--muted);">Asıl içerik. width/height burayı etkiler.</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — Box Model Kullanımı</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">.kutu</span> {
+  <span class="t-prop">width</span>: <span class="t-val">200px</span>;
+  <span class="t-prop">height</span>: <span class="t-val">100px</span>;
+  <span class="t-prop">padding</span>: <span class="t-val">20px</span>;         <span class="t-comment">← 4 taraf aynı</span>
+  <span class="t-prop">padding</span>: <span class="t-val">10px 20px</span>;    <span class="t-comment">← üst-alt / sağ-sol</span>
+  <span class="t-prop">border</span>: <span class="t-val">2px solid red</span>;
+  <span class="t-prop">margin</span>: <span class="t-val">16px</span>;
+  
+  <span class="t-comment">/* ALTIN KURAL → layout kırılmaz */</span>
+  <span class="t-prop">box-sizing</span>: <span class="t-val">border-box</span>;
+}</pre>
+        </div>
+
+        <div class="tip warn">
+          <strong>Dikkat:</strong> Normal halde <code>width: 200px</code> + <code>padding: 20px</code> = toplam 240px eder. <code>box-sizing: border-box</code> ile padding width'in içine dahil olur → toplam yine 200px.
+        </div>
+
+        <div class="tip good">
+          <strong>CSS Reset'e ekle:</strong> <code>* &#123; box-sizing: border-box; &#125;</code> → bütün projeyi kurtarır.
+        </div>
+
+        <button class="next-btn" onclick="showPage('display')">Sıradaki: Display & Position →</button>
+      </div>
+
+      <!-- DISPLAY & POSITION -->
+      <div id="page-display" class="content-page">
+        <div class="section-tag">CSS Temelleri</div>
+        <h1>Display & Position</h1>
+
+        <h2>Display Değerleri</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-prop">display</span>: <span class="t-val">block</span>;        <span class="t-comment">← Tam satır kaplar (div, p, h1...)</span>
+<span class="t-prop">display</span>: <span class="t-val">inline</span>;       <span class="t-comment">← İçerik kadar yer (span, a...)</span>
+<span class="t-prop">display</span>: <span class="t-val">inline-block</span>; <span class="t-comment">← Inline + width/height ayarlanabilir</span>
+<span class="t-prop">display</span>: <span class="t-val">none</span>;         <span class="t-comment">← Tamamen gizle (yer kaplamaz)</span>
+<span class="t-prop">display</span>: <span class="t-val">flex</span>;         <span class="t-comment">← Flexbox (bir sonraki konu!)</span>
+<span class="t-prop">display</span>: <span class="t-val">grid</span>;         <span class="t-comment">← Grid layout</span></pre>
+        </div>
+
+        <h2>Position Değerleri</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-prop">position</span>: <span class="t-val">static</span>;    <span class="t-comment">← Varsayılan, akışta normal yer</span>
+<span class="t-prop">position</span>: <span class="t-val">relative</span>;  <span class="t-comment">← Kendi konumuna göre offset</span>
+<span class="t-prop">position</span>: <span class="t-val">absolute</span>;  <span class="t-comment">← En yakın relative parent'a göre</span>
+<span class="t-prop">position</span>: <span class="t-val">fixed</span>;     <span class="t-comment">← Ekrana yapışır (sticky navbar)</span>
+<span class="t-prop">position</span>: <span class="t-val">sticky</span>;    <span class="t-comment">← Scroll'a kadar relative, sonra fixed</span>
+
+<span class="t-comment">/* Offset özellikleri: */</span>
+<span class="t-prop">top</span>: <span class="t-val">20px</span>;
+<span class="t-prop">left</span>: <span class="t-val">50px</span>;
+<span class="t-prop">right</span>: <span class="t-val">0</span>;
+<span class="t-prop">bottom</span>: <span class="t-val">10px</span>;</pre>
+        </div>
+
+        <div class="tip">
+          <strong>Kritik Kural:</strong> <code>position: absolute</code> kullanan eleman, üst elemanının <code>position: relative</code> olmasını bekler. Aksi halde sayfanın köküne göre konumlanır.
+        </div>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — Absolute içinde Relative Pattern</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">.kart</span> {
+  <span class="t-prop">position</span>: <span class="t-val">relative</span>;  <span class="t-comment">← Parent relative olmalı</span>
+}
+
+<span class="t-sel">.rozet</span> {
+  <span class="t-prop">position</span>: <span class="t-val">absolute</span>;
+  <span class="t-prop">top</span>: <span class="t-val">10px</span>;
+  <span class="t-prop">right</span>: <span class="t-val">10px</span>;           <span class="t-comment">← .kart'ın sağ üstüne yapışır</span>
+}</pre>
+        </div>
+
+        <button class="next-btn" onclick="showPage('flexbox')">Sıradaki: Flexbox →</button>
+      </div>
+
+      <!-- FLEXBOX -->
+      <div id="page-flexbox" class="content-page">
+        <div class="section-tag">Layout</div>
+        <h1>Flexbox</h1>
+        <p>CSS'in en güçlü layout aracı. Elemanları satır veya sütun halinde hizalamayı kolaylaştırır.</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — Flexbox Temeli</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">.container</span> {
+  <span class="t-prop">display</span>: <span class="t-val">flex</span>;
+  
+  <span class="t-comment">/* Yön */</span>
+  <span class="t-prop">flex-direction</span>: <span class="t-val">row</span>;         <span class="t-comment">← yatay (varsayılan)</span>
+  <span class="t-prop">flex-direction</span>: <span class="t-val">column</span>;      <span class="t-comment">← dikey</span>
+  
+  <span class="t-comment">/* Yatay hizalama */</span>
+  <span class="t-prop">justify-content</span>: <span class="t-val">flex-start</span>; <span class="t-comment">← sola</span>
+  <span class="t-prop">justify-content</span>: <span class="t-val">center</span>;     <span class="t-comment">← ortaya</span>
+  <span class="t-prop">justify-content</span>: <span class="t-val">flex-end</span>;   <span class="t-comment">← sağa</span>
+  <span class="t-prop">justify-content</span>: <span class="t-val">space-between</span>; <span class="t-comment">← araya boşluk</span>
+  <span class="t-prop">justify-content</span>: <span class="t-val">space-around</span>;  <span class="t-comment">← eşit boşluk</span>
+  
+  <span class="t-comment">/* Dikey hizalama */</span>
+  <span class="t-prop">align-items</span>: <span class="t-val">center</span>;        <span class="t-comment">← dikeyde ortaya</span>
+  <span class="t-prop">align-items</span>: <span class="t-val">flex-start</span>;    <span class="t-comment">← üste</span>
+  <span class="t-prop">align-items</span>: <span class="t-val">stretch</span>;       <span class="t-comment">← uzat (varsayılan)</span>
+  
+  <span class="t-prop">gap</span>: <span class="t-val">16px</span>;               <span class="t-comment">← elemanlar arası boşluk</span>
+  <span class="t-prop">flex-wrap</span>: <span class="t-val">wrap</span>;          <span class="t-comment">← sığmazsa alta geç</span>
+}</pre>
+        </div>
+
+        <h2>Canlı Flexbox Demo</h2>
+        <div class="flex-demo">
+          <div class="flex-controls">
+            <div class="flex-control">
+              <label>justify-content</label>
+              <select id="jc" onchange="updateFlex()">
+                <option>flex-start</option>
+                <option>center</option>
+                <option>flex-end</option>
+                <option>space-between</option>
+                <option>space-around</option>
+              </select>
+            </div>
+            <div class="flex-control">
+              <label>align-items</label>
+              <select id="ai" onchange="updateFlex()">
+                <option>flex-start</option>
+                <option selected>center</option>
+                <option>flex-end</option>
+                <option>stretch</option>
+              </select>
+            </div>
+            <div class="flex-control">
+              <label>flex-direction</label>
+              <select id="fd" onchange="updateFlex()">
+                <option>row</option>
+                <option>column</option>
+                <option>row-reverse</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex-container" id="flexDemo" style="justify-content:flex-start; align-items:center; flex-direction:row;">
+            <div class="flex-item">A</div>
+            <div class="flex-item">B</div>
+            <div class="flex-item">C</div>
+          </div>
+          <div style="font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:10px;" id="flexCode">
+            display: flex; justify-content: flex-start; align-items: center; flex-direction: row;
+          </div>
+        </div>
+
+        <h2>Ortalama — Klasik Sınav Sorusu</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — Her Zaman İşe Yarar</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">.merkez</span> {
+  <span class="t-prop">display</span>: <span class="t-val">flex</span>;
+  <span class="t-prop">justify-content</span>: <span class="t-val">center</span>;  <span class="t-comment">← yatay ortalama</span>
+  <span class="t-prop">align-items</span>: <span class="t-val">center</span>;     <span class="t-comment">← dikey ortalama</span>
+  <span class="t-prop">height</span>: <span class="t-val">100vh</span>;           <span class="t-comment">← tam ekran yükseklik</span>
+}</pre>
+        </div>
+
+        <div class="tip good">
+          <strong>Altın Formül:</strong> Bir şeyi ortalamak istediğinde → <code>display:flex</code> + <code>justify-content:center</code> + <code>align-items:center</code>. Ezber et.
+        </div>
+
+        <button class="next-btn" onclick="showPage('grid')">Sıradaki: CSS Grid →</button>
+      </div>
+
+      <!-- GRID -->
+      <div id="page-grid" class="content-page">
+        <div class="section-tag">Layout</div>
+        <h1>CSS Grid</h1>
+        <p>Flex tek eksen (yatay veya dikey), Grid ise <strong>iki eksen</strong> aynı anda. Kompleks layoutlar için idealdir.</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — Grid Temeli</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">.grid</span> {
+  <span class="t-prop">display</span>: <span class="t-val">grid</span>;
+  
+  <span class="t-comment">/* Sütun tanımı */</span>
+  <span class="t-prop">grid-template-columns</span>: <span class="t-val">200px 200px 200px</span>; <span class="t-comment">← 3 sütun</span>
+  <span class="t-prop">grid-template-columns</span>: <span class="t-val">1fr 1fr 1fr</span>;       <span class="t-comment">← 3 eşit sütun</span>
+  <span class="t-prop">grid-template-columns</span>: <span class="t-val">repeat(3, 1fr)</span>;   <span class="t-comment">← aynı şey, kısa yol</span>
+  <span class="t-prop">grid-template-columns</span>: <span class="t-val">2fr 1fr</span>;          <span class="t-comment">← 2:1 oran</span>
+  
+  <span class="t-comment">/* Otomatik responsive */</span>
+  <span class="t-prop">grid-template-columns</span>: <span class="t-val">repeat(auto-fit, minmax(200px, 1fr))</span>;
+  
+  <span class="t-prop">gap</span>: <span class="t-val">20px</span>;            <span class="t-comment">← grid boşlukları</span>
+}</pre>
+        </div>
+
+        <h2>Canlı Grid Örneği</h2>
+        <div class="grid-demo-container">
+          <div class="grid-demo-item">1</div>
+          <div class="grid-demo-item">2</div>
+          <div class="grid-demo-item">3</div>
+          <div class="grid-demo-item">4</div>
+          <div class="grid-demo-item">5</div>
+          <div class="grid-demo-item">6</div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — Grid Alan Birleştirme</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">.item-genis</span> {
+  <span class="t-prop">grid-column</span>: <span class="t-val">1 / 3</span>;  <span class="t-comment">← 1. sütundan 3.'ye kadar uzan</span>
+  <span class="t-prop">grid-column</span>: <span class="t-val">span 2</span>; <span class="t-comment">← 2 sütun kap (aynı sonuç)</span>
+}</pre>
+        </div>
+
+        <div class="tip">
+          <strong>Ne zaman Grid, ne zaman Flex?</strong> Tek satır/sütun içeriği hizalarken → Flex. Sayfanın tüm layout'unu yapılandırırken → Grid.
+        </div>
+
+        <button class="next-btn" onclick="showPage('responsive')">Sıradaki: Responsive →</button>
+      </div>
+
+      <!-- RESPONSIVE -->
+      <div id="page-responsive" class="content-page">
+        <div class="section-tag">Layout</div>
+        <h1>Responsive Tasarım</h1>
+        <p>Her ekran boyutunda düzgün görünen site. <strong>Media query</strong> ile farklı ekranlara farklı CSS yazılır.</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — Media Query</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-comment">/* Varsayılan: masaüstü */</span>
+<span class="t-sel">.container</span> {
+  <span class="t-prop">display</span>: <span class="t-val">grid</span>;
+  <span class="t-prop">grid-template-columns</span>: <span class="t-val">repeat(3, 1fr)</span>;
+}
+
+<span class="t-comment">/* Tablet: 768px altında */</span>
+<span class="t-kw">@media</span> (<span class="t-prop">max-width</span>: <span class="t-val">768px</span>) {
+  <span class="t-sel">.container</span> {
+    <span class="t-prop">grid-template-columns</span>: <span class="t-val">repeat(2, 1fr)</span>;
+  }
+}
+
+<span class="t-comment">/* Mobil: 480px altında */</span>
+<span class="t-kw">@media</span> (<span class="t-prop">max-width</span>: <span class="t-val">480px</span>) {
+  <span class="t-sel">.container</span> {
+    <span class="t-prop">grid-template-columns</span>: <span class="t-val">1fr</span>;  <span class="t-comment">← tek sütun</span>
+  }
+}</pre>
+        </div>
+
+        <h2>Yaygın Breakpoint'ler</h2>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin:1rem 0;">
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 16px; text-align:center;">
+            <div style="font-size:1.2rem;">📱</div>
+            <div style="font-family:var(--mono); font-size:12px; color:var(--accent); margin:4px 0;">≤ 480px</div>
+            <div style="font-size:12px; color:var(--muted);">Mobil</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 16px; text-align:center;">
+            <div style="font-size:1.2rem;">📱</div>
+            <div style="font-family:var(--mono); font-size:12px; color:var(--accent); margin:4px 0;">≤ 768px</div>
+            <div style="font-size:12px; color:var(--muted);">Tablet</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 16px; text-align:center;">
+            <div style="font-size:1.2rem;">💻</div>
+            <div style="font-family:var(--mono); font-size:12px; color:var(--accent); margin:4px 0;">≤ 1024px</div>
+            <div style="font-size:12px; color:var(--muted);">Laptop</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 16px; text-align:center;">
+            <div style="font-size:1.2rem;">🖥️</div>
+            <div style="font-family:var(--mono); font-size:12px; color:var(--accent); margin:4px 0;">> 1200px</div>
+            <div style="font-size:12px; color:var(--muted);">Masaüstü</div>
+          </div>
+        </div>
+
+        <div class="tip good">
+          <strong>Mobile-First Yaklaşım (Pro):</strong> Önce mobil CSS yaz, sonra büyük ekranlar için <code>min-width</code> ile genişlet. Amatör → büyükten küçüğe. Pro → küçükten büyüğe.
+        </div>
+
+        <button class="next-btn" onclick="showPage('specificity')">Sıradaki: Specificity →</button>
+      </div>
+
+      <!-- SPECIFICITY -->
+      <div id="page-specificity" class="content-page">
+        <div class="section-tag">İleri Seviye</div>
+        <h1>CSS Specificity</h1>
+        <p>Birden fazla CSS kuralı aynı elemanı hedeflediğinde, hangisi kazanacak? Bunu <strong>specificity (özgüllük)</strong> belirler.</p>
+
+        <h2>Kazanma Sıralaması</h2>
+        <div class="spec-bars">
+          <div class="spec-bar">
+            <div class="spec-label">#id { }</div>
+            <div class="spec-fill" style="width:280px; background:var(--red);"></div>
+            <div class="spec-val">100 puan</div>
+          </div>
+          <div class="spec-bar">
+            <div class="spec-label">.class { }</div>
+            <div class="spec-fill" style="width:140px; background:var(--amber);"></div>
+            <div class="spec-val">10 puan</div>
+          </div>
+          <div class="spec-bar">
+            <div class="spec-label">p { }</div>
+            <div class="spec-fill" style="width:40px; background:var(--accent);"></div>
+            <div class="spec-val">1 puan</div>
+          </div>
+          <div class="spec-bar">
+            <div class="spec-label">* { }</div>
+            <div class="spec-fill" style="width:10px; background:var(--muted);"></div>
+            <div class="spec-val">0 puan</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — Kim Kazanır?</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">p</span> { <span class="t-prop">color</span>: <span class="t-val">blue</span>; }          <span class="t-comment">← specificity: 1</span>
+<span class="t-sel">.metin</span> { <span class="t-prop">color</span>: <span class="t-val">red</span>; }    <span class="t-comment">← specificity: 10 → KAZANIR</span>
+<span class="t-sel">#baslik</span> { <span class="t-prop">color</span>: <span class="t-val">green</span>; } <span class="t-comment">← specificity: 100 → EN GÜÇLÜ</span>
+
+<span class="t-comment">/* Kombine örnek: */</span>
+<span class="t-sel">div.kart p</span> { }  <span class="t-comment">← 0+10+1+1 = 12 puan</span>
+<span class="t-sel">#nav .link</span> { }  <span class="t-comment">← 100+10 = 110 puan → kazanır</span></pre>
+        </div>
+
+        <div class="tip bad">
+          <strong>!important Kullanma:</strong> <code>color: red !important;</code> her şeyi ezer ama bir hata işareti. "Specificity anlamıyorum" demek gibi. Pro bu işe başvurmaz.
+        </div>
+
+        <button class="next-btn" onclick="showPage('variables')">Sıradaki: CSS Variables →</button>
+      </div>
+
+      <!-- CSS VARIABLES -->
+      <div id="page-variables" class="content-page">
+        <div class="section-tag">İleri Seviye</div>
+        <h1>CSS Variables</h1>
+        <p>Değerleri bir kez tanımla, her yerde kullan. Rengi değiştirmek istersen tek yerden değiştir.</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — Custom Properties</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-comment">/* :root = tüm sayfada geçerli */</span>
+<span class="t-sel">:root</span> {
+  <span class="t-prop">--primary</span>: <span class="t-val">#7c6aff</span>;
+  <span class="t-prop">--secondary</span>: <span class="t-val">#ff6a9b</span>;
+  <span class="t-prop">--text</span>: <span class="t-val">#333</span>;
+  <span class="t-prop">--radius</span>: <span class="t-val">12px</span>;
+  <span class="t-prop">--spacing</span>: <span class="t-val">16px</span>;
+}
+
+<span class="t-comment">/* Kullanım: */</span>
+<span class="t-sel">.buton</span> {
+  <span class="t-prop">background</span>: <span class="t-val">var(--primary)</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-val">var(--radius)</span>;
+  <span class="t-prop">padding</span>: <span class="t-val">var(--spacing)</span>;
+}
+
+<span class="t-sel">.buton-ikincil</span> {
+  <span class="t-prop">background</span>: <span class="t-val">var(--secondary)</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-val">var(--radius)</span>;  <span class="t-comment">← Aynı radius, tek değişiklik</span>
+}</pre>
+        </div>
+
+        <div class="tip good">
+          <strong>Neden Kullanmalı?</strong> Renk temasını değiştirmek istersen tek yerden değiştirirsin. Büyük projelerde hayat kurtarır.
+        </div>
+
+        <button class="next-btn" onclick="showPage('animation')">Sıradaki: Animasyon →</button>
+      </div>
+
+      <!-- ANIMATION -->
+      <div id="page-animation" class="content-page">
+        <div class="section-tag">İleri Seviye</div>
+        <h1>Transition & Animation</h1>
+
+        <h2>Transition — Hover Efektleri</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">.buton</span> {
+  <span class="t-prop">background</span>: <span class="t-val">blue</span>;
+  <span class="t-prop">transition</span>: <span class="t-val">all 0.3s ease</span>;  <span class="t-comment">← geçiş süresi</span>
+  <span class="t-comment">/* ya da spesifik: transition: background 0.3s, transform 0.2s */</span>
+}
+
+<span class="t-sel">.buton:hover</span> {
+  <span class="t-prop">background</span>: <span class="t-val">darkblue</span>;
+  <span class="t-prop">transform</span>: <span class="t-val">scale(1.05)</span>;  <span class="t-comment">← büyüt</span>
+}</pre>
+        </div>
+
+        <div style="display:flex; gap:12px; margin:1rem 0; flex-wrap:wrap;">
+          <div style="background:var(--accent); color:#fff; padding:12px 24px; border-radius:8px; font-family:var(--sans); font-size:14px; cursor:pointer; transition:all 0.3s;" onmouseover="this.style.transform='scale(1.08)'; this.style.background='#5a48e0'" onmouseout="this.style.transform=''; this.style.background='var(--accent)'">Hover Et →</div>
+          <div style="background:transparent; color:var(--text); padding:12px 24px; border-radius:8px; border:1px solid var(--border2); font-family:var(--sans); font-size:14px; cursor:pointer; transition:all 0.3s;" onmouseover="this.style.background='var(--surface2)'; this.style.borderColor='var(--accent)'" onmouseout="this.style.background='transparent'; this.style.borderColor='var(--border2)'">Bunu da dene</div>
+        </div>
+
+        <h2>Keyframe Animation</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-kw">@keyframes</span> <span class="t-val">kaydir</span> {
+  <span class="t-val">from</span> { <span class="t-prop">opacity</span>: <span class="t-val">0</span>; <span class="t-prop">transform</span>: <span class="t-val">translateY(20px)</span>; }
+  <span class="t-val">to</span>   { <span class="t-prop">opacity</span>: <span class="t-val">1</span>; <span class="t-prop">transform</span>: <span class="t-val">translateY(0)</span>; }
+}
+
+<span class="t-sel">.kart</span> {
+  <span class="t-prop">animation</span>: <span class="t-val">kaydir 0.5s ease forwards</span>;
+  <span class="t-comment">/*          isim  süre  timing doldurunca dur */</span>
+}</pre>
+        </div>
+
+        <div style="background:var(--code-bg); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin:1rem 0;">
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <div style="background:rgba(124,106,255,0.2); border:1px solid var(--accent); border-radius:8px; padding:1rem 1.5rem; animation:fadeInUp 0.6s ease forwards;">
+              <div style="font-family:var(--mono); font-size:11px; color:var(--accent);">fadeIn</div>
+              <div style="font-size:13px; color:var(--muted);">opacity 0→1</div>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        </style>
+
+        <button class="next-btn" onclick="showPage('bem')">Sıradaki: BEM Mimarisi →</button>
+      </div>
+
+      <!-- BEM -->
+      <div id="page-bem" class="content-page">
+        <div class="section-tag">İleri Seviye</div>
+        <h1>BEM Mimarisi</h1>
+        <p>BEM = Block Element Modifier. CSS class isimlerini sistematik yazmak için bir yöntem.</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">CSS — BEM Yapısı</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-comment">/* BLOCK — bağımsız bileşen */</span>
+<span class="t-sel">.kart</span> { }
+
+<span class="t-comment">/* ELEMENT — bloğun parçası (__) */</span>
+<span class="t-sel">.kart__baslik</span> { }
+<span class="t-sel">.kart__resim</span> { }
+<span class="t-sel">.kart__icerik</span> { }
+
+<span class="t-comment">/* MODIFIER — varyasyon (--) */</span>
+<span class="t-sel">.kart--buyuk</span> { }
+<span class="t-sel">.kart--aktif</span> { }
+<span class="t-sel">.kart--disabled</span> { }</pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-lang">HTML — BEM Kullanımı</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"kart kart--buyuk"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;img</span> <span class="t-attr">class</span>=<span class="t-val">"kart__resim"</span> <span class="t-attr">src</span>=<span class="t-val">"..."</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;h2</span> <span class="t-attr">class</span>=<span class="t-val">"kart__baslik"</span><span class="t-tag">&gt;</span>Başlık<span class="t-tag">&lt;/h2&gt;</span>
+  <span class="t-tag">&lt;p</span> <span class="t-attr">class</span>=<span class="t-val">"kart__icerik"</span><span class="t-tag">&gt;</span>İçerik<span class="t-tag">&lt;/p&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre>
+        </div>
+
+        <div class="demo-split">
+          <div class="tip bad"><strong>❌ Amatör:</strong><br>
+            <code>.kart-buyuk-baslik</code><br>
+            <code>.red-button-hover</code><br>
+            <code>.mystylee123</code>
+          </div>
+          <div class="tip good"><strong>✅ BEM ile:</strong><br>
+            <code>.kart--buyuk</code><br>
+            <code>.buton--kirmizi</code><br>
+            <code>.buton__ikon</code>
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>Özet:</strong> BEM kullandığında koduna bakan biri "Bu kart bloğunun başlık elementi" diye anlıyor. Class'tan yapıyı okuyabiliyor. Gerçek pro seviyesi bu.
+        </div>
+      </div>
+
+    </div><!-- /tab-learn -->
+
+    <!-- ===== TAB: QUIZ ===== -->
+    <div id="tab-quiz" style="display:none;">
+      <div class="hero-badge"><div class="hero-dot"></div>Test</div>
+      <h1>Bilgini Sına</h1>
+      <p>Her soruyu yanıtladıkça açıklama göreceksin. Sonunda skorun bekleniyor.</p>
+
+      <div id="quiz-container"></div>
+      <div class="quiz-score" id="quiz-score">
+        <span class="score-number" id="score-num">0/0</span>
+        <div class="score-label">doğru cevap</div>
+        <div class="score-msg" id="score-msg"></div>
+        <button class="restart-btn" onclick="restartQuiz()">Tekrar Dene</button>
+      </div>
+    </div>
+
+    <!-- ===== TAB: CHEATSHEET ===== -->
+    <div id="tab-cheatsheet" style="display:none;">
+      <div class="hero-badge"><div class="hero-dot"></div>Hızlı Başvuru</div>
+      <h1>Cheat Sheet</h1>
+      <p>Sınav öncesi gözden geçir. Tüm kritik kodlar burada.</p>
+
+      <h2>HTML Şablonu</h2>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">HTML — Tam Başlangıç</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-val">"tr"</span><span class="t-tag">&gt;</span>
+<span class="t-tag">&lt;head&gt;</span>
+  <span class="t-tag">&lt;meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-val">"viewport"</span> <span class="t-attr">content</span>=<span class="t-val">"width=device-width, initial-scale=1.0"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;title&gt;</span>Sayfa Başlığı<span class="t-tag">&lt;/title&gt;</span>
+  <span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"style.css"</span><span class="t-tag">&gt;</span>
+<span class="t-tag">&lt;/head&gt;</span>
+<span class="t-tag">&lt;body&gt;</span>
+  <span class="t-tag">&lt;header&gt;</span>
+    <span class="t-tag">&lt;nav&gt;</span><span class="t-tag">&lt;/nav&gt;</span>
+  <span class="t-tag">&lt;/header&gt;</span>
+  <span class="t-tag">&lt;main&gt;</span>
+    <span class="t-tag">&lt;section&gt;</span><span class="t-tag">&lt;/section&gt;</span>
+  <span class="t-tag">&lt;/main&gt;</span>
+  <span class="t-tag">&lt;footer&gt;</span><span class="t-tag">&lt;/footer&gt;</span>
+<span class="t-tag">&lt;/body&gt;</span>
+<span class="t-tag">&lt;/html&gt;</span></pre>
+      </div>
+
+      <h2>CSS Reset</h2>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">CSS — Her Projede Kullan</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-sel">*</span> {
+  <span class="t-prop">margin</span>: <span class="t-val">0</span>;
+  <span class="t-prop">padding</span>: <span class="t-val">0</span>;
+  <span class="t-prop">box-sizing</span>: <span class="t-val">border-box</span>;
+}
+
+<span class="t-sel">body</span> {
+  <span class="t-prop">font-family</span>: <span class="t-val">sans-serif</span>;
+  <span class="t-prop">line-height</span>: <span class="t-val">1.6</span>;
+}</pre>
+      </div>
+
+      <h2>Ortalama Formülü</h2>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-sel">.merkez</span> {
+  <span class="t-prop">display</span>: <span class="t-val">flex</span>;
+  <span class="t-prop">justify-content</span>: <span class="t-val">center</span>;
+  <span class="t-prop">align-items</span>: <span class="t-val">center</span>;
+}</pre>
+      </div>
+
+      <h2>Responsive Grid</h2>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-sel">.grid</span> {
+  <span class="t-prop">display</span>: <span class="t-val">grid</span>;
+  <span class="t-prop">grid-template-columns</span>: <span class="t-val">repeat(auto-fit, minmax(250px, 1fr))</span>;
+  <span class="t-prop">gap</span>: <span class="t-val">20px</span>;
+}</pre>
+      </div>
+
+      <h2>Navbar</h2>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">HTML + CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-tag">&lt;nav</span> <span class="t-attr">class</span>=<span class="t-val">"navbar"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span> <span class="t-attr">class</span>=<span class="t-val">"logo"</span><span class="t-tag">&gt;</span>Logo<span class="t-tag">&lt;/a&gt;</span>
+  <span class="t-tag">&lt;ul&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Ana Sayfa<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Hakkında<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="t-tag">&lt;/ul&gt;</span>
+<span class="t-tag">&lt;/nav&gt;</span>
+
+<span class="t-comment">/* CSS */</span>
+<span class="t-sel">.navbar</span> {
+  <span class="t-prop">display</span>: <span class="t-val">flex</span>;
+  <span class="t-prop">justify-content</span>: <span class="t-val">space-between</span>;
+  <span class="t-prop">align-items</span>: <span class="t-val">center</span>;
+  <span class="t-prop">padding</span>: <span class="t-val">1rem 2rem</span>;
+}
+<span class="t-sel">.navbar ul</span> { <span class="t-prop">display</span>: <span class="t-val">flex</span>; <span class="t-prop">list-style</span>: <span class="t-val">none</span>; <span class="t-prop">gap</span>: <span class="t-val">1rem</span>; }</pre>
+      </div>
+
+      <h2>Card Tasarımı</h2>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-sel">.card</span> {
+  <span class="t-prop">background</span>: <span class="t-val">white</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-val">12px</span>;
+  <span class="t-prop">padding</span>: <span class="t-val">1.5rem</span>;
+  <span class="t-prop">box-shadow</span>: <span class="t-val">0 2px 12px rgba(0,0,0,0.08)</span>;
+  <span class="t-prop">transition</span>: <span class="t-val">transform 0.2s</span>;
+}
+<span class="t-sel">.card:hover</span> { <span class="t-prop">transform</span>: <span class="t-val">translateY(-4px)</span>; }</pre>
+      </div>
+
+      <h2>Yapmaman Gerekenler</h2>
+      <div style="display:grid; gap:8px; margin:1rem 0;">
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--muted);">❌ Her şey için <code>div</code> kullanmak → semantic kullan</div>
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--muted);">❌ Inline CSS → external .css dosyası kullan</div>
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--muted);">❌ <code>!important</code> kullanmak → specificity'i anla</div>
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--muted);">❌ <code>float</code> ile layout yapmak → flex/grid kullan</div>
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--muted);">❌ <code>label</code> olmadan <code>input</code> kullanmak</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// === TAB SİSTEMİ ===
+function showTab(tab) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-learn').style.display = tab === 'learn' ? '' : 'none';
+  document.getElementById('tab-quiz').style.display = tab === 'quiz' ? '' : 'none';
+  document.getElementById('tab-cheatsheet').style.display = tab === 'cheatsheet' ? '' : 'none';
+  if (tab === 'quiz' && !quizBuilt) buildQuiz();
+}
+
+// === PAGE SİSTEMİ ===
+function showPage(id) {
+  document.querySelectorAll('.content-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+  const mapping = {
+    'intro':'Giriş & Yapı','tags':'Temel Etiketler','semantic':'Semantic HTML','forms':'Formlar',
+    'css-intro':'CSS Nedir?','selectors':"Selector'lar",'boxmodel':'Box Model','display':'Display & Position',
+    'flexbox':'Flexbox','grid':'CSS Grid','responsive':'Responsive',
+    'specificity':'Specificity','variables':'CSS Variables','animation':'Animasyon','bem':'BEM Mimarisi'
+  };
+  document.querySelectorAll('.sidebar-item').forEach(i => {
+    if (i.textContent.trim() === (mapping[id] || '')) i.classList.add('active');
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// === FLEXBOX DEMO ===
+function updateFlex() {
+  const jc = document.getElementById('jc').value;
+  const ai = document.getElementById('ai').value;
+  const fd = document.getElementById('fd').value;
+  const demo = document.getElementById('flexDemo');
+  demo.style.justifyContent = jc;
+  demo.style.alignItems = ai;
+  demo.style.flexDirection = fd;
+  if (fd === 'column') demo.style.minHeight = '180px';
+  else demo.style.minHeight = '80px';
+  document.getElementById('flexCode').textContent =
+    `display: flex; justify-content: ${jc}; align-items: ${ai}; flex-direction: ${fd};`;
+}
+
+// === COPY ===
+function copyCode(btn) {
+  const pre = btn.closest('.code-block').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText);
+  btn.textContent = 'kopyalandı!';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = 'kopyala'; btn.classList.remove('copied'); }, 1800);
+}
+
+// === QUIZ ===
+const questions = [
+  {
+    q: 'HTML\'de <code>&lt;head&gt;</code> etiketinin içine ne konulur?',
+    opts: ['Görünen sayfa içeriği','Meta bilgiler, başlık, CSS linkleri','Resimler ve videolar','Navigasyon menüsü'],
+    ans: 1,
+    exp: '<strong>head</strong> etiketi görünmez içerikler içindir: &lt;title&gt;, &lt;meta&gt;, &lt;link rel="stylesheet"&gt; gibi.'
+  },
+  {
+    q: 'Aşağıdakilerden hangisi <strong>semantic</strong> bir HTML etiketidir?',
+    opts: ['&lt;div&gt;','&lt;span&gt;','&lt;article&gt;','&lt;b&gt;'],
+    ans: 2,
+    exp: '<strong>article</strong> anlamlı (semantic) bir etikettir. div ve span anlamsız kapsayıcıdır.'
+  },
+  {
+    q: '<code>position: absolute</code> kullanan bir elemanın parent\'ı hangi position değerine sahip olmalı?',
+    opts: ['static','fixed','relative','absolute'],
+    ans: 2,
+    exp: 'absolute eleman, en yakın <strong>position: relative</strong> parent\'a göre konumlanır. Parent relative olmazsa sayfa köküne göre konumlanır.'
+  },
+  {
+    q: 'CSS\'de hangi seçicinin specificity değeri en yüksektir?',
+    opts: ['p { }','.sinif { }','#kimlik { }','* { }'],
+    ans: 2,
+    exp: 'Specificity sıralaması: <strong>#id (100) > .class (10) > tag (1) > * (0)</strong>. Dolayısıyla #kimlik kazanır.'
+  },
+  {
+    q: 'Flexbox\'ta elemanları <strong>dikey olarak ortaya</strong> almak için hangi özellik kullanılır?',
+    opts: ['justify-content: center','align-items: center','flex-direction: center','text-align: center'],
+    ans: 1,
+    exp: '<strong>align-items: center</strong> flex container\'da çocukları dikey (cross axis) olarak ortalar. justify-content ise ana eksende çalışır.'
+  },
+  {
+    q: '<code>box-sizing: border-box</code> ne işe yarar?',
+    opts: ['Box\'a border ekler','padding ve border\'ı width\'in içine dahil eder','margin\'ı sıfırlar','Box\'u görünmez yapar'],
+    ans: 1,
+    exp: '<strong>border-box</strong> ile padding ve border, belirtilen width\'in içine dahil olur. Yani width: 200px + padding: 20px = toplam 200px (padding içeride hesaplanır).'
+  },
+  {
+    q: '<code>&lt;label for="email"&gt;</code> ile <code>&lt;input id="email"&gt;</code> bağlantısı ne sağlar?',
+    opts: ['Görsel stil bağlantısı','Erişilebilirlik ve kullanılabilirlik','Veri doğrulama','Form gönderme'],
+    ans: 1,
+    exp: '<strong>for-id eşleşmesi</strong> ile label\'a tıklandığında ilgili input odaklanır. Bu erişilebilirlik (accessibility) için çok önemlidir.'
+  },
+  {
+    q: 'CSS Grid\'de <code>1fr</code> ne anlama gelir?',
+    opts: ['1 piksel','Sabit 100px genişlik','Kullanılabilir alanın 1 "kesri" (orantılı bölümü)','%1 genişlik'],
+    ans: 2,
+    exp: '<strong>fr (fraction)</strong> kullanılabilir alanı orantılı böler. <code>1fr 2fr</code> → biri 1/3, diğeri 2/3 genişliğe sahip olur.'
+  },
+  {
+    q: 'BEM metodolojisinde <code>--</code> (çift tire) ne anlama gelir?',
+    opts: ['Element','CSS yorumu','Modifier (değiştirici/varyasyon)','Nested element'],
+    ans: 2,
+    exp: 'BEM\'de: <code>.block</code> (blok), <code>.block__element</code> (çift alt tire = element), <code>.block--modifier</code> (çift tire = <strong>modifier/varyasyon</strong>).'
+  },
+  {
+    q: 'Mobile-first yaklaşımında media query nasıl yazılır?',
+    opts: ['@media (max-width: 768px)','@media (min-width: 768px)','@media screen','@media mobile'],
+    ans: 1,
+    exp: '<strong>Mobile-first</strong>\'te önce mobil stil yazılır, sonra büyük ekranlar için <code>min-width</code> ile genişletilir. max-width ise masaüstünden küçüğe inen "desktop-first" yaklaşımıdır.'
+  }
+];
+
+let quizBuilt = false;
+let answers = {};
+
+function buildQuiz() {
+  quizBuilt = true;
+  answers = {};
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  document.getElementById('quiz-score').classList.remove('show');
+
+  questions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'quiz-card';
+    card.id = 'qcard-' + i;
+    card.innerHTML = `
+      <div class="quiz-q">Soru ${i+1}/${questions.length}: ${q.q}</div>
+      <div class="quiz-options">
+        ${q.opts.map((o, j) => `
+          <button class="quiz-opt" onclick="answerQ(${i}, ${j})" data-idx="${j}">${o}</button>
+        `).join('')}
+      </div>
+      <div class="quiz-explanation" id="exp-${i}">${q.exp}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function answerQ(qIdx, optIdx) {
+  if (answers[qIdx] !== undefined) return;
+  answers[qIdx] = optIdx;
+
+  const card = document.getElementById('qcard-' + qIdx);
+  const buttons = card.querySelectorAll('.quiz-opt');
+  const correct = questions[qIdx].ans;
+
+  buttons.forEach((btn, j) => {
+    btn.disabled = true;
+    if (j === correct) btn.classList.add('correct');
+    else if (j === optIdx && optIdx !== correct) btn.classList.add('wrong');
+  });
+
+  document.getElementById('exp-' + qIdx).classList.add('show');
+
+  if (Object.keys(answers).length === questions.length) {
+    setTimeout(showScore, 600);
+  }
+}
+
+function showScore() {
+  const correct = Object.entries(answers).filter(([i, ans]) => Number(ans) === questions[i].ans).length;
+  const total = questions.length;
+  document.getElementById('score-num').textContent = correct + '/' + total;
+  const pct = Math.round(correct / total * 100);
+  let msg = '';
+  if (pct === 100) msg = 'Mükemmel! Sınav killer sensin.';
+  else if (pct >= 80) msg = 'Çok iyi! Biraz daha ve tam puan.';
+  else if (pct >= 60) msg = 'İyi gidiyorsun, tekrar et.';
+  else msg = 'Konuları tekrar gözden geçir.';
+  document.getElementById('score-msg').textContent = msg;
+  document.getElementById('quiz-score').classList.add('show');
+  document.getElementById('quiz-score').scrollIntoView({ behavior: 'smooth' });
+}
+
+function restartQuiz() {
+  buildQuiz();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
