@@ -20,7 +20,6 @@
     --green: #4fffb0;
     --amber: #ffb84f;
     --red: #ff5a5a;
-    --blue: #5ab4ff;
     --code-bg: #0d0d18;
     --radius: 12px;
     --mono: 'Space Mono', monospace;
@@ -248,8 +247,6 @@
   .tip.good strong { color: var(--green); }
   .tip.bad { border-left-color: var(--red); background: rgba(255,90,90,0.08); }
   .tip.bad strong { color: var(--red); }
-  .tip.info { border-left-color: var(--blue, #5ab4ff); background: rgba(90,180,255,0.08); }
-  .tip.info strong { color: var(--blue, #5ab4ff); }
 
   /* === DEMO PANEL === */
   .demo-split {
@@ -667,6 +664,7 @@
     <button class="nav-tab active" onclick="showTab('learn')">Öğren</button>
     <button class="nav-tab" onclick="showTab('quiz')">Test</button>
     <button class="nav-tab" onclick="showTab('cheatsheet')">Cheat Sheet</button>
+    <button class="nav-tab" onclick="showTab('simulation')">🏗️ Simülasyon</button>
   </div>
 </nav>
 
@@ -810,88 +808,20 @@
         <h2>Link & Resim</h2>
         <div class="code-block">
           <div class="code-header"><span class="code-lang">HTML</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
-          <pre><span class="t-comment">&lt;!-- &lt;a&gt; = link (anchor) etiketi --&gt;</span>
-<span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"https://google.com"</span>  <span class="t-comment">← gidilecek adres (URL)</span>
-   <span class="t-attr">target</span>=<span class="t-val">"_blank"</span>           <span class="t-comment">← yeni sekmede aç; _self = aynı sekme (varsayılan)</span>
-   <span class="t-attr">rel</span>=<span class="t-val">"noopener"</span><span class="t-tag">&gt;</span>           <span class="t-comment">← güvenlik: _blank ile birlikte kullan</span>
-  Google'a Git
-<span class="t-tag">&lt;/a&gt;</span>
+          <pre><span class="t-comment"><!-- Link --></span>
+<span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"https://google.com"</span> <span class="t-attr">target</span>=<span class="t-val">"_blank"</span><span class="t-tag">&gt;</span>Google<span class="t-tag">&lt;/a&gt;</span>
 
-<span class="t-comment">&lt;!-- &lt;img&gt; = resim etiketi — KAPANMAZ (void element) --&gt;</span>
-<span class="t-tag">&lt;img</span>
-  <span class="t-attr">src</span>=<span class="t-val">"foto.jpg"</span>              <span class="t-comment">← resim dosyasının yolu veya URL</span>
-  <span class="t-attr">alt</span>=<span class="t-val">"Bir kedi fotoğrafı"</span>   <span class="t-comment">← ZORUNLU: resim yüklenemezse veya ekran okuyucu için</span>
-  <span class="t-attr">width</span>=<span class="t-val">"300"</span>                <span class="t-comment">← genişlik; sadece width verirsen yükseklik oranlanır</span>
-  <span class="t-attr">loading</span>=<span class="t-val">"lazy"</span>            <span class="t-comment">← performans: resim görünmeden yüklenmesin</span>
-<span class="t-tag">&gt;</span>                              <span class="t-comment">← kapanış yok! &lt;/img&gt; YAZMA</span></pre>
+<span class="t-comment"><!-- Resim --></span>
+<span class="t-tag">&lt;img</span> <span class="t-attr">src</span>=<span class="t-val">"foto.jpg"</span> <span class="t-attr">alt</span>=<span class="t-val">"Açıklama"</span> <span class="t-attr">width</span>=<span class="t-val">"300"</span><span class="t-tag">&gt;</span>
+<span class="t-comment">← img kapanmaz! alt = erişilebilirlik için zorunlu</span></pre>
         </div>
 
-        <!-- CANLI DEMO -->
-        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:1.4rem; margin:.8rem 0;">
-          <div style="font-size:11px; font-family:monospace; color:#888; margin-bottom:12px;">— Canlı Görünüm —</div>
-
-          <!-- Link örnekleri -->
-          <div style="margin-bottom:14px;">
-            <div style="font-size:11px; font-family:monospace; color:#999; margin-bottom:6px;">&lt;a href="..."&gt; → böyle görünür:</div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-              <a href="https://google.com" target="_blank" rel="noopener"
-                 style="color:#1a73e8; font-family:sans-serif; font-size:14px; text-decoration:underline;">
-                Sade link (varsayılan stil)
-              </a>
-              <a href="https://google.com" target="_blank" rel="noopener"
-                 style="display:inline-block; background:#7c6aff; color:#fff; font-family:sans-serif; font-size:13px;
-                        padding:8px 18px; border-radius:6px; text-decoration:none;">
-                Buton görünümlü link (CSS ile)
-              </a>
-              <a href="https://google.com" target="_blank" rel="noopener"
-                 style="display:inline-flex; align-items:center; gap:5px; border:1.5px solid #7c6aff;
-                        color:#7c6aff; font-family:sans-serif; font-size:13px;
-                        padding:7px 16px; border-radius:6px; text-decoration:none;">
-                ↗ Outline link
-              </a>
-            </div>
-            <div style="font-size:11px; color:#aaa; font-family:sans-serif; margin-top:6px;">
-              ↑ Hepsi aynı &lt;a&gt; etiketi — fark sadece CSS
-            </div>
+        <div style="background:#fff; border-radius:10px; padding:1rem 1.5rem; margin:1rem 0; font-family:sans-serif; font-size:14px; border:1px solid var(--border); display:flex; flex-direction:column; gap:10px;">
+          <div style="color:#1a0dab; text-decoration:underline; cursor:pointer;">🔗 Google — (yeni sekmede açılır, target="_blank")</div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:80px; height:60px; background:linear-gradient(135deg,#e0d8ff,#ffe0ec); border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:24px;">🏔️</div>
+            <div style="font-size:12px; color:#888;">foto.jpg — alt metni ekran okuyucular için okunur<br><span style="color:#aaa;">width="300" ile boyutu kontrol edersin</span></div>
           </div>
-
-          <!-- Resim örnekleri -->
-          <div style="border-top:1px solid #f0f0f0; padding-top:14px;">
-            <div style="font-size:11px; font-family:monospace; color:#999; margin-bottom:8px;">&lt;img&gt; → görünümler:</div>
-            <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start;">
-              <!-- Yüklenebilen resim simülasyonu -->
-              <div style="text-align:center;">
-                <div style="width:100px; height:70px; background:linear-gradient(135deg,#667eea,#764ba2);
-                            border-radius:8px; display:flex; align-items:center; justify-content:center;
-                            font-size:28px;">🖼️</div>
-                <div style="font-size:10px; color:#888; font-family:sans-serif; margin-top:4px;">Resim yüklendi</div>
-              </div>
-              <!-- alt metni gösterimi (resim yüklenemedi) -->
-              <div style="text-align:center;">
-                <div style="width:140px; height:70px; background:#f5f5f5; border:2px dashed #ddd;
-                            border-radius:8px; display:flex; align-items:center; justify-content:center;
-                            gap:4px;">
-                  <span style="font-size:18px;">🔗</span>
-                  <span style="font-size:11px; color:#666; font-family:sans-serif;">Bir kedi fotoğrafı</span>
-                </div>
-                <div style="font-size:10px; color:#888; font-family:sans-serif; margin-top:4px;">
-                  Resim yüklenemedi → alt metni görünür
-                </div>
-              </div>
-              <!-- alt="" boş bırakılmış -->
-              <div style="text-align:center;">
-                <div style="width:100px; height:70px; background:#fef2f2; border:2px dashed #fca5a5;
-                            border-radius:8px; display:flex; align-items:center; justify-content:center;">
-                  <span style="font-size:10px; color:#ef4444; font-family:sans-serif; text-align:center; padding:4px;">alt="" boş<br>❌ erişilemez!</span>
-                </div>
-                <div style="font-size:10px; color:#ef4444; font-family:sans-serif; margin-top:4px;">Kötü pratik</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tip">
-          <strong>alt neden zorunlu?</strong> Görme engelliler için ekran okuyucular resmi <code>alt</code> metninden tanır. Resim yüklenemezse kullanıcı ne görmesi gerektiğini anlar. <code>alt=""</code> boş bırakmak (dekoratif resim değilse) erişilebilirliği tamamen bozar.
         </div>
 
         <h2>Listeler</h2>
@@ -917,71 +847,37 @@
         </div>
 
         <h2>div ve span — Fark Ne?</h2>
-        <p>İkisi de <strong>anlamsız kapsayıcılardır</strong> — kendi başlarına hiçbir görsel anlam taşımazlar.
-        Tek fark: <code>div</code> blok düzeyinde, <code>span</code> satır içi düzeyde çalışır.</p>
-
         <div class="code-block">
           <div class="code-header"><span class="code-lang">HTML</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
-          <pre><span class="t-comment">&lt;!-- DIV: block element
-     → her zaman yeni satırda başlar
-     → tam genişliği kaplar (width belirtmesen bile)
-     → bölümleri, kartları, layout parçalarını gruplamak için --&gt;</span>
+          <pre><span class="t-comment"><!-- div = block → tam satır kaplar, yeni satırda başlar --></span>
 <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"kart"</span><span class="t-tag">&gt;</span>
-  <span class="t-tag">&lt;p&gt;</span>Kart içeriği burada.<span class="t-tag">&lt;/p&gt;</span>
-<span class="t-tag">&lt;/div&gt;</span>
-<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"kart"</span><span class="t-tag">&gt;</span>
-  <span class="t-tag">&lt;p&gt;</span>Bu div yeni satırda başladı.<span class="t-tag">&lt;/p&gt;</span>
+  <span class="t-tag">&lt;p&gt;</span>Kart içeriği<span class="t-tag">&lt;/p&gt;</span>
 <span class="t-tag">&lt;/div&gt;</span>
 
-<span class="t-comment">&lt;!-- SPAN: inline element
-     → metnin arasında akar, satır bölünmez
-     → sadece içeriği kadar yer tutar
-     → tek kelime / küçük parça renklendirmek için --&gt;</span>
-<span class="t-tag">&lt;p&gt;</span>
-  Fiyat: <span class="t-tag">&lt;span</span> <span class="t-attr">style</span>=<span class="t-val">"color:red; font-weight:bold;"</span><span class="t-tag">&gt;</span>299₺<span class="t-tag">&lt;/span&gt;</span>
-  — indirimli!
-<span class="t-tag">&lt;/p&gt;</span></pre>
+<span class="t-comment"><!-- span = inline → satır içinde, yalnızca içerik kadar yer kaplar --></span>
+<span class="t-tag">&lt;p&gt;</span>Bu kelime <span class="t-tag">&lt;span</span> <span class="t-attr">style</span>=<span class="t-val">"color:red"</span><span class="t-tag">&gt;</span>kırmızı<span class="t-tag">&lt;/span&gt;</span>.<span class="t-tag">&lt;/p&gt;</span></pre>
         </div>
 
-        <!-- CANLI KARŞILAŞTIRMA -->
-        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:1.4rem; margin:.8rem 0;">
-          <div style="font-size:11px; font-family:monospace; color:#888; margin-bottom:10px;">— div (mavi) vs span (sarı) — renk sınırları görülüyor —</div>
-
-          <!-- div davranışı -->
-          <div style="margin-bottom:10px;">
-            <div style="outline:2px solid #3b82f6; background:#eff6ff; border-radius:4px;
-                        padding:8px 12px; font-family:sans-serif; font-size:13px; color:#1e3a5f; margin-bottom:4px;">
-              <span style="font-size:10px; color:#3b82f6; font-weight:600; display:block; margin-bottom:2px;">DIV → tam genişliği kapladı</span>
-              Birinci kart içeriği
-            </div>
-            <div style="outline:2px solid #3b82f6; background:#eff6ff; border-radius:4px;
-                        padding:8px 12px; font-family:sans-serif; font-size:13px; color:#1e3a5f;">
-              <span style="font-size:10px; color:#3b82f6; font-weight:600; display:block; margin-bottom:2px;">DIV → otomatik yeni satır!</span>
-              İkinci kart içeriği
-            </div>
-          </div>
-
-          <!-- span davranışı -->
-          <div style="font-family:sans-serif; font-size:14px; color:#333; line-height:2;">
-            Ürün fiyatı:
-            <span style="outline:2px solid #f59e0b; background:#fef9c3; padding:1px 4px; border-radius:3px;
-                         font-weight:bold; color:#92400e;">299₺</span>
-            — stokta son
-            <span style="outline:2px solid #f59e0b; background:#fef9c3; padding:1px 4px; border-radius:3px;
-                         color:#92400e;">3 adet</span>
-            kaldı!
-            <div style="font-size:10px; color:#888; font-family:monospace; margin-top:2px;">
-              ↑ SPAN: cümle akmaya devam ediyor, yeni satır açılmadı
-            </div>
-          </div>
+        <div class="tip">
+          <strong>Kural:</strong> <code>div</code> bölümleri gruplamak için, <code>span</code> ise metin içinde küçük parçaları hedeflemek için kullan.
         </div>
 
+        <h3>Canlı Fark Gösterimi</h3>
         <div class="demo-split">
-          <div class="tip good">
-            <strong>div kullan:</strong> Bölümleri gruplamak, kart yapmak, layout parçaları. İçinde birden fazla eleman olabilir.
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent2); margin-bottom:8px; letter-spacing:0.06em;">DIV — block element</div>
+            <div style="background:#fff; border-radius:10px; padding:1rem; font-family:sans-serif; font-size:14px;">
+              <div style="background:#ffe0ec; border:2px solid #ff6a9b; border-radius:6px; padding:8px; margin-bottom:6px; color:#333;">Ben bir div'im — tam satır kaplarım</div>
+              <div style="background:#e0d8ff; border:2px solid #7c6aff; border-radius:6px; padding:8px; color:#333;">Ben de bir div'im — altımda başlarım</div>
+            </div>
+            <p style="font-size:12px; margin-top:6px;">Her div kendi satırında, tam genişlikte</p>
           </div>
-          <div class="tip info" style="border-left-color:var(--blue); background:rgba(90,180,255,.08);">
-            <strong style="color:var(--blue);">span kullan:</strong> Metin içinde belirli bir kelimenin rengini, boyutunu değiştirmek. Satır bölünmez.
+          <div>
+            <div style="font-family:var(--mono); font-size:11px; color:var(--green); margin-bottom:8px; letter-spacing:0.06em;">SPAN — inline element</div>
+            <div style="background:#fff; border-radius:10px; padding:1rem; font-family:sans-serif; font-size:14px; color:#333; line-height:2;">
+              Merhaba, benim <span style="background:#ffe0ec; border:1px solid #ff6a9b; padding:2px 6px; border-radius:3px; color:#c41">adım</span> Ali ve <span style="background:#e0d8ff; border:1px solid #7c6aff; padding:2px 6px; border-radius:3px; color:#55a">web</span> öğreniyorum.
+            </div>
+            <p style="font-size:12px; margin-top:6px;">Span metin akışını bozmaz, satır içinde kalır</p>
           </div>
         </div>
 
@@ -992,74 +888,88 @@
       <div id="page-semantic" class="content-page">
         <div class="section-tag">HTML Temelleri</div>
         <h1>Semantic HTML</h1>
-        <p><strong>Semantic</strong> = anlamlı. HTML etiketleri iki gruba ayrılır: anlamsız kapsayıcılar (<code>div</code>, <code>span</code>) ve anlamlı etiketler (<code>header</code>, <code>article</code>, <code>nav</code>...). Anlamlı etiketler hem insanların hem de tarayıcıların kodu daha iyi anlamasını sağlar.</p>
-
-        <h2>div Nedir, Neden Yetmez?</h2>
-        <p>Bir <code>div</code> tarayıcıya hiçbir şey söylemez. "Bu bir şeyin etrafında bir kutu" der ama <em>ne</em> olduğunu söylemez. Kod büyüdükçe <code>div</code> dolu sayfa karmaşık hale gelir — buna "div soup" (div çorbası) denir.</p>
-
-        <div class="code-block">
-          <div class="code-header"><span class="code-lang">HTML — div'in zayıflığı</span></div>
-          <pre><span class="t-comment">&lt;!-- Tarayıcı için bunların hepsi aynı: sadece bir kutu --&gt;</span>
-<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"header"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>   <span class="t-comment">← class adından anlaşılır ama tarayıcı bilmez</span>
-<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"nav"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>      <span class="t-comment">← Google buranın menü olduğunu anlayamaz</span>
-<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"article"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>  <span class="t-comment">← ekran okuyucu kullanıcı kaybolur</span>
-<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"footer"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>  <span class="t-comment">← "div soup" — bakımı zorlaşır</span></pre>
-        </div>
+        <p><strong>Semantic</strong> = anlamlı. Her şeyi <code>div</code> yapmak yerine, içeriği tanımlayan etiketleri kullanmak hem okunabilirliği hem SEO'yu iyileştirir.</p>
 
         <div class="demo-split">
           <div>
-            <div class="tip bad"><strong>❌ Div çorbası:</strong> Her şey div, anlam yok</div>
+            <div class="tip bad"><strong>❌ Kötü (amatör):</strong><br>Her şey div</div>
             <div class="code-block">
-              <div class="code-header"><span class="code-lang">Yanlış</span></div>
-              <pre><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"header"</span><span class="t-tag">&gt;</span>
-  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"nav"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>
-<span class="t-tag">&lt;/div&gt;</span>
-<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"main"</span><span class="t-tag">&gt;</span>
-  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"post"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>
-<span class="t-tag">&lt;/div&gt;</span>
+              <div class="code-header"><span class="code-lang">HTML — Yanlış</span></div>
+              <pre><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"header"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"nav"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"content"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span>
 <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"footer"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/div&gt;</span></pre>
             </div>
           </div>
           <div>
-            <div class="tip good"><strong>✅ Semantic: etiket konuşuyor</strong></div>
+            <div class="tip good"><strong>✅ İyi (pro):</strong><br>Anlamlı etiketler</div>
             <div class="code-block">
-              <div class="code-header"><span class="code-lang">Doğru</span></div>
-              <pre><span class="t-tag">&lt;header&gt;</span>
-  <span class="t-tag">&lt;nav&gt;</span>...<span class="t-tag">&lt;/nav&gt;</span>
-<span class="t-tag">&lt;/header&gt;</span>
-<span class="t-tag">&lt;main&gt;</span>
-  <span class="t-tag">&lt;article&gt;</span>...<span class="t-tag">&lt;/article&gt;</span>
-<span class="t-tag">&lt;/main&gt;</span>
+              <div class="code-header"><span class="code-lang">HTML — Doğru</span></div>
+              <pre><span class="t-tag">&lt;header&gt;</span>...<span class="t-tag">&lt;/header&gt;</span>
+<span class="t-tag">&lt;nav&gt;</span>...<span class="t-tag">&lt;/nav&gt;</span>
+<span class="t-tag">&lt;main&gt;</span>...<span class="t-tag">&lt;/main&gt;</span>
 <span class="t-tag">&lt;footer&gt;</span>...<span class="t-tag">&lt;/footer&gt;</span></pre>
             </div>
           </div>
         </div>
 
         <h2>Semantic Etiket Haritası</h2>
-        <div style="background:var(--code-bg); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin:1rem 0; font-family:var(--mono); font-size:12px; line-height:1.8;">
+        <div style="background:var(--code-bg); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin:1rem 0; font-family:var(--mono); font-size:12px;">
           <div style="border:2px solid var(--accent2); border-radius:6px; padding:8px 12px; margin-bottom:8px; color:var(--accent2);">
-            &lt;header&gt; — logo, site adı, üst gezinme alanı
+            &lt;header&gt; — Logo, site başlığı, üst menü
           </div>
           <div style="border:2px solid var(--accent); border-radius:6px; padding:8px 12px; margin-bottom:8px; color:var(--accent);">
-            &lt;nav&gt; — navigasyon linkleri, menü
+            &lt;nav&gt; — Navigasyon linkleri
           </div>
           <div style="border:2px solid var(--muted); border-radius:6px; padding:8px 12px; margin-bottom:8px; display:flex; gap:8px;">
             <div style="flex:2; border:1px solid var(--green); border-radius:4px; padding:8px; color:var(--green);">
-              &lt;main&gt; — sayfanın ana içeriği (bir sayfada tek olmalı)<br>
-              <div style="margin:6px 0; border:1px solid rgba(79,255,176,0.3); border-radius:4px; padding:6px;">&lt;section&gt; — tematik bölüm (Hero, Özellikler, İletişim...)</div>
-              <div style="border:1px solid rgba(79,255,176,0.3); border-radius:4px; padding:6px;">&lt;article&gt; — bağımsız içerik (blog yazısı, haber, yorum)</div>
+              &lt;main&gt;<br>
+              <div style="margin:8px 0; border:1px solid rgba(79,255,176,0.4); border-radius:4px; padding:6px;">&lt;section&gt; — Bölümler</div>
+              <div style="border:1px solid rgba(79,255,176,0.4); border-radius:4px; padding:6px;">&lt;article&gt; — Bağımsız içerik</div>
             </div>
             <div style="flex:1; border:1px solid var(--amber); border-radius:4px; padding:8px; color:var(--amber);">
-              &lt;aside&gt;<br>yan içerik, ilgili linkler, reklam
+              &lt;aside&gt;<br>Yan panel
             </div>
           </div>
           <div style="border:2px solid var(--accent2); border-radius:6px; padding:8px 12px; color:var(--accent2);">
-            &lt;footer&gt; — alt bilgi, telif hakkı, sosyal linkler
+            &lt;footer&gt; — Alt bilgi, telif, iletişim
           </div>
         </div>
 
         <div class="tip">
-          <strong>Neden önemli?</strong> (1) <strong>Okunabilirlik</strong> — başkası koduna baktığında yapıyı anında kavrar. (2) <strong>SEO</strong> — Google, anlamlı etiketleri tarar ve içeriği daha iyi kategorize eder. (3) <strong>Erişilebilirlik</strong> — ekran okuyucular <code>&lt;nav&gt;</code>'ı görünce "burada menü var" diyerek kullanıcıyı doğru yönlendirir.
+          <strong>Pro Trick:</strong> Semantic etiketler hem <strong>SEO</strong>'yu (arama motoru sıralaması) hem de <strong>erişilebilirliği</strong> (ekran okuyucular) iyileştirir. <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code> kullan — kodunu okuyan herkes yapıyı anında kavrar.
+        </div>
+
+        <h2>Ne Zaman Hangisini Kullanırsın?</h2>
+        <div style="display:grid; gap:8px; margin:1rem 0;">
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--accent2);">&lt;header&gt;</code>
+            <span style="font-size:13px; color:var(--muted);">Sayfanın veya bir bölümün <strong style="color:var(--text)">üst kısmı</strong>. Logo, site adı, üst menü genellikle burada.</span>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--accent2);">&lt;nav&gt;</code>
+            <span style="font-size:13px; color:var(--muted);"><strong style="color:var(--text)">Navigasyon linkleri</strong> içindir. Menü linklerini buraya koy, düz link listelerini değil.</span>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--green);">&lt;main&gt;</code>
+            <span style="font-size:13px; color:var(--muted);">Sayfanın <strong style="color:var(--text)">ana içeriği</strong>. Sayfada sadece bir tane olmalı. Tekrarlanan içerikler (nav, footer) buraya girmez.</span>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--amber);">&lt;section&gt;</code>
+            <span style="font-size:13px; color:var(--muted);">Tematik olarak gruplanmış içerik <strong style="color:var(--text)">bölümü</strong>. Başlığı olan her büyük alan section olabilir.</span>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--accent);">&lt;article&gt;</code>
+            <span style="font-size:13px; color:var(--muted);"><strong style="color:var(--text)">Bağımsız, kendi başına anlam taşıyan</strong> içerik. Blog yazısı, haber, yorum gibi. Sayfadan koparıp başka yerde de yayınlanabilir.</span>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--muted);">&lt;aside&gt;</code>
+            <span style="font-size:13px; color:var(--muted);">Ana içerikle ilgili ama <strong style="color:var(--text)">yan bilgi</strong>. Sidebar, reklamlar, ilgili linkler.</span>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--accent2);">&lt;footer&gt;</code>
+            <span style="font-size:13px; color:var(--muted);">Sayfanın veya bir bölümün <strong style="color:var(--text)">alt kısmı</strong>. Telif hakkı, iletişim, sosyal medya linkleri.</span>
+          </div>
         </div>
 
         <button class="next-btn" onclick="showPage('forms')">Sıradaki: Formlar →</button>
@@ -1069,124 +979,100 @@
       <div id="page-forms" class="content-page">
         <div class="section-tag">HTML Temelleri</div>
         <h1>Form Yapıları</h1>
-        <p>Formlar kullanıcıdan veri toplar: kayıt, giriş, iletişim, arama... Her input mutlaka bir <code>label</code> ile eşleşmelidir — bu hem kullanılabilirlik hem erişilebilirlik için kritik.</p>
+        <p>Formlar kullanıcıdan veri toplayan en temel araç. Her input bir <code>label</code> ile eşleşmeli.</p>
 
         <div class="code-block">
-          <div class="code-header"><span class="code-lang">HTML — Eksiksiz Form Örneği</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
-          <pre><span class="t-comment">&lt;!--
-  action: form verilerinin gönderileceği adres (sunucu endpoint)
-  method: GET = veriyi URL'e ekler (arama formları için)
-          POST = veriyi gizli gönderir (kayıt, giriş, iletişim için)
-          → şifre, kişisel veri varsa mutlaka POST
---&gt;</span>
-<span class="t-tag">&lt;form</span> <span class="t-attr">action</span>=<span class="t-val">"/gonder"</span> <span class="t-attr">method</span>=<span class="t-val">"POST"</span><span class="t-tag">&gt;</span>
+          <div class="code-header"><span class="code-lang">HTML — Tam Form Örneği</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-tag">&lt;form</span> <span class="t-attr">action</span>=<span class="t-val">"/gonder"</span> <span class="t-attr">method</span>=<span class="t-val">"POST"</span><span class="t-tag">&gt;</span>
 
-  <span class="t-comment">&lt;!-- TEMEL KURAL: label for="X" ↔ input id="X"
-       Değerler birebir aynı olmalı!
-       Bu eşleşme: label'a tıklayınca cursor o input'a gider --&gt;</span>
+  <span class="t-comment"><!-- label for="..." ↔ input id="..." = erişilebilirlik --></span>
   <span class="t-tag">&lt;label</span> <span class="t-attr">for</span>=<span class="t-val">"isim"</span><span class="t-tag">&gt;</span>Adınız<span class="t-tag">&lt;/label&gt;</span>
-  <span class="t-tag">&lt;input</span>
-    <span class="t-attr">type</span>=<span class="t-val">"text"</span>
-    <span class="t-attr">id</span>=<span class="t-val">"isim"</span>               <span class="t-comment">← label'ın for değeriyle eşleşiyor</span>
-    <span class="t-attr">name</span>=<span class="t-val">"isim"</span>             <span class="t-comment">← sunucuya bu isimle gönderilir</span>
-    <span class="t-attr">placeholder</span>=<span class="t-val">"Ad Soyad"</span>  <span class="t-comment">← ipucu metni (silinir, değer değil)</span>
-    <span class="t-attr">required</span>                <span class="t-comment">← bu alan boşsa form gönderilmez</span>
-    <span class="t-attr">autocomplete</span>=<span class="t-val">"name"</span>    <span class="t-comment">← tarayıcı otomatik doldurabilsin</span>
-  <span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-val">"text"</span> <span class="t-attr">id</span>=<span class="t-val">"isim"</span> <span class="t-attr">name</span>=<span class="t-val">"isim"</span> <span class="t-attr">placeholder</span>=<span class="t-val">"Adınızı girin"</span><span class="t-tag">&gt;</span>
 
   <span class="t-tag">&lt;label</span> <span class="t-attr">for</span>=<span class="t-val">"email"</span><span class="t-tag">&gt;</span>E-posta<span class="t-tag">&lt;/label&gt;</span>
-  <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-val">"email"</span> <span class="t-attr">id</span>=<span class="t-val">"email"</span> <span class="t-attr">name</span>=<span class="t-val">"email"</span> <span class="t-attr">required</span><span class="t-tag">&gt;</span>
-  <span class="t-comment">← type="email": @ işareti yoksa submit olmaz — otomatik validate!</span>
+  <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-val">"email"</span> <span class="t-attr">id</span>=<span class="t-val">"email"</span> <span class="t-attr">required</span><span class="t-tag">&gt;</span>
 
-  <span class="t-tag">&lt;label</span> <span class="t-attr">for</span>=<span class="t-val">"mesaj"</span><span class="t-tag">&gt;</span>Mesajınız<span class="t-tag">&lt;/label&gt;</span>
-  <span class="t-tag">&lt;textarea</span>
-    <span class="t-attr">id</span>=<span class="t-val">"mesaj"</span>
-    <span class="t-attr">name</span>=<span class="t-val">"mesaj"</span>
-    <span class="t-attr">rows</span>=<span class="t-val">"4"</span>               <span class="t-comment">← görünür satır sayısı</span>
-    <span class="t-attr">placeholder</span>=<span class="t-val">"Mesajınızı buraya yazın..."</span>
-  <span class="t-tag">&gt;&lt;/textarea&gt;</span>             <span class="t-comment">← textarea açılıp kapanır (img gibi değil!)</span>
+  <span class="t-tag">&lt;label</span> <span class="t-attr">for</span>=<span class="t-val">"mesaj"</span><span class="t-tag">&gt;</span>Mesaj<span class="t-tag">&lt;/label&gt;</span>
+  <span class="t-tag">&lt;textarea</span> <span class="t-attr">id</span>=<span class="t-val">"mesaj"</span> <span class="t-attr">rows</span>=<span class="t-val">"4"</span><span class="t-tag">&gt;&lt;/textarea&gt;</span>
 
   <span class="t-tag">&lt;button</span> <span class="t-attr">type</span>=<span class="t-val">"submit"</span><span class="t-tag">&gt;</span>Gönder<span class="t-tag">&lt;/button&gt;</span>
-  <span class="t-comment">← type="submit" → formu gönderir
-     type="button" → gönderMEZ, sadece JS tetikler
-     type="reset"  → formu temizler (nadiren kullanılır)</span>
-
 <span class="t-tag">&lt;/form&gt;</span></pre>
         </div>
 
-        <!-- CANLI FORM DEMOsu -->
-        <h2>Canlı Form Görünümü</h2>
-        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:1.6rem; margin:.8rem 0;">
-          <div style="font-size:11px; font-family:monospace; color:#888; margin-bottom:14px;">— Yukarıdaki kodun tarayıcıdaki görünümü (CSS eklenmiş hali) —</div>
-          <div style="display:flex; flex-direction:column; gap:12px; max-width:380px; font-family:sans-serif;">
-            <div style="display:flex; flex-direction:column; gap:4px;">
-              <label style="font-size:13px; font-weight:500; color:#374151;">Adınız <span style="color:#ef4444; font-size:11px;">* zorunlu</span></label>
-              <input type="text" placeholder="Ad Soyad"
-                     style="padding:10px 14px; border:1.5px solid #d1d5db; border-radius:8px;
-                            font-size:14px; outline:none; font-family:sans-serif;"
-                     onfocus="this.style.borderColor='#7c6aff'; this.style.boxShadow='0 0 0 3px rgba(124,106,255,.15)'"
-                     onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'">
-            </div>
-            <div style="display:flex; flex-direction:column; gap:4px;">
-              <label style="font-size:13px; font-weight:500; color:#374151;">E-posta <span style="color:#ef4444; font-size:11px;">* zorunlu</span></label>
-              <input type="email" placeholder="ornek@email.com"
-                     style="padding:10px 14px; border:1.5px solid #d1d5db; border-radius:8px;
-                            font-size:14px; outline:none; font-family:sans-serif;"
-                     onfocus="this.style.borderColor='#7c6aff'; this.style.boxShadow='0 0 0 3px rgba(124,106,255,.15)'"
-                     onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'">
-            </div>
-            <div style="display:flex; flex-direction:column; gap:4px;">
-              <label style="font-size:13px; font-weight:500; color:#374151;">Mesajınız</label>
-              <textarea rows="3" placeholder="Mesajınızı buraya yazın..."
-                        style="padding:10px 14px; border:1.5px solid #d1d5db; border-radius:8px;
-                               font-size:14px; outline:none; resize:vertical; font-family:sans-serif;"
-                        onfocus="this.style.borderColor='#7c6aff'; this.style.boxShadow='0 0 0 3px rgba(124,106,255,.15)'"
-                        onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"></textarea>
-            </div>
-            <div style="display:flex; gap:8px;">
-              <button style="background:#7c6aff; color:#fff; border:none; padding:11px 24px;
-                             border-radius:8px; font-size:14px; font-weight:500; cursor:pointer;
-                             font-family:sans-serif;">Gönder</button>
-              <button style="background:transparent; color:#666; border:1.5px solid #d1d5db;
-                             padding:11px 24px; border-radius:8px; font-size:14px; cursor:pointer;
-                             font-family:sans-serif;">Temizle</button>
-            </div>
-          </div>
-          <div style="font-size:11px; color:#888; font-family:sans-serif; margin-top:12px;">
-            ↑ Tıkla ve dene! Input'lara tıklayınca mavi focus ring beliriyor.
-          </div>
-        </div>
-
         <h2>Input Türleri</h2>
-        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:9px; margin:1rem 0;">
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:10px; color:var(--accent); margin-bottom:5px;">type="text"</div>
-            <div style="font-size:12px; color:var(--muted);">Normal tek satır metin girişi.</div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap:10px; margin:1rem 0;">
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:6px;">type="text"</div>
+            <div style="font-size:12px; color:var(--muted);">Normal metin girişi</div>
           </div>
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:10px; color:var(--accent2); margin-bottom:5px;">type="email"</div>
-            <div style="font-size:12px; color:var(--muted);">@ yoksa submit olmaz — otomatik validate.</div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent2); margin-bottom:6px;">type="email"</div>
+            <div style="font-size:12px; color:var(--muted);">E-posta, otomatik validate</div>
           </div>
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:10px; color:var(--green); margin-bottom:5px;">type="password"</div>
-            <div style="font-size:12px; color:var(--muted);">Yazılanlar nokta/yıldız olarak görünür.</div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--green); margin-bottom:6px;">type="password"</div>
+            <div style="font-size:12px; color:var(--muted);">Şifreli input</div>
           </div>
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:10px; color:var(--amber); margin-bottom:5px;">type="number"</div>
-            <div style="font-size:12px; color:var(--muted);">Yalnızca sayısal değer kabul eder.</div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:6px;">type="number"</div>
+            <div style="font-size:12px; color:var(--muted);">Sayısal değer</div>
           </div>
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:10px; color:var(--accent); margin-bottom:5px;">type="checkbox"</div>
-            <div style="font-size:12px; color:var(--muted);">Çoklu seçim — aynı anda birden fazla.</div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:6px;">type="checkbox"</div>
+            <div style="font-size:12px; color:var(--muted);">Çoklu seçim</div>
           </div>
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:10px; color:var(--accent2); margin-bottom:5px;">type="radio"</div>
-            <div style="font-size:12px; color:var(--muted);">Tek seçim — aynı name grubunda biri.</div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent2); margin-bottom:6px;">type="radio"</div>
+            <div style="font-size:12px; color:var(--muted);">Tek seçim</div>
           </div>
         </div>
 
-        <div class="tip good">
-          <strong>Erişilebilirlik Kuralı:</strong> <code>label for="X"</code> ve <code>input id="X"</code> değerleri birebir aynı olmalı. Bu eşleşme olunca label'a tıklayınca cursor otomatik o input'a gider — küçük detay, büyük fark.
+        <div class="tip">
+          <strong>Pro Trick:</strong> <code>label for="id"</code> ve <code>input id="id"</code> eşleşmesi şart. Bu olmadan erişilebilirlik bozulur — label'a tıkladığında input odaklanmaz, ekran okuyucular formu anlayamaz.
+        </div>
+
+        <h2>Canlı Form Önizlemesi</h2>
+        <p>Gerçekte nasıl görüneceği — tıklayabilir ve doldurabilirsin:</p>
+        <div style="background:#fff; border-radius:12px; padding:2rem; margin:1rem 0; border:1px solid var(--border);">
+          <div style="font-family:sans-serif; display:flex; flex-direction:column; gap:14px; max-width:360px;">
+            <div>
+              <label style="display:block; font-size:13px; font-weight:600; color:#333; margin-bottom:5px;" for="demo-isim">Adınız</label>
+              <input type="text" id="demo-isim" placeholder="Adınızı girin" style="width:100%; padding:9px 12px; border:1px solid #ddd; border-radius:7px; font-size:14px; outline:none; font-family:sans-serif;">
+            </div>
+            <div>
+              <label style="display:block; font-size:13px; font-weight:600; color:#333; margin-bottom:5px;" for="demo-email">E-posta</label>
+              <input type="email" id="demo-email" placeholder="ornek@mail.com" style="width:100%; padding:9px 12px; border:1px solid #ddd; border-radius:7px; font-size:14px; outline:none; font-family:sans-serif;">
+            </div>
+            <div>
+              <label style="display:block; font-size:13px; font-weight:600; color:#333; margin-bottom:5px;" for="demo-mesaj">Mesaj</label>
+              <textarea id="demo-mesaj" rows="3" placeholder="Mesajınızı yazın..." style="width:100%; padding:9px 12px; border:1px solid #ddd; border-radius:7px; font-size:14px; outline:none; font-family:sans-serif; resize:vertical;"></textarea>
+            </div>
+            <button style="background:#7c6aff; color:#fff; border:none; padding:10px 20px; border-radius:7px; font-size:14px; cursor:pointer; font-family:sans-serif; font-weight:600;">Gönder</button>
+          </div>
+        </div>
+
+        <h2>Form Nitelikleri (Attributes)</h2>
+        <div style="display:grid; gap:8px; margin:1rem 0;">
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--accent);">action="/url"</code>
+            <span style="font-size:13px; color:var(--muted);">Form verisinin hangi adrese gönderileceği. Backend URL'i buraya yazılır.</span>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--accent);">method="POST"</code>
+            <span style="font-size:13px; color:var(--muted);"><strong style="color:var(--text)">POST</strong> = veriyi body'de gönder (güvenli, form için tercih et). <strong style="color:var(--text)">GET</strong> = URL'de görünür, arama kutuları için.</span>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--green);">required</code>
+            <span style="font-size:13px; color:var(--muted);">Bu alan doldurulmadan form gönderilemez. Tarayıcı otomatik hata mesajı gösterir.</span>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--amber);">placeholder</code>
+            <span style="font-size:13px; color:var(--muted);">Input boşken görünen açıklama metni. Kullanıcı yazmaya başlayınca kaybolur.</span>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:flex-start;">
+            <code style="white-space:nowrap; color:var(--accent2);">name="..."</code>
+            <span style="font-size:13px; color:var(--muted);">Verinin sunucuya gönderilirken hangi anahtar ile gönderileceği. <strong style="color:var(--text)">Backend için zorunlu.</strong></span>
+          </div>
         </div>
 
         <button class="next-btn" onclick="showPage('css-intro')">Sıradaki: CSS'e Geçiş →</button>
@@ -1196,106 +1082,88 @@
       <div id="page-css-intro" class="content-page">
         <div class="section-tag">CSS Temelleri</div>
         <h1>CSS Nedir?</h1>
-        <p>CSS (Cascading Style Sheets) — HTML iskeletini giydiren tasarım dilidir. Renkler, boyutlar, boşluklar, fontlar, animasyonlar — bunların hepsi CSS'in işi. HTML yapıyı kurar, CSS onu güzel yapar.</p>
+        <p>CSS (Cascading Style Sheets) HTML iskeletine görünüm kazandırır. Renk, boyut, konum, animasyon — hepsi CSS.</p>
 
-        <h2>Kısa Tarihçe</h2>
-        <div style="display:flex; flex-direction:column; gap:8px; margin:1rem 0;">
-          <div style="background:var(--surface); border-left:3px solid var(--muted); border-radius:0 8px 8px 0; padding:.8rem 1rem; font-size:13px;">
-            <strong style="color:var(--text);">1994–1996 (CSS öncesi):</strong>
-            <span style="color:var(--muted);"> Eskiden stil doğrudan HTML içinde <code>&lt;font color="red" size="4"&gt;</code> gibi etiketlerle veriliyordu. Her eleman için tekrar tekrar yazılıyordu. Korkunç bir dönemdi.</span>
+        <h2>CSS Nasıl Eklenir?</h2>
+        <div style="display:grid; gap:12px; margin:1rem 0;">
+          <div style="background:var(--surface); border:1px solid rgba(255,90,90,0.3); border-radius:10px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--red); margin-bottom:6px;">❌ INLINE — kullanma</div>
+            <pre style="font-family:var(--mono); font-size:12px; color:#aaa;"><span class="t-tag">&lt;p</span> <span class="t-attr">style</span>=<span class="t-val">"color:red"</span><span class="t-tag">&gt;</span>Metin<span class="t-tag">&lt;/p&gt;</span></pre>
           </div>
-          <div style="background:var(--surface); border-left:3px solid var(--amber); border-radius:0 8px 8px 0; padding:.8rem 1rem; font-size:13px;">
-            <strong style="color:var(--text);">CSS1 → CSS2 (1996–2001):</strong>
-            <span style="color:var(--muted);"> İlk CSS standartları geldi. Ama tarayıcı desteği berbattı — "Internet Explorer CSS'i" ile "gerçek CSS" ayrı şeylerdi. Geliştiriciler için kabus.</span>
+          <div style="background:var(--surface); border:1px solid rgba(255,184,79,0.3); border-radius:10px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:6px;">⚠️ INTERNAL — küçük projeler</div>
+            <pre style="font-family:var(--mono); font-size:12px; color:#aaa;"><span class="t-tag">&lt;style&gt;</span>
+  p { color: red; }
+<span class="t-tag">&lt;/style&gt;</span></pre>
           </div>
-          <div style="background:var(--surface); border-left:3px solid var(--green); border-radius:0 8px 8px 0; padding:.8rem 1rem; font-size:13px;">
-            <strong style="color:var(--text);">CSS3 (2010+):</strong>
-            <span style="color:var(--muted);"> Flexbox, Grid, animasyonlar, değişkenler, media query'ler geldi. Bugün kullandığımız modern CSS bu. Modüler yapıda — her özellik ayrı ayrı ekleniyor.</span>
-          </div>
-          <div style="background:var(--surface); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:.8rem 1rem; font-size:13px;">
-            <strong style="color:var(--text);">Bugün (2024+):</strong>
-            <span style="color:var(--muted);"> Container Queries, Nesting, :has() gibi güçlü özellikler geldi. Tüm modern tarayıcılar artık CSS'i tutarlı destekliyor. Altın çağ.</span>
+          <div style="background:var(--surface); border:1px solid rgba(79,255,176,0.3); border-radius:10px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--green); margin-bottom:6px;">✅ EXTERNAL — her zaman bu</div>
+            <pre style="font-family:var(--mono); font-size:12px; color:#aaa;"><span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"style.css"</span><span class="t-tag">&gt;</span></pre>
           </div>
         </div>
 
-        <h2>CSS Sözdizimi ve Yorum Satırları</h2>
+        <h2>CSS Sözdizimi</h2>
         <div class="code-block">
           <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
-          <pre><span class="t-comment">/* CSS yorum satırı böyle yazılır
-   Tarayıcı bunu görmez, sadece sen okursun
-   Birden fazla satır yazılabilir */</span>
-
-<span class="t-sel">selector</span> {         <span class="t-comment">/* kimi hedefliyoruz? */</span>
-  <span class="t-prop">property</span>: <span class="t-val">value</span>;  <span class="t-comment">/* property: value; — noktalı virgül zorunlu! */</span>
+          <pre><span class="t-sel">selector</span> {         <span class="t-comment">← Kimi hedefliyoruz?</span>
+  <span class="t-prop">property</span>: <span class="t-val">value</span>;  <span class="t-comment">← Ne değişiyor?</span>
 }
 
-<span class="t-comment">/* ── ÖRNEKLER ── */</span>
+<span class="t-comment">/* Yorum satırı — tarayıcı bunu görmezden gelir */</span>
+<span class="t-comment">/* Birden fazla satır da yazabilirsin:
+   Bu satır da yorum.
+   Kod içinde not bırakmak için kullan. */</span>
 
 <span class="t-sel">p</span> {
-  <span class="t-prop">color</span>: <span class="t-val">red</span>;                <span class="t-comment">/* metin rengi */</span>
-  <span class="t-prop">font-size</span>: <span class="t-val">16px</span>;           <span class="t-comment">/* yazı boyutu */</span>
-  <span class="t-prop">line-height</span>: <span class="t-val">1.6</span>;         <span class="t-comment">/* satır aralığı (birim yok — oran) */</span>
+  <span class="t-prop">color</span>: <span class="t-val">red</span>;            <span class="t-comment">← isim ile renk</span>
+  <span class="t-prop">color</span>: <span class="t-val">#ff0000</span>;        <span class="t-comment">← HEX kodu (en yaygın)</span>
+  <span class="t-prop">color</span>: <span class="t-val">rgb(255,0,0)</span>;   <span class="t-comment">← RGB değeri</span>
+  <span class="t-prop">font-size</span>: <span class="t-val">16px</span>;
 }
 
-<span class="t-sel">.kart</span> {                       <span class="t-comment">/* class seçici — class="kart" olan her elemana */</span>
-  <span class="t-prop">background</span>: <span class="t-val">#ffffff</span>;       <span class="t-comment">/* arka plan rengi */</span>
-  <span class="t-prop">padding</span>: <span class="t-val">20px</span>;             <span class="t-comment">/* iç boşluk */</span>
-  <span class="t-prop">border-radius</span>: <span class="t-val">8px</span>;       <span class="t-comment">/* köşe yuvarlaklığı */</span>
+<span class="t-sel">.kart</span> {            <span class="t-comment">← class seçici (.)</span>
+  <span class="t-prop">background</span>: <span class="t-val">#fff</span>;
 }
 
-<span class="t-sel">#logo</span> {                       <span class="t-comment">/* id seçici — sayfada sadece TEK eleman */</span>
+<span class="t-sel">#logo</span> {            <span class="t-comment">← id seçici (#)</span>
   <span class="t-prop">width</span>: <span class="t-val">200px</span>;
 }</pre>
         </div>
 
-        <h2>Canlı Renk Örnekleri</h2>
-        <p>CSS'de renk birkaç farklı formatta yazılabilir:</p>
-        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:1.4rem; margin:.8rem 0; font-family:sans-serif; display:flex; flex-direction:column; gap:10px;">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div style="width:36px; height:36px; background:#3b82f6; border-radius:6px; flex-shrink:0;"></div>
-            <code style="font-size:12px; background:#f0f0f0; color:#555; padding:3px 8px; border-radius:4px;">color: #3b82f6</code>
-            <span style="font-size:13px; color:#555;">— hex kodu (en yaygın)</span>
+        <h3>CSS Tarihçesi — Neden Önemli?</h3>
+        <p>CSS 1996'da HTML'den stil bilgilerini ayırmak için doğdu. Başlarda her şey inline yazılırdı: <code>&lt;font color="red"&gt;</code> gibi. Günümüzde CSS3 ile animasyon, grid, custom properties gibi güçlü özellikler geldi.</p>
+        <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:10px; margin:1rem 0;">
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; text-align:center;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:4px;">CSS 1 — 1996</div>
+            <div style="font-size:12px; color:var(--muted);">Temel renkler, fontlar, margin/padding</div>
           </div>
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div style="width:36px; height:36px; background:rgb(239,68,68); border-radius:6px; flex-shrink:0;"></div>
-            <code style="font-size:12px; background:#f0f0f0; color:#555; padding:3px 8px; border-radius:4px;">color: rgb(239, 68, 68)</code>
-            <span style="font-size:13px; color:#555;">— RGB (kırmızı, yeşil, mavi: 0–255)</span>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; text-align:center;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:4px;">CSS 2 — 1998</div>
+            <div style="font-size:12px; color:var(--muted);">Position, z-index, media types</div>
           </div>
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div style="width:36px; height:36px; background:rgba(124,106,255,0.4); border-radius:6px; flex-shrink:0; border:1px solid #ddd;"></div>
-            <code style="font-size:12px; background:#f0f0f0; color:#555; padding:3px 8px; border-radius:4px;">background: rgba(124,106,255, 0.4)</code>
-            <span style="font-size:13px; color:#555;">— RGBA: 4. değer şeffaflık (0–1)</span>
-          </div>
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div style="width:36px; height:36px; background:#4fffb0; border-radius:6px; flex-shrink:0;"></div>
-            <code style="font-size:12px; background:#f0f0f0; color:#555; padding:3px 8px; border-radius:4px;">color: #4fffb0</code>
-            <span style="font-size:13px; color:#555;">— kısa hex: #RGB = #RRGGBB</span>
-          </div>
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div style="width:36px; height:36px; background:tomato; border-radius:6px; flex-shrink:0;"></div>
-            <code style="font-size:12px; background:#f0f0f0; color:#555; padding:3px 8px; border-radius:4px;">color: tomato</code>
-            <span style="font-size:13px; color:#555;">— isimli renk (140+ var, ama önerilmez)</span>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px; text-align:center;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--green); margin-bottom:4px;">CSS 3 — 2011+</div>
+            <div style="font-size:12px; color:var(--muted);">Flexbox, Grid, animasyon, variables</div>
           </div>
         </div>
 
-        <h2>CSS Nasıl Eklenir?</h2>
-        <div style="display:flex; flex-direction:column; gap:10px; margin:1rem 0;">
-          <div style="background:var(--surface); border:1px solid rgba(255,90,90,0.3); border-radius:10px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:10px; color:var(--red); margin-bottom:6px;">❌ INLINE — kaçın</div>
-            <pre style="font-family:var(--mono); font-size:12px; color:#aaa; padding:0;"><span class="t-tag">&lt;p</span> <span class="t-attr">style</span>=<span class="t-val">"color:red; font-size:16px;"</span><span class="t-tag">&gt;</span>Metin<span class="t-tag">&lt;/p&gt;</span></pre>
-            <div style="font-size:12px; color:var(--muted); margin-top:6px;">Her eleman için tekrar yazılır, değişiklik tek yerden yapılamaz, bakım imkansız.</div>
+        <h3>Renk Sistemi — Görsel</h3>
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap:10px; margin:1rem 0;">
+          <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border);">
+            <div style="height:40px; background:#7c6aff;"></div>
+            <div style="padding:8px; font-family:var(--mono); font-size:11px;"><div style="color:var(--text);">#7c6aff</div><div style="color:var(--muted);">HEX</div></div>
           </div>
-          <div style="background:var(--surface); border:1px solid rgba(255,184,79,0.3); border-radius:10px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:10px; color:var(--amber); margin-bottom:6px;">⚠️ INTERNAL — küçük testler için</div>
-            <pre style="font-family:var(--mono); font-size:12px; color:#aaa; padding:0;"><span class="t-tag">&lt;style&gt;</span>
-  p { color: red; }
-<span class="t-tag">&lt;/style&gt;</span></pre>
-            <div style="font-size:12px; color:var(--muted); margin-top:6px;">HTML ve CSS aynı dosyada karışık, çok sayfalı projede işe yaramaz.</div>
+          <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border);">
+            <div style="height:40px; background:rgb(255,106,155);"></div>
+            <div style="padding:8px; font-family:var(--mono); font-size:11px;"><div style="color:var(--text);">rgb(255,106,155)</div><div style="color:var(--muted);">RGB</div></div>
           </div>
-          <div style="background:var(--surface); border:1px solid rgba(79,255,176,0.3); border-radius:10px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:10px; color:var(--green); margin-bottom:6px;">✅ EXTERNAL — her zaman bu</div>
-            <pre style="font-family:var(--mono); font-size:12px; color:#aaa; padding:0;"><span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"style.css"</span><span class="t-tag">&gt;</span></pre>
-            <div style="font-size:12px; color:var(--muted); margin-top:6px;">Ayrı .css dosyası — tüm sayfalar paylaşır, değişiklik tek yerden yapılır.</div>
+          <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border);">
+            <div style="height:40px; background:rgba(79,255,176,0.3);"></div>
+            <div style="padding:8px; font-family:var(--mono); font-size:11px;"><div style="color:var(--text);">rgba(...,0.3)</div><div style="color:var(--muted);">Şeffaflık</div></div>
+          </div>
+          <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border);">
+            <div style="height:40px; background:hsl(220,80%,60%);"></div>
+            <div style="padding:8px; font-family:var(--mono); font-size:11px;"><div style="color:var(--text);">hsl(220,80%,60%)</div><div style="color:var(--muted);">HSL</div></div>
           </div>
         </div>
 
@@ -1306,160 +1174,70 @@
       <div id="page-selectors" class="content-page">
         <div class="section-tag">CSS Temelleri</div>
         <h1>Selector'lar</h1>
-        <p>CSS bir kural yazarken önce <strong>kimi hedefleyeceğini</strong> belirtmek zorunda — bu seçime selector denir. Doğru selector seçmek hem çalışır kod hem de temiz mimari için kritik.</p>
+        <p>CSS hangi HTML elemanını hedefleyeceğini selector'larla bilir.</p>
 
-        <h2>Temel Selector'lar</h2>
         <div class="code-block">
-          <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
-          <pre><span class="t-comment">/* ── TEMEL ── */</span>
-<span class="t-sel">p</span> { <span class="t-prop">color</span>: <span class="t-val">red</span>; }        <span class="t-comment">← sayfadaki TÜM &lt;p&gt; etiketleri</span>
-<span class="t-sel">.kart</span> { }               <span class="t-comment">← class="kart" olan tüm elemanlar (birden fazla olabilir)</span>
-<span class="t-sel">#logo</span> { }               <span class="t-comment">← id="logo" olan sadece 1 eleman (sayfada tekrar kullanma!)</span>
-<span class="t-sel">*</span> { }                    <span class="t-comment">← evrensel: sayfadaki her şey (reset için: * { margin:0; })</span>
+          <div class="code-header"><span class="code-lang">CSS — Temel Selector'lar</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <pre><span class="t-sel">p</span> { }               <span class="t-comment">← Tüm p etiketleri</span>
+<span class="t-sel">.kart</span> { }          <span class="t-comment">← class="kart" olan elemanlar</span>
+<span class="t-sel">#logo</span> { }          <span class="t-comment">← id="logo" olan TEK eleman</span>
+<span class="t-sel">*</span> { }               <span class="t-comment">← Her şey (evrensel)</span>
 
-<span class="t-comment">/* ── KOMBİNASYON ── */</span>
-<span class="t-sel">div p</span> { }               <span class="t-comment">← div içindeki TÜM p'ler (torun dahil)</span>
-<span class="t-sel">div > p</span> { }             <span class="t-comment">← div'in sadece DOĞRUDAN çocuğu olan p'ler</span>
-<span class="t-sel">h2 + p</span> { }              <span class="t-comment">← h2'den hemen SONRA gelen kardeş p</span>
-<span class="t-sel">h1, h2, h3</span> { }          <span class="t-comment">← virgülle liste: hepsine aynı kural (tekrar önler)</span>
+<span class="t-comment">/* Kombinasyonlar */</span>
+<span class="t-sel">div p</span> { }          <span class="t-comment">← div içindeki TÜM p'ler</span>
+<span class="t-sel">div > p</span> { }        <span class="t-comment">← div'in DOĞRUDAN çocuğu p</span>
+<span class="t-sel">h1, h2</span> { }         <span class="t-comment">← h1 VE h2 (virgül = liste)</span>
 
-<span class="t-comment">/* ── PSEUDO-CLASS (durum seçicileri) ── */</span>
-<span class="t-sel">a:hover</span> { }             <span class="t-comment">← fare üzerindeyken</span>
-<span class="t-sel">a:visited</span> { }           <span class="t-comment">← daha önce ziyaret edilmiş link</span>
-<span class="t-sel">input:focus</span> { }         <span class="t-comment">← input'a tıklanınca / tab ile gelinince</span>
-<span class="t-sel">li:first-child</span> { }      <span class="t-comment">← listenin ilk li'si</span>
-<span class="t-sel">li:last-child</span> { }       <span class="t-comment">← listenin son li'si</span>
-<span class="t-sel">li:nth-child(2)</span> { }     <span class="t-comment">← tam olarak 2. li</span>
-<span class="t-sel">li:nth-child(odd)</span> { }   <span class="t-comment">← tek numaralılar (1,3,5...) — zebra tablo için</span>
-<span class="t-sel">li:nth-child(even)</span> { }  <span class="t-comment">← çift numaralılar (2,4,6...)</span>
-<span class="t-sel">p:not(.ozel)</span> { }        <span class="t-comment">← .ozel class'ı OLMAYAN p'ler</span>
+<span class="t-comment">/* Pseudo-class (durum seçici) */</span>
+<span class="t-sel">a:hover</span> { }        <span class="t-comment">← Üzerine gelince</span>
+<span class="t-sel">li:first-child</span> { } <span class="t-comment">← İlk li</span>
+<span class="t-sel">li:nth-child(2)</span> { }<span class="t-comment">← 2. li</span>
+<span class="t-sel">p:not(.ozel)</span> { }  <span class="t-comment">← .ozel sınıfı olmayan p'ler</span>
 
-<span class="t-comment">/* ── ATTRIBUTE SELECTOr ── */</span>
-<span class="t-sel">[type="text"]</span> { }       <span class="t-comment">← type="text" olan inputlar</span>
-<span class="t-sel">[href^="https"]</span> { }     <span class="t-comment">← href "https" ile BAŞLAYAN linkler</span>
-<span class="t-sel">[class*="btn"]</span> { }      <span class="t-comment">← class içinde "btn" GEÇENler</span></pre>
-        </div>
-
-        <!-- CANLI SELECTOr DEMO -->
-        <h2>Canlı Selector Demosu</h2>
-        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:1.4rem; margin:.8rem 0;">
-          <div style="font-size:11px; font-family:monospace; color:#888; margin-bottom:12px;">— farklı selector'ların hedeflediği elemanlar (renk ile işaretli) —</div>
-          <style>
-            .sel-demo-list { list-style:none; font-family:sans-serif; font-size:14px; }
-            .sel-demo-list li { padding:6px 10px; border-radius:4px; margin-bottom:4px; color:#333; }
-            .sel-demo-list li:first-child { background:#dbeafe; color:#1e3a5f; font-weight:600; }
-            .sel-demo-list li:last-child { background:#fce7f3; color:#831843; }
-            .sel-demo-list li:nth-child(odd) { border-left:3px solid #7c6aff; }
-            .sel-demo-list li:nth-child(even) { border-left:3px solid #4fffb0; }
-          </style>
-          <div class="demo-split">
-            <div>
-              <div style="font-size:10px; font-family:monospace; color:#888; margin-bottom:6px;">HTML:</div>
-              <div style="background:#f8f8f8; border-radius:6px; padding:10px; font-family:monospace; font-size:12px; color:#333; line-height:1.8;">
-                &lt;ul&gt;<br>
-                &nbsp;&nbsp;&lt;li&gt;Birinci&lt;/li&gt;<br>
-                &nbsp;&nbsp;&lt;li&gt;İkinci&lt;/li&gt;<br>
-                &nbsp;&nbsp;&lt;li&gt;Üçüncü&lt;/li&gt;<br>
-                &nbsp;&nbsp;&lt;li&gt;Dördüncü&lt;/li&gt;<br>
-                &nbsp;&nbsp;&lt;li&gt;Beşinci&lt;/li&gt;<br>
-                &lt;/ul&gt;
-              </div>
-            </div>
-            <div>
-              <div style="font-size:10px; font-family:monospace; color:#888; margin-bottom:6px;">Sonuç (CSS uygulanmış):</div>
-              <ul class="sel-demo-list">
-                <li>Birinci ← :first-child (mavi bg)</li>
-                <li>İkinci ← :nth-child(even) (yeşil sol çizgi)</li>
-                <li>Üçüncü ← :nth-child(odd) (mor sol çizgi)</li>
-                <li>Dördüncü ← :nth-child(even)</li>
-                <li>Beşinci ← :last-child (pembe bg)</li>
-              </ul>
-            </div>
-          </div>
-          <div style="font-size:12px; color:#888; font-family:sans-serif; margin-top:8px;">
-            → Birden fazla kural aynı elemana uygulanabilir (Birinci hem :first-child hem :nth-child(odd))
-          </div>
+<span class="t-comment">/* Attribute Selector */</span>
+<span class="t-sel">[type="text"]</span> { }  <span class="t-comment">← type="text" olan input</span></pre>
         </div>
 
         <div class="tip">
-          <strong>id vs class farkı:</strong> <code>id</code> = kimlik numarası gibi, sayfada tek bir elemana. <code>class</code> = isim gibi, aynı anda birden fazla eleman paylaşabilir. Çoğu zaman class yeterlidir — id'yi gereksiz yere kullanma.
+          <strong>Kural:</strong> <code>id</code> = sayfada tek olmalı → <code>#id</code>. <code>class</code> = birden fazla eleman paylaşabilir → <code>.class</code>
         </div>
 
-        <h2>Pseudo Elements — Sanal İçerik</h2>
-        <p><code>::before</code> ve <code>::after</code> HTML'e dokunmadan elemana CSS'den içerik ekler. İkon, dekoratif çizgi, rozet gibi şeyler için kullanılır. <strong>content</strong> özelliği olmadan çalışmaz.</p>
-
+        <h2>Pseudo Elements</h2>
+        <p>Pseudo elementler (sözde elementler) HTML'e eklemeden CSS ile sanal içerik eklememizi sağlar. <code>::before</code> ve <code>::after</code> en çok kullanılanlar — HTML'e dokunmadan dekoratif içerik eklersin.</p>
         <div class="code-block">
           <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
-          <pre><span class="t-comment">/* HTML'i değiştirmeden p'nin önüne/arkasına içerik ekle */</span>
-<span class="t-sel">p::before</span> {
-  <span class="t-prop">content</span>: <span class="t-val">"→ "</span>;         <span class="t-comment">← ZORUNLU: content olmadan çalışmaz</span>
-  <span class="t-prop">color</span>: <span class="t-val">#7c6aff</span>;
-  <span class="t-prop">font-weight</span>: <span class="t-val">bold</span>;
+          <pre><span class="t-sel">p::before</span> {
+  <span class="t-prop">content</span>: <span class="t-val">"→ "</span>;    <span class="t-comment">← p'nin ÖNÜNE CSS'ten içerik ekle</span>
+  <span class="t-prop">color</span>: <span class="t-val">purple</span>;
+  <span class="t-comment">/* content olmadan çalışmaz! Boş bırakmak için: content: "" */</span>
 }
 
 <span class="t-sel">p::after</span> {
-  <span class="t-prop">content</span>: <span class="t-val">" ✓"</span>;
-  <span class="t-prop">color</span>: <span class="t-val">green</span>;
+  <span class="t-prop">content</span>: <span class="t-val">" ✓"</span>;   <span class="t-comment">← p'nin SONUNA ekle</span>
 }
 
-<span class="t-comment">/* Dekoratif çizgi örneği — content boş string olabilir */</span>
-<span class="t-sel">.baslik::after</span> {
-  <span class="t-prop">content</span>: <span class="t-val">""</span>;            <span class="t-comment">← görsel içerik yok ama display:block şart</span>
+<span class="t-comment">/* Örnek kullanım — dekoratif çizgi: */</span>
+<span class="t-sel">h2::after</span> {
+  <span class="t-prop">content</span>: <span class="t-val">""</span>;
   <span class="t-prop">display</span>: <span class="t-val">block</span>;
   <span class="t-prop">width</span>: <span class="t-val">40px</span>;
   <span class="t-prop">height</span>: <span class="t-val">3px</span>;
   <span class="t-prop">background</span>: <span class="t-val">#7c6aff</span>;
   <span class="t-prop">margin-top</span>: <span class="t-val">6px</span>;
-}
-
-<span class="t-comment">/* Hover'da beliren ok — interaktif link efekti */</span>
-<span class="t-sel">.link::after</span> {
-  <span class="t-prop">content</span>: <span class="t-val">" ↗"</span>;
-  <span class="t-prop">opacity</span>: <span class="t-val">0</span>;
-  <span class="t-prop">transition</span>: <span class="t-val">opacity 0.2s</span>;
-}
-<span class="t-sel">.link:hover::after</span> {
-  <span class="t-prop">opacity</span>: <span class="t-val">1</span>;             <span class="t-comment">← hover'da ok belirir</span>
 }</pre>
         </div>
 
-        <!-- CANLI PSEUDO DEMO -->
-        <div style="background:#fff; border-radius:12px; border:1px solid var(--border); padding:1.4rem; margin:.8rem 0;">
-          <div style="font-size:11px; font-family:monospace; color:#888; margin-bottom:12px;">— Canlı ::before / ::after örnekleri —</div>
-          <style>
-            .pd-arrow::before { content:"→ "; color:#7c6aff; font-weight:bold; }
-            .pd-check::after  { content:" ✓"; color:#16a34a; font-weight:bold; }
-            .pd-underline::after { content:""; display:block; width:36px; height:3px; background:#7c6aff; margin-top:4px; border-radius:2px; }
-            .pd-badge::before { content:"YENİ "; background:#7c6aff; color:#fff; font-size:10px; padding:1px 6px; border-radius:3px; margin-right:6px; }
-            .pd-link-hover { transition:color .2s; color:#1a1a2e; }
-            .pd-link-hover::after { content:" ↗"; opacity:0; transition:opacity .2s; color:#7c6aff; }
-            .pd-link-hover:hover::after { opacity:1; }
-            .pd-link-hover:hover { color:#7c6aff; }
-          </style>
-          <div style="display:flex; flex-direction:column; gap:16px; font-family:sans-serif;">
-            <div>
-              <div style="font-size:10px; font-family:monospace; color:#888; margin-bottom:4px;">p::before &#123; content:"→ " &#125;</div>
-              <p class="pd-arrow" style="font-size:14px; color:#333; margin:0;">Her paragrafın önüne ok eklendi</p>
-              <p class="pd-arrow" style="font-size:14px; color:#333; margin:0;">HTML'e dokunmadan!</p>
-            </div>
-            <div>
-              <div style="font-size:10px; font-family:monospace; color:#888; margin-bottom:4px;">p::after &#123; content:" ✓" &#125;</div>
-              <p class="pd-check" style="font-size:14px; color:#333; margin:0;">Tamamlandı</p>
-              <p class="pd-check" style="font-size:14px; color:#333; margin:0;">Gönderildi</p>
-            </div>
-            <div>
-              <div style="font-size:10px; font-family:monospace; color:#888; margin-bottom:4px;">.baslik::after &#123; content:""; display:block; width:36px; height:3px; &#125;</div>
-              <h3 class="pd-underline" style="font-size:16px; color:#333; margin:0;">Başlık altı çizgi</h3>
-            </div>
-            <div>
-              <div style="font-size:10px; font-family:monospace; color:#888; margin-bottom:4px;">::before ile rozet</div>
-              <p class="pd-badge" style="font-size:14px; color:#333; margin:0;">Ürün açıklaması</p>
-            </div>
-            <div>
-              <div style="font-size:10px; font-family:monospace; color:#888; margin-bottom:4px;">.link:hover::after &#123; opacity:1 &#125; — üzerine gel!</div>
-              <a class="pd-link-hover" href="#" style="font-size:14px; text-decoration:none; cursor:pointer;">Daha fazla oku</a>
-            </div>
-          </div>
+        <div style="background:#fff; border-radius:10px; padding:1.5rem; margin:1rem 0; font-family:sans-serif; border:1px solid var(--border);">
+          <div style="font-size:12px; color:#999; margin-bottom:10px;">Canlı Önizleme:</div>
+          <p style="color:#333; margin-bottom:8px;"><span style="color:purple;">→ </span>Bu paragrafın önünde ::before ile ok var<span style="color:green;"> ✓</span></p>
+          <h2 style="color:#333; font-size:18px; margin:0;">Başlık h2
+            <span style="display:block; width:40px; height:3px; background:#7c6aff; margin-top:6px;"></span>
+          </h2>
+          <div style="font-size:12px; color:#999; margin-top:8px;">↑ h2::after ile dekoratif alt çizgi</div>
+        </div>
+
+        <div class="tip">
+          <strong>Dikkat:</strong> Pseudo elementler gerçek HTML elemanı değildir. Ekran okuyucular bu içeriği okumayabilir. Sadece dekorasyon için kullan, anlamlı içerik için HTML'e yaz.
         </div>
 
         <button class="next-btn" onclick="showPage('boxmodel')">Sıradaki: Box Model →</button>
@@ -1469,9 +1247,8 @@
       <div id="page-boxmodel" class="content-page">
         <div class="section-tag">CSS Temelleri</div>
         <h1>Box Model</h1>
-        <p>CSS'in en temel konsepti: <strong>sayfadaki her eleman bir kutudur</strong>. Bu kutu dıştan içe 4 katmandan oluşur. Bunu anlamadan layout yapmak çok zorlaşır.</p>
+        <p>CSS'de her eleman bir <strong>kutudur</strong>. Bu kutunun 4 katmanı var.</p>
 
-        <!-- Statik Görsel -->
         <div class="box-model-viz">
           <div class="bm-margin">
             <div class="bm-border">
@@ -1482,86 +1259,46 @@
           </div>
         </div>
 
-        <!-- 4 katman açıklamaları -->
-        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin:1rem 0;">
-          <div style="background:rgba(255,184,79,0.08); border:1px solid rgba(255,184,79,0.2); border-radius:8px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:4px;">margin — dış boşluk</div>
-            <div style="font-size:13px; color:var(--muted);">Diğer elemanlarla arasındaki boşluk. Transparan — arka plan rengi buraya yayılmaz.</div>
+        <div style="display:grid; grid-template-columns: repeat(2,1fr); gap:10px; margin:1rem 0;">
+          <div style="background:rgba(79,255,176,0.08); border:1px solid rgba(79,255,176,0.2); border-radius:8px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--green); margin-bottom:4px;">padding</div>
+            <div style="font-size:13px; color:var(--muted);">İçerik ile border arasındaki boşluk. <strong style="color:var(--text)">İç boşluk.</strong></div>
           </div>
           <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:11px; color:var(--red); margin-bottom:4px;">border — çerçeve</div>
-            <div style="font-size:13px; color:var(--muted);">Kutunun görünür (ya da görünmez) çerçevesi. Kalınlık, renk ve stil ayarlanır.</div>
+            <div style="font-family:var(--mono); font-size:11px; color:var(--red); margin-bottom:4px;">border</div>
+            <div style="font-size:13px; color:var(--muted);">Kutunun çerçevesi. Kalınlık, renk, stil belirlenebilir.</div>
           </div>
-          <div style="background:rgba(79,255,176,0.08); border:1px solid rgba(79,255,176,0.2); border-radius:8px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:11px; color:var(--green); margin-bottom:4px;">padding — iç boşluk</div>
-            <div style="font-size:13px; color:var(--muted);">İçerik ile border arasındaki boşluk. Arka plan rengi buraya da yayılır.</div>
+          <div style="background:rgba(255,184,79,0.08); border:1px solid rgba(255,184,79,0.2); border-radius:8px; padding:1rem;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:4px;">margin</div>
+            <div style="font-size:13px; color:var(--muted);">Diğer elemanlarla arasındaki boşluk. <strong style="color:var(--text)">Dış boşluk.</strong></div>
           </div>
           <div style="background:rgba(124,106,255,0.08); border:1px solid rgba(124,106,255,0.2); border-radius:8px; padding:1rem;">
-            <div style="font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:4px;">content — içerik</div>
-            <div style="font-size:13px; color:var(--muted);">Asıl içerik alanı. <code>width</code> ve <code>height</code> normalde burayı etkiler.</div>
-          </div>
-        </div>
-
-        <!-- İNTERAKTİF DEMO -->
-        <h2>İnteraktif Demo — Kaydır ve Gör</h2>
-        <div style="background:var(--code-bg); border:1px solid var(--border); border-radius:var(--radius); padding:1.4rem; margin:1rem 0;">
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.8rem; margin-bottom:1rem;">
-            <div>
-              <label style="font-size:10px; font-family:var(--mono); color:var(--amber); display:block; margin-bottom:3px;">margin: <span id="bm-mv">20</span>px</label>
-              <input type="range" min="0" max="48" value="20" oninput="updateBM(this,'mv','bmMargin','margin')" style="width:100%; accent-color:var(--amber);">
-            </div>
-            <div>
-              <label style="font-size:10px; font-family:var(--mono); color:var(--green); display:block; margin-bottom:3px;">padding: <span id="bm-pv">20</span>px</label>
-              <input type="range" min="0" max="48" value="20" oninput="updateBM(this,'pv','bmPadding','padding')" style="width:100%; accent-color:var(--green);">
-            </div>
-            <div>
-              <label style="font-size:10px; font-family:var(--mono); color:var(--red); display:block; margin-bottom:3px;">border: <span id="bm-bv">3</span>px</label>
-              <input type="range" min="0" max="12" value="3" oninput="updateBMBorder(this)" style="width:100%; accent-color:var(--red);">
-            </div>
-          </div>
-          <!-- Kutu görünümü -->
-          <div style="display:flex; align-items:center; justify-content:center; min-height:180px; background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:8px;">
-            <div id="bmMargin" style="background:rgba(255,184,79,.15); border:2px dashed var(--amber); padding:20px; border-radius:6px; position:relative; transition:all .3s;">
-              <div style="position:absolute; top:3px; left:6px; font-size:9px; font-family:var(--mono); color:var(--amber);">margin</div>
-              <div id="bmBorderEl" style="background:rgba(255,90,90,.15); border:3px solid var(--red); padding:0; border-radius:4px; position:relative; transition:all .3s;">
-                <div style="position:absolute; top:3px; left:6px; font-size:9px; font-family:var(--mono); color:var(--red);">border</div>
-                <div id="bmPadding" style="background:rgba(79,255,176,.15); border:2px dashed var(--green); padding:20px; border-radius:2px; position:relative; transition:all .3s;">
-                  <div style="position:absolute; top:3px; left:6px; font-size:9px; font-family:var(--mono); color:var(--green);">padding</div>
-                  <div style="background:rgba(124,106,255,.3); border:2px solid var(--accent); padding:10px 20px; font-family:var(--mono); font-size:11px; color:var(--accent); text-align:center; border-radius:2px;">content</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Canlı CSS çıktısı -->
-          <div style="font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:.8rem; line-height:1.8;" id="bmCodeOut">
-            .kutu { margin: 20px; padding: 20px; border: 3px solid red; }
+            <div style="font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:4px;">content</div>
+            <div style="font-size:13px; color:var(--muted);">Asıl içerik. width/height burayı etkiler.</div>
           </div>
         </div>
 
         <div class="code-block">
-          <div class="code-header"><span class="code-lang">CSS — kısa yol yazımları</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+          <div class="code-header"><span class="code-lang">CSS — Box Model Kullanımı</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
           <pre><span class="t-sel">.kutu</span> {
-  <span class="t-comment">/* padding kısa yolları (saat yönü: üst sağ alt sol) */</span>
-  <span class="t-prop">padding</span>: <span class="t-val">20px</span>;               <span class="t-comment">← 4 taraf aynı</span>
-  <span class="t-prop">padding</span>: <span class="t-val">10px 20px</span>;          <span class="t-comment">← üst-alt: 10px, sağ-sol: 20px</span>
-  <span class="t-prop">padding</span>: <span class="t-val">5px 10px 15px 20px</span>; <span class="t-comment">← üst sağ alt sol (saat yönü)</span>
-  <span class="t-prop">padding-top</span>: <span class="t-val">10px</span>;           <span class="t-comment">← sadece bir taraf</span>
-
-  <span class="t-comment">/* border: kalınlık stil renk */</span>
-  <span class="t-prop">border</span>: <span class="t-val">2px solid #333</span>;      <span class="t-comment">← solid, dashed, dotted, double...</span>
-  <span class="t-prop">border-top</span>: <span class="t-val">3px solid red</span>;   <span class="t-comment">← sadece üst kenara</span>
-  <span class="t-prop">border-radius</span>: <span class="t-val">8px</span>;           <span class="t-comment">← köşe yuvarlatma (50% = daire)</span>
-
-  <span class="t-comment">/* ALTIN KURAL — tüm projeye uygula */</span>
-  <span class="t-prop">box-sizing</span>: <span class="t-val">border-box</span>;      <span class="t-comment">← padding+border, width'in içine dahil</span>
+  <span class="t-prop">width</span>: <span class="t-val">200px</span>;
+  <span class="t-prop">height</span>: <span class="t-val">100px</span>;
+  <span class="t-prop">padding</span>: <span class="t-val">20px</span>;         <span class="t-comment">← 4 taraf aynı</span>
+  <span class="t-prop">padding</span>: <span class="t-val">10px 20px</span>;    <span class="t-comment">← üst-alt / sağ-sol</span>
+  <span class="t-prop">border</span>: <span class="t-val">2px solid red</span>;
+  <span class="t-prop">margin</span>: <span class="t-val">16px</span>;
+  
+  <span class="t-comment">/* ALTIN KURAL → layout kırılmaz */</span>
+  <span class="t-prop">box-sizing</span>: <span class="t-val">border-box</span>;
 }</pre>
         </div>
 
         <div class="tip warn">
-          <strong>box-sizing neden önemli?</strong> Normal halde: <code>width: 300px</code> + <code>padding: 20px</code> = kutunun gerçek boyutu 340px. Bu layout hesaplamalarını bozar. <code>border-box</code> ile padding içeriye dahil edilir, kutu hep 300px kalır.
+          <strong>Dikkat:</strong> Normal halde <code>width: 200px</code> + <code>padding: 20px</code> = toplam 240px eder. <code>box-sizing: border-box</code> ile padding width'in içine dahil olur → toplam yine 200px.
         </div>
+
         <div class="tip good">
-          <strong>Her projede CSS reset'ine ekle:</strong> <code>* &#123; box-sizing: border-box; &#125;</code> → tüm elemanlar tutarlı davranır, hiç pişman olmazsın.
+          <strong>CSS Reset'e ekle:</strong> <code>* &#123; box-sizing: border-box; &#125;</code> → bütün projeyi kurtarır.
         </div>
 
         <button class="next-btn" onclick="showPage('display')">Sıradaki: Display & Position →</button>
@@ -2032,27 +1769,42 @@
     <div id="tab-cheatsheet" style="display:none;">
       <div class="hero-badge"><div class="hero-dot"></div>Hızlı Başvuru</div>
       <h1>Cheat Sheet</h1>
-      <p>Sınav öncesi gözden geçir. Tüm kritik kodlar burada.</p>
+      <p>Gözden geçirmek için hızlı başvuru kaynağı. Kod satırlarına tıklayarak detaylarına ulaşabilirsin.</p>
+
+      <style>
+        .cs-line { position:relative; cursor:pointer; }
+        .cs-line:hover { background: rgba(124,106,255,0.08); }
+        .cs-tooltip {
+          display:none; position:absolute; left:calc(100% + 10px); top:0;
+          background:var(--surface2); border:1px solid var(--border2);
+          border-radius:8px; padding:10px 14px; font-size:12px; color:var(--text);
+          width:240px; z-index:50; box-shadow:0 8px 24px rgba(0,0,0,0.4);
+          font-family:var(--sans); line-height:1.5; white-space:normal;
+          pointer-events:none;
+        }
+        .cs-line:hover .cs-tooltip { display:block; }
+        @media(max-width:900px){ .cs-tooltip { left:0; top:calc(100% + 4px); width:220px; } }
+      </style>
 
       <h2>HTML Şablonu</h2>
       <div class="code-block">
         <div class="code-header"><span class="code-lang">HTML — Tam Başlangıç</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
-        <pre><span class="t-tag">&lt;!DOCTYPE html&gt;</span>
-<span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-val">"tr"</span><span class="t-tag">&gt;</span>
-<span class="t-tag">&lt;head&gt;</span>
-  <span class="t-tag">&lt;meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-tag">&gt;</span>
-  <span class="t-tag">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-val">"viewport"</span> <span class="t-attr">content</span>=<span class="t-val">"width=device-width, initial-scale=1.0"</span><span class="t-tag">&gt;</span>
-  <span class="t-tag">&lt;title&gt;</span>Sayfa Başlığı<span class="t-tag">&lt;/title&gt;</span>
-  <span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"style.css"</span><span class="t-tag">&gt;</span>
+        <pre><span class="cs-line"><span class="t-tag">&lt;!DOCTYPE html&gt;</span>                    <span class="t-comment">← Her HTML dosyası bununla başlar</span><div class="cs-tooltip">HTML5 standardını kullandığını tarayıcıya bildirir. Olmadan eski "quirks mode"a düşer, layoutlar bozulabilir.</div></span>
+<span class="cs-line"><span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-val">"tr"</span><span class="t-tag">&gt;</span>                      <span class="t-comment">← Dil belirt, SEO için önemli</span><div class="cs-tooltip">lang niteliği hem SEO'yu (arama motorları içeriği doğru dilde indeksler) hem erişilebilirliği (ekran okuyucular doğru aksanla okur) etkiler.</div></span>
+<span class="cs-line"><span class="t-tag">&lt;head&gt;</span>                               <span class="t-comment">← Görünmeyen meta bilgiler</span><div class="cs-tooltip">Kullanıcı görmez ama tarayıcı okur. title, charset, CSS bağlantısı, favicon buraya girer.</div></span>
+<span class="cs-line">  <span class="t-tag">&lt;meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-tag">&gt;</span>             <span class="t-comment">← Türkçe karakterler için şart</span><div class="cs-tooltip">UTF-8 olmadan Türkçe karakterler (ş, ğ, ü, ö, ç) bozuk görünür. Her zaman ekle!</div></span>
+<span class="cs-line">  <span class="t-tag">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-val">"viewport"</span> <span class="t-attr">content</span>=<span class="t-val">"width=device-width, initial-scale=1.0"</span><span class="t-tag">&gt;</span>  <span class="t-comment">← Mobil uyumluluk</span><div class="cs-tooltip">Bu olmadan mobilde sayfa masaüstü boyutunda görünür ve kullanıcı sürekli zoom'lar. Responsive tasarımın temel şartı.</div></span>
+<span class="cs-line">  <span class="t-tag">&lt;title&gt;</span>Sayfa Başlığı<span class="t-tag">&lt;/title&gt;</span>         <span class="t-comment">← Tarayıcı sekmesinde görünür</span><div class="cs-tooltip">Arama sonuçlarında da görünür. İyi bir title SEO sıralamasını etkiler. 50-60 karakter idealdir.</div></span>
+<span class="cs-line">  <span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"style.css"</span><span class="t-tag">&gt;</span>  <span class="t-comment">← CSS dosyasını bağla</span><div class="cs-tooltip">External CSS bağlantısı. rel="stylesheet" zorunlu. Birden fazla CSS dosyası bağlanabilir.</div></span>
 <span class="t-tag">&lt;/head&gt;</span>
-<span class="t-tag">&lt;body&gt;</span>
-  <span class="t-tag">&lt;header&gt;</span>
-    <span class="t-tag">&lt;nav&gt;</span><span class="t-tag">&lt;/nav&gt;</span>
+<span class="t-tag">&lt;body&gt;</span>                               <span class="t-comment">← Görünen her şey buraya</span>
+<span class="cs-line">  <span class="t-tag">&lt;header&gt;</span>                           <span class="t-comment">← Üst alan (logo, nav)</span><div class="cs-tooltip">Semantic etiket. Sayfanın veya bir section'ın üst kısmı. Logo ve navigasyon burada olur.</div></span>
+<span class="cs-line">    <span class="t-tag">&lt;nav&gt;</span><span class="t-tag">&lt;/nav&gt;</span>                       <span class="t-comment">← Navigasyon linkleri</span><div class="cs-tooltip">Sadece navigasyon amaçlı link grupları için kullan. Her link listesi nav değildir.</div></span>
   <span class="t-tag">&lt;/header&gt;</span>
-  <span class="t-tag">&lt;main&gt;</span>
-    <span class="t-tag">&lt;section&gt;</span><span class="t-tag">&lt;/section&gt;</span>
+<span class="cs-line">  <span class="t-tag">&lt;main&gt;</span>                             <span class="t-comment">← Sayfanın ana içeriği, tek olmalı</span><div class="cs-tooltip">Sayfada sadece bir tane olmalı. Tekrarlanan içerikler (header, footer, nav) buraya girmez.</div></span>
+<span class="cs-line">    <span class="t-tag">&lt;section&gt;</span><span class="t-tag">&lt;/section&gt;</span>             <span class="t-comment">← Tematik bölümler</span><div class="cs-tooltip">Başlığı olan ve tematik olarak gruplanmış içerikler. "Hakkımızda", "Ürünler", "İletişim" gibi.</div></span>
   <span class="t-tag">&lt;/main&gt;</span>
-  <span class="t-tag">&lt;footer&gt;</span><span class="t-tag">&lt;/footer&gt;</span>
+<span class="cs-line">  <span class="t-tag">&lt;footer&gt;</span><span class="t-tag">&lt;/footer&gt;</span>               <span class="t-comment">← Alt alan (telif, iletişim)</span><div class="cs-tooltip">Telif hakkı, adres, sosyal medya linkleri, site haritası gibi içerikler için.</div></span>
 <span class="t-tag">&lt;/body&gt;</span>
 <span class="t-tag">&lt;/html&gt;</span></pre>
       </div>
@@ -2060,15 +1812,15 @@
       <h2>CSS Reset</h2>
       <div class="code-block">
         <div class="code-header"><span class="code-lang">CSS — Her Projede Kullan</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
-        <pre><span class="t-sel">*</span> {
-  <span class="t-prop">margin</span>: <span class="t-val">0</span>;
-  <span class="t-prop">padding</span>: <span class="t-val">0</span>;
-  <span class="t-prop">box-sizing</span>: <span class="t-val">border-box</span>;
+        <pre><span class="cs-line"><span class="t-sel">*</span> {<div class="cs-tooltip">Evrensel seçici — sayfadaki TÜM elemanları hedefler. Reset için idealdir.</div></span>
+<span class="cs-line">  <span class="t-prop">margin</span>: <span class="t-val">0</span>;           <span class="t-comment">← Tarayıcı default margin'ları sıfırla</span><div class="cs-tooltip">Tarayıcılar h1, p, ul gibi etiketlere varsayılan margin ekler. Bunları sıfırlayarak temiz bir temel kurarsın.</div></span>
+<span class="cs-line">  <span class="t-prop">padding</span>: <span class="t-val">0</span>;          <span class="t-comment">← Default padding'leri sıfırla</span><div class="cs-tooltip">Benzer şekilde varsayılan padding'leri sıfırlar. Sen ne istiyorsan onu eklersin.</div></span>
+<span class="cs-line">  <span class="t-prop">box-sizing</span>: <span class="t-val">border-box</span>;  <span class="t-comment">← Layout kurtarıcı — zorunlu!</span><div class="cs-tooltip">padding ve border width'in içinde hesaplanır. width:200px her zaman 200px olur. Bunu eklemeden layout yapmak gereksiz acı çekmektir.</div></span>
 }
 
 <span class="t-sel">body</span> {
-  <span class="t-prop">font-family</span>: <span class="t-val">sans-serif</span>;
-  <span class="t-prop">line-height</span>: <span class="t-val">1.6</span>;
+<span class="cs-line">  <span class="t-prop">font-family</span>: <span class="t-val">sans-serif</span>;    <span class="t-comment">← Sistem sans-serif fontu</span><div class="cs-tooltip">Hızlı proje için iyi başlangıç. Üretimde Google Fonts veya sistem fontlarını tercih et: font-family: 'Inter', sans-serif;</div></span>
+<span class="cs-line">  <span class="t-prop">line-height</span>: <span class="t-val">1.6</span>;           <span class="t-comment">← Okunabilir satır aralığı</span><div class="cs-tooltip">1.6 = font-size'ın 1.6 katı satır yüksekliği. Çok dar (1) okunmaz, çok geniş (2+) tuhaf görünür. 1.5-1.7 arası ideal.</div></span>
 }</pre>
       </div>
 
@@ -2076,9 +1828,9 @@
       <div class="code-block">
         <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
         <pre><span class="t-sel">.merkez</span> {
-  <span class="t-prop">display</span>: <span class="t-val">flex</span>;
-  <span class="t-prop">justify-content</span>: <span class="t-val">center</span>;
-  <span class="t-prop">align-items</span>: <span class="t-val">center</span>;
+<span class="cs-line">  <span class="t-prop">display</span>: <span class="t-val">flex</span>;               <span class="t-comment">← Flexbox aktif et</span><div class="cs-tooltip">Bu olmadan justify-content ve align-items çalışmaz. Önce container'a flex vermek zorunlu.</div></span>
+<span class="cs-line">  <span class="t-prop">justify-content</span>: <span class="t-val">center</span>;   <span class="t-comment">← Yatay ortala (ana eksen)</span><div class="cs-tooltip">Ana eksen (row'da yatay) boyunca hizalama. center = ortala, space-between = kenarlara yay, flex-start/end = başa/sona al.</div></span>
+<span class="cs-line">  <span class="t-prop">align-items</span>: <span class="t-val">center</span>;       <span class="t-comment">← Dikey ortala (çapraz eksen)</span><div class="cs-tooltip">Çapraz eksen (row'da dikey) boyunca hizalama. height verilmişse dikey ortalama çalışır. height:100vh ile tam ekran ortalar.</div></span>
 }</pre>
       </div>
 
@@ -2087,8 +1839,8 @@
         <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
         <pre><span class="t-sel">.grid</span> {
   <span class="t-prop">display</span>: <span class="t-val">grid</span>;
-  <span class="t-prop">grid-template-columns</span>: <span class="t-val">repeat(auto-fit, minmax(250px, 1fr))</span>;
-  <span class="t-prop">gap</span>: <span class="t-val">20px</span>;
+<span class="cs-line">  <span class="t-prop">grid-template-columns</span>: <span class="t-val">repeat(auto-fit, minmax(250px, 1fr))</span>;  <span class="t-comment">← Sihirli formül</span><div class="cs-tooltip">auto-fit: sığdığı kadar sütun aç. minmax(250px,1fr): her sütun en az 250px, kalan alanı paylaş. Sonuç: media query yazmadan responsive grid!</div></span>
+<span class="cs-line">  <span class="t-prop">gap</span>: <span class="t-val">20px</span>;                                               <span class="t-comment">← Elemanlar arası boşluk</span><div class="cs-tooltip">gap = row-gap ve column-gap'i birlikte ayarlar. Eski tarayıcılarda grid-gap kullanılırdı.</div></span>
 }</pre>
       </div>
 
@@ -2105,12 +1857,12 @@
 
 <span class="t-comment">/* CSS */</span>
 <span class="t-sel">.navbar</span> {
-  <span class="t-prop">display</span>: <span class="t-val">flex</span>;
-  <span class="t-prop">justify-content</span>: <span class="t-val">space-between</span>;
+<span class="cs-line">  <span class="t-prop">display</span>: <span class="t-val">flex</span>;                    <span class="t-comment">← Logo ve linkleri yan yana dizer</span><div class="cs-tooltip">Flex olmadan logo ve ul alt alta sıralanır. Flex ile aynı satırda, hizalı olurlar.</div></span>
+<span class="cs-line">  <span class="t-prop">justify-content</span>: <span class="t-val">space-between</span>;  <span class="t-comment">← Logo sola, linkler sağa</span><div class="cs-tooltip">space-between: elemanlar arasında eşit boşluk bırakır, uçlara yaslar. Logo sola, nav linkleri sağa gider.</div></span>
   <span class="t-prop">align-items</span>: <span class="t-val">center</span>;
   <span class="t-prop">padding</span>: <span class="t-val">1rem 2rem</span>;
 }
-<span class="t-sel">.navbar ul</span> { <span class="t-prop">display</span>: <span class="t-val">flex</span>; <span class="t-prop">list-style</span>: <span class="t-val">none</span>; <span class="t-prop">gap</span>: <span class="t-val">1rem</span>; }</pre>
+<span class="cs-line"><span class="t-sel">.navbar ul</span> { <span class="t-prop">display</span>: <span class="t-val">flex</span>; <span class="t-prop">list-style</span>: <span class="t-val">none</span>; <span class="t-prop">gap</span>: <span class="t-val">1rem</span>; }  <span class="t-comment">← Linkleri yatay diz</span><div class="cs-tooltip">list-style:none = madde işaretlerini kaldırır. display:flex + gap ile linkler yan yana ve aralarında boşlukla dizilir.</div></span></pre>
       </div>
 
       <h2>Card Tasarımı</h2>
@@ -2118,26 +1870,423 @@
         <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
         <pre><span class="t-sel">.card</span> {
   <span class="t-prop">background</span>: <span class="t-val">white</span>;
-  <span class="t-prop">border-radius</span>: <span class="t-val">12px</span>;
+<span class="cs-line">  <span class="t-prop">border-radius</span>: <span class="t-val">12px</span>;             <span class="t-comment">← Köşeleri yuvarla</span><div class="cs-tooltip">Modern tasarımlarda genellikle 8-16px arası. Çok büyük değerler (50%) tam oval/daire yapar.</div></span>
   <span class="t-prop">padding</span>: <span class="t-val">1.5rem</span>;
-  <span class="t-prop">box-shadow</span>: <span class="t-val">0 2px 12px rgba(0,0,0,0.08)</span>;
-  <span class="t-prop">transition</span>: <span class="t-val">transform 0.2s</span>;
+<span class="cs-line">  <span class="t-prop">box-shadow</span>: <span class="t-val">0 2px 12px rgba(0,0,0,0.08)</span>;  <span class="t-comment">← Hafif gölge</span><div class="cs-tooltip">Değerler: x-offset y-offset blur-radius [spread] renk. Küçük yumuşak gölge (2px, 0.08 opacity) profesyonel görünür. Büyük gölge dramatik.</div></span>
+<span class="cs-line">  <span class="t-prop">transition</span>: <span class="t-val">transform 0.2s</span>;       <span class="t-comment">← Hover animasyonunu yumuşat</span><div class="cs-tooltip">transform değişimini 0.2 saniyede geçişli yap. Olmadan hover anında zıplar, bununla kayar. 0.2-0.3s ideal.</div></span>
 }
-<span class="t-sel">.card:hover</span> { <span class="t-prop">transform</span>: <span class="t-val">translateY(-4px)</span>; }</pre>
+<span class="cs-line"><span class="t-sel">.card:hover</span> { <span class="t-prop">transform</span>: <span class="t-val">translateY(-4px)</span>; }  <span class="t-comment">← Yukarı kalk efekti</span><div class="cs-tooltip">Hover'da kartı 4px yukarı kaydırır. "Lifting card" efekti olarak bilinir. Kullanıcıya tıklanabilir olduğunu hissettirir.</div></span></pre>
       </div>
 
-      <h2>Yapmaman Gerekenler</h2>
+      <h2>Position: Absolute İçinde Relative</h2>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">CSS — En Çok Karıştırılan Pattern</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-sel">.kart</span> {
+<span class="cs-line">  <span class="t-prop">position</span>: <span class="t-val">relative</span>;  <span class="t-comment">← Parent MUTLAKA relative olmalı</span><div class="cs-tooltip">relative olmadan absolute child sayfa köküne (html elementine) göre konumlanır. Tamamen farklı yere gider. Bu pattern'ı ezberle: parent=relative, child=absolute.</div></span>
+}
+<span class="t-sel">.rozet</span> {
+  <span class="t-prop">position</span>: <span class="t-val">absolute</span>;
+<span class="cs-line">  <span class="t-prop">top</span>: <span class="t-val">10px</span>; <span class="t-prop">right</span>: <span class="t-val">10px</span>;  <span class="t-comment">← .kart'ın sağ üstüne yapışır</span><div class="cs-tooltip">top/right/bottom/left değerleri relative parent'ın kenarlarına göre hesaplanır. top:0;right:0 = sağ üst köşe.</div></span>
+}</pre>
+      </div>
+
+      <h2>Sık Yapılan Hatalar</h2>
       <div style="display:grid; gap:8px; margin:1rem 0;">
-        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--muted);">❌ Her şey için <code>div</code> kullanmak → semantic kullan</div>
-        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--muted);">❌ Inline CSS → external .css dosyası kullan</div>
-        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--muted);">❌ <code>!important</code> kullanmak → specificity'i anla</div>
-        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--muted);">❌ <code>float</code> ile layout yapmak → flex/grid kullan</div>
-        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--muted);">❌ <code>label</code> olmadan <code>input</code> kullanmak</div>
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:12px 14px; font-size:13px; color:var(--muted);">
+          ❌ <strong style="color:var(--text);">Her şey için div kullanmak</strong> → semantic kullan: <code>header</code>, <code>nav</code>, <code>main</code>, <code>article</code>, <code>footer</code>
+        </div>
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:12px 14px; font-size:13px; color:var(--muted);">
+          ❌ <strong style="color:var(--text);">Inline CSS</strong> → external .css dosyası kullan. Bakımı imkansızlaşır, spesificity karışır.
+        </div>
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:12px 14px; font-size:13px; color:var(--muted);">
+          ❌ <strong style="color:var(--text);">!important kullanmak</strong> → specificity'i anla ve düzgün yazılmış CSS'te gerek kalmaz. Kullanmak zorunda kalıyorsan kod yapısını yeniden düşün.
+        </div>
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:12px 14px; font-size:13px; color:var(--muted);">
+          ❌ <strong style="color:var(--text);">float ile layout yapmak</strong> → 2010'ların yöntemi. Flex/grid kullan. float bugün sadece metin içinde resim sarmalamak için kullanılır.
+        </div>
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:12px 14px; font-size:13px; color:var(--muted);">
+          ❌ <strong style="color:var(--text);">label olmadan input kullanmak</strong> → erişilebilirlik ihlali ve kötü UX. Her input'un bir label'ı olmalı.
+        </div>
+        <div style="background:rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.2); border-radius:8px; padding:12px 14px; font-size:13px; color:var(--muted);">
+          ❌ <strong style="color:var(--text);">box-sizing: border-box yazmamak</strong> → * { box-sizing: border-box } her projenin 3. satırı olmalı. Yoksa padding layout'u bozar.
+        </div>
       </div>
     </div>
 
+    <!-- ===== TAB: SİMÜLASYON ===== -->
+    <div id="tab-simulation" style="display:none;">
+      <div class="hero-badge"><div class="hero-dot"></div>Gerçek Hayat</div>
+      <h1>Web Sitesi Simülasyonu</h1>
+      <p>Bir web sayfasının görüntüsüne bakıp kodunu okumak — ve kodu anlayıp sayfayı kafanda canlandırmak — web geliştirmenin en kritik becerisi. Burada gerçek bir site tasarımını adım adım inceleyeceğiz.</p>
+
+      <div class="tip good">
+        <strong>Nasıl çalışır:</strong> Önce sitenin önizlemesini görürsün, sonra her bölümün kodunu bol açıklama satırıyla incelersin. Kodu okurken önizlemeye bakarak eşleştirmeye çalış.
+      </div>
+
+      <!-- ÖNIZLEME -->
+      <h2>Hedef: Bu Sayfayı Kodla</h2>
+      <p>Aşağıdaki "Portföy Sitesi" tasarımını yapmamız gerekiyor:</p>
+
+      <div style="border:2px solid var(--border2); border-radius:12px; overflow:hidden; margin:1rem 0;">
+        <!-- Simulated browser chrome -->
+        <div style="background:var(--surface2); padding:10px 14px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border);">
+          <div style="display:flex; gap:5px;">
+            <div style="width:10px; height:10px; border-radius:50%; background:#ff5f57;"></div>
+            <div style="width:10px; height:10px; border-radius:50%; background:#febc2e;"></div>
+            <div style="width:10px; height:10px; border-radius:50%; background:#28c840;"></div>
+          </div>
+          <div style="background:var(--surface); border-radius:4px; padding:3px 12px; font-size:11px; font-family:var(--mono); color:var(--muted); flex:1; text-align:center;">localhost:3000</div>
+        </div>
+        <!-- Simulated site -->
+        <div style="background:#f8f8f8; font-family:sans-serif;">
+          <!-- Nav -->
+          <div style="background:#1a1a2e; padding:16px 32px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="color:#7c6aff; font-weight:700; font-size:18px;">Ali.dev</span>
+            <div style="display:flex; gap:20px;">
+              <a href="#" style="color:#ccc; text-decoration:none; font-size:14px;">Hakkında</a>
+              <a href="#" style="color:#ccc; text-decoration:none; font-size:14px;">Projeler</a>
+              <a href="#" style="color:#7c6aff; text-decoration:none; font-size:14px; border:1px solid #7c6aff; padding:4px 12px; border-radius:4px;">İletişim</a>
+            </div>
+          </div>
+          <!-- Hero -->
+          <div style="background:linear-gradient(135deg,#1a1a2e,#16213e); padding:60px 32px; text-align:center;">
+            <div style="width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,#7c6aff,#ff6a9b); margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-size:32px;">👨‍💻</div>
+            <h1 style="color:#fff; font-size:32px; margin:0 0 8px;">Merhaba, Ben Ali</h1>
+            <p style="color:#aaa; margin:0 0 24px; font-size:16px;">Frontend Developer & UI Tasarımcı</p>
+            <a href="#" style="background:#7c6aff; color:#fff; padding:12px 28px; border-radius:8px; text-decoration:none; font-size:14px; font-weight:600;">Projelerimi Gör →</a>
+          </div>
+          <!-- Projects grid -->
+          <div style="padding:40px 32px; background:#fff;">
+            <h2 style="text-align:center; margin:0 0 8px; color:#111; font-size:22px;">Projeler</h2>
+            <p style="text-align:center; color:#888; margin:0 0 28px; font-size:14px;">Son çalışmalarım</p>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+              <div style="background:#f0eeff; border-radius:10px; padding:20px; border:1px solid #e0d8ff;">
+                <div style="font-size:24px; margin-bottom:8px;">🛒</div>
+                <div style="font-weight:600; color:#333; margin-bottom:6px; font-size:14px;">E-Ticaret Sitesi</div>
+                <div style="color:#888; font-size:12px; margin-bottom:12px;">React, CSS Grid</div>
+                <a href="#" style="color:#7c6aff; font-size:12px; text-decoration:none;">Görüntüle →</a>
+              </div>
+              <div style="background:#fff0f6; border-radius:10px; padding:20px; border:1px solid #ffd8ec;">
+                <div style="font-size:24px; margin-bottom:8px;">📊</div>
+                <div style="font-weight:600; color:#333; margin-bottom:6px; font-size:14px;">Dashboard App</div>
+                <div style="color:#888; font-size:12px; margin-bottom:12px;">JavaScript, Flexbox</div>
+                <a href="#" style="color:#ff6a9b; font-size:12px; text-decoration:none;">Görüntüle →</a>
+              </div>
+              <div style="background:#f0fff8; border-radius:10px; padding:20px; border:1px solid #d8ffe8;">
+                <div style="font-size:24px; margin-bottom:8px;">✍️</div>
+                <div style="font-weight:600; color:#333; margin-bottom:6px; font-size:14px;">Blog Platformu</div>
+                <div style="color:#888; font-size:12px; margin-bottom:12px;">HTML, CSS</div>
+                <a href="#" style="color:#28c840; font-size:12px; text-decoration:none;">Görüntüle →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Footer -->
+          <div style="background:#1a1a2e; padding:24px 32px; text-align:center;">
+            <p style="color:#666; font-size:13px; margin:0;">© 2024 Ali.dev — HTML & CSS ile yapıldı</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- KODUN AÇIKLAMASI -->
+      <h2 style="margin-top:3rem;">Kodun Anatomisi</h2>
+      <p>Şimdi bu sayfayı oluşturan HTML ve CSS'i bölüm bölüm inceleyelim. Her satırda ne olduğunu açıklıyoruz.</p>
+
+      <!-- HTML STRUCTURE -->
+      <h3>1. HTML Yapısı — İskelet</h3>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">HTML — Genel Yapı</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-comment">&lt;!-- Her HTML sayfası bu iskelet üzerine kurulur --&gt;</span>
+<span class="t-tag">&lt;!DOCTYPE html&gt;</span>        <span class="t-comment">← HTML5 kullandığımızı tarayıcıya bildiririz</span>
+<span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-val">"tr"</span><span class="t-tag">&gt;</span>
+
+<span class="t-tag">&lt;head&gt;</span>
+  <span class="t-comment">&lt;!-- Sayfanın "beyni" — kullanıcı görmez, tarayıcı okur --&gt;</span>
+  <span class="t-tag">&lt;meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-tag">&gt;</span>                       <span class="t-comment">← Türkçe karakter desteği</span>
+  <span class="t-tag">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-val">"viewport"</span> <span class="t-attr">content</span>=<span class="t-val">"width=device-width, initial-scale=1"</span><span class="t-tag">&gt;</span>  <span class="t-comment">← Mobil uyumluluk</span>
+  <span class="t-tag">&lt;title&gt;</span>Ali.dev — Frontend Developer<span class="t-tag">&lt;/title&gt;</span>  <span class="t-comment">← Tarayıcı sekmesi ve Google sonuçları</span>
+  <span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"style.css"</span><span class="t-tag">&gt;</span>        <span class="t-comment">← CSS dosyamızı bağlarız</span>
+<span class="t-tag">&lt;/head&gt;</span>
+
+<span class="t-tag">&lt;body&gt;</span>
+  <span class="t-comment">&lt;!-- Sayfanın görünür kısmı: header → main → footer sırası --&gt;</span>
+  <span class="t-comment">&lt;!-- Bu sırayı bozmak semantik hatadır --&gt;</span>
+  
+  <span class="t-tag">&lt;header&gt;</span>...<span class="t-tag">&lt;/header&gt;</span>   <span class="t-comment">← Logo + navigasyon</span>
+  <span class="t-tag">&lt;main&gt;</span>               <span class="t-comment">← Sayfanın esas içeriği, sadece 1 tane olmalı</span>
+    <span class="t-tag">&lt;section</span> <span class="t-attr">class</span>=<span class="t-val">"hero"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/section&gt;</span>      <span class="t-comment">← Üst hero alanı</span>
+    <span class="t-tag">&lt;section</span> <span class="t-attr">class</span>=<span class="t-val">"projeler"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/section&gt;</span>  <span class="t-comment">← Proje kartları</span>
+  <span class="t-tag">&lt;/main&gt;</span>
+  <span class="t-tag">&lt;footer&gt;</span>...<span class="t-tag">&lt;/footer&gt;</span>   <span class="t-comment">← Alt bilgi alanı</span>
+<span class="t-tag">&lt;/body&gt;</span>
+<span class="t-tag">&lt;/html&gt;</span></pre>
+      </div>
+
+      <!-- NAVBAR -->
+      <h3>2. Navigasyon Barı</h3>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">HTML — header ve nav</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-tag">&lt;header&gt;</span>
+  <span class="t-comment">&lt;!-- 
+    header = sayfanın üst bölümü (semantic)
+    İçine nav koyuyoruz çünkü logo + menü = navigasyon alanı
+  --&gt;</span>
+  <span class="t-tag">&lt;nav</span> <span class="t-attr">class</span>=<span class="t-val">"navbar"</span><span class="t-tag">&gt;</span>
+
+    <span class="t-comment">&lt;!-- Logo: tıklanabilir, anasayfaya götürür --&gt;</span>
+    <span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"index.html"</span> <span class="t-attr">class</span>=<span class="t-val">"logo"</span><span class="t-tag">&gt;</span>Ali.dev<span class="t-tag">&lt;/a&gt;</span>
+
+    <span class="t-comment">&lt;!-- Menü linkleri: ul > li > a yapısı standart navbar yöntemi --&gt;</span>
+    <span class="t-tag">&lt;ul</span> <span class="t-attr">class</span>=<span class="t-val">"nav-links"</span><span class="t-tag">&gt;</span>
+      <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#hakkinda"</span><span class="t-tag">&gt;</span>Hakkında<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>  <span class="t-comment">← # = aynı sayfada section'a git</span>
+      <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#projeler"</span><span class="t-tag">&gt;</span>Projeler<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="t-comment">&lt;!-- CTA butonu link olarak: görsel farklı ama hâlâ anchor tag --&gt;</span>
+      <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#iletisim"</span> <span class="t-attr">class</span>=<span class="t-val">"btn-outline"</span><span class="t-tag">&gt;</span>İletişim<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="t-tag">&lt;/ul&gt;</span>
+
+  <span class="t-tag">&lt;/nav&gt;</span>
+<span class="t-tag">&lt;/header&gt;</span></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">CSS — Navbar Stili</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-comment">/* ========== NAVBAR ========== */</span>
+
+<span class="t-sel">.navbar</span> {
+  <span class="t-prop">display</span>: <span class="t-val">flex</span>;                    <span class="t-comment">← Logo ve menüyü yan yana diz</span>
+  <span class="t-prop">justify-content</span>: <span class="t-val">space-between</span>;  <span class="t-comment">← Logo sola, menü sağa yay</span>
+  <span class="t-prop">align-items</span>: <span class="t-val">center</span>;            <span class="t-comment">← Dikey ortala (navbar yüksekliğinde)</span>
+  <span class="t-prop">padding</span>: <span class="t-val">1rem 2rem</span>;             <span class="t-comment">← Üst-alt 1rem, sağ-sol 2rem boşluk</span>
+  <span class="t-prop">background</span>: <span class="t-val">#1a1a2e</span>;            <span class="t-comment">← Koyu lacivert arka plan</span>
+  <span class="t-prop">position</span>: <span class="t-val">sticky</span>;               <span class="t-comment">← Scroll'da sayfayla birlikte üste yapışır</span>
+  <span class="t-prop">top</span>: <span class="t-val">0</span>;                          <span class="t-comment">← Ekranın en üstüne yapış</span>
+  <span class="t-prop">z-index</span>: <span class="t-val">100</span>;                    <span class="t-comment">← Diğer elemanların üstünde kal</span>
+}
+
+<span class="t-sel">.logo</span> {
+  <span class="t-prop">color</span>: <span class="t-val">#7c6aff</span>;                  <span class="t-comment">← Marka rengi</span>
+  <span class="t-prop">font-weight</span>: <span class="t-val">700</span>;                <span class="t-comment">← Kalın yazı (bold)</span>
+  <span class="t-prop">font-size</span>: <span class="t-val">1.2rem</span>;
+  <span class="t-prop">text-decoration</span>: <span class="t-val">none</span>;           <span class="t-comment">← Link altçizgisini kaldır</span>
+}
+
+<span class="t-sel">.nav-links</span> {
+  <span class="t-prop">display</span>: <span class="t-val">flex</span>;                    <span class="t-comment">← Linkleri yatay diz</span>
+  <span class="t-prop">list-style</span>: <span class="t-val">none</span>;                <span class="t-comment">← Madde işaretini kaldır (• işareti)</span>
+  <span class="t-prop">gap</span>: <span class="t-val">1.5rem</span>;                    <span class="t-comment">← Linkler arası boşluk</span>
+  <span class="t-prop">align-items</span>: <span class="t-val">center</span>;
+}
+
+<span class="t-sel">.nav-links a</span> {
+  <span class="t-prop">color</span>: <span class="t-val">#ccc</span>;
+  <span class="t-prop">text-decoration</span>: <span class="t-val">none</span>;
+  <span class="t-prop">font-size</span>: <span class="t-val">0.9rem</span>;
+  <span class="t-prop">transition</span>: <span class="t-val">color 0.2s</span>;          <span class="t-comment">← Hover renk geçişini yumuşat</span>
+}
+<span class="t-sel">.nav-links a:hover</span> { <span class="t-prop">color</span>: <span class="t-val">#fff</span>; }  <span class="t-comment">← Üzerine gelince beyazlaşır</span>
+
+<span class="t-comment">/* CTA butonu — link gibi davranır ama buton görünümünde */</span>
+<span class="t-sel">.btn-outline</span> {
+  <span class="t-prop">border</span>: <span class="t-val">1px solid #7c6aff</span>;       <span class="t-comment">← Mor çerçeve</span>
+  <span class="t-prop">padding</span>: <span class="t-val">0.4rem 1rem</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-val">6px</span>;
+  <span class="t-prop">color</span>: <span class="t-val">#7c6aff !important</span>;       <span class="t-comment">← Diğer link stilini override et</span>
+}
+<span class="t-sel">.btn-outline:hover</span> {
+  <span class="t-prop">background</span>: <span class="t-val">#7c6aff</span>;
+  <span class="t-prop">color</span>: <span class="t-val">#fff !important</span>;
+}</pre>
+      </div>
+
+      <!-- HERO -->
+      <h3>3. Hero (Karşılama) Bölümü</h3>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">HTML — Hero Section</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-comment">&lt;!-- 
+  Hero = kullanıcının ilk gördüğü büyük karşılama alanı.
+  "Above the fold" denir — scroll etmeden görünen kısım.
+  Her portföy sitesinde vardır, etkileyici olması gerekir.
+--&gt;</span>
+<span class="t-tag">&lt;section</span> <span class="t-attr">class</span>=<span class="t-val">"hero"</span><span class="t-tag">&gt;</span>
+
+  <span class="t-comment">&lt;!-- Profil fotoğrafı: div yerine figure kullanmak daha semantik --&gt;</span>
+  <span class="t-tag">&lt;figure</span> <span class="t-attr">class</span>=<span class="t-val">"profil-resim"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;img</span> <span class="t-attr">src</span>=<span class="t-val">"profil.jpg"</span> <span class="t-attr">alt</span>=<span class="t-val">"Ali'nin profil fotoğrafı"</span><span class="t-tag">&gt;</span>
+    <span class="t-comment">&lt;!-- alt: ekran okuyucu için. Boş bırakılırsa erişilebilirlik ihlali --&gt;</span>
+  <span class="t-tag">&lt;/figure&gt;</span>
+
+  <span class="t-comment">&lt;!-- h1: Sayfa başlığı. Her sayfada sadece 1 tane olmalı --&gt;</span>
+  <span class="t-tag">&lt;h1&gt;</span>Merhaba, Ben Ali<span class="t-tag">&lt;/h1&gt;</span>
+
+  <span class="t-comment">&lt;!-- p: Kısa tanıtım metni --&gt;</span>
+  <span class="t-tag">&lt;p</span> <span class="t-attr">class</span>=<span class="t-val">"hero-subtitle"</span><span class="t-tag">&gt;</span>Frontend Developer &amp; UI Tasarımcı<span class="t-tag">&lt;/p&gt;</span>
+  <span class="t-comment">&lt;!-- &amp; yerine &amp;amp; yazmak HTML standardı (&amp;'ı tarayıcı bazen yanlış parse eder) --&gt;</span>
+
+  <span class="t-comment">&lt;!-- CTA (Call To Action) butonu: anchor tag, buton gibi stillenmiş --&gt;</span>
+  <span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#projeler"</span> <span class="t-attr">class</span>=<span class="t-val">"btn-primary"</span><span class="t-tag">&gt;</span>
+    Projelerimi Gör →
+  <span class="t-tag">&lt;/a&gt;</span>
+
+<span class="t-tag">&lt;/section&gt;</span></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">CSS — Hero Stili</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-comment">/* ========== HERO ========== */</span>
+
+<span class="t-sel">.hero</span> {
+  <span class="t-prop">display</span>: <span class="t-val">flex</span>;
+  <span class="t-prop">flex-direction</span>: <span class="t-val">column</span>;          <span class="t-comment">← İçerikleri alt alta diz</span>
+  <span class="t-prop">align-items</span>: <span class="t-val">center</span>;            <span class="t-comment">← Yatay ortala</span>
+  <span class="t-prop">text-align</span>: <span class="t-val">center</span>;             <span class="t-comment">← Metin hizalamasını ortala</span>
+  <span class="t-prop">padding</span>: <span class="t-val">80px 32px</span>;             <span class="t-comment">← Nefes aldıran boşluk</span>
+  
+  <span class="t-comment">/* Gradient arka plan: iki renk arası geçiş */</span>
+  <span class="t-prop">background</span>: <span class="t-val">linear-gradient(135deg, #1a1a2e, #16213e)</span>;
+  <span class="t-comment">/* 135deg = sağ alt köşeye doğru açılı geçiş */</span>
+  
+  <span class="t-prop">color</span>: <span class="t-val">#fff</span>;
+  <span class="t-prop">gap</span>: <span class="t-val">1rem</span>;                       <span class="t-comment">← Flex elemanları arası boşluk</span>
+}
+
+<span class="t-sel">.profil-resim img</span> {
+  <span class="t-prop">width</span>: <span class="t-val">100px</span>;
+  <span class="t-prop">height</span>: <span class="t-val">100px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-val">50%</span>;             <span class="t-comment">← Tam yuvarlak (daire) yap</span>
+  <span class="t-prop">border</span>: <span class="t-val">3px solid #7c6aff</span>;     <span class="t-comment">← Mor çerçeve</span>
+  <span class="t-prop">object-fit</span>: <span class="t-val">cover</span>;              <span class="t-comment">← Resmi kesip sığdır (uzamasın)</span>
+}
+
+<span class="t-sel">.hero h1</span> { <span class="t-prop">font-size</span>: <span class="t-val">2.2rem</span>; <span class="t-prop">margin</span>: <span class="t-val">0</span>; }
+
+<span class="t-sel">.hero-subtitle</span> { <span class="t-prop">color</span>: <span class="t-val">#aaa</span>; <span class="t-prop">font-size</span>: <span class="t-val">1.1rem</span>; }
+
+<span class="t-sel">.btn-primary</span> {
+  <span class="t-prop">display</span>: <span class="t-val">inline-block</span>;          <span class="t-comment">← Anchor tag'i blok gibi davransın</span>
+  <span class="t-prop">background</span>: <span class="t-val">#7c6aff</span>;
+  <span class="t-prop">color</span>: <span class="t-val">#fff</span>;
+  <span class="t-prop">padding</span>: <span class="t-val">0.75rem 1.75rem</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-val">8px</span>;
+  <span class="t-prop">text-decoration</span>: <span class="t-val">none</span>;
+  <span class="t-prop">font-weight</span>: <span class="t-val">600</span>;
+  <span class="t-prop">margin-top</span>: <span class="t-val">0.5rem</span>;
+  <span class="t-prop">transition</span>: <span class="t-val">transform 0.2s, background 0.2s</span>;  <span class="t-comment">← İki özelliği birden animate et</span>
+}
+<span class="t-sel">.btn-primary:hover</span> {
+  <span class="t-prop">background</span>: <span class="t-val">#6a58e0</span>;             <span class="t-comment">← Biraz daha koyu ton</span>
+  <span class="t-prop">transform</span>: <span class="t-val">translateY(-2px)</span>;    <span class="t-comment">← Hafif yukarı kalk</span>
+}</pre>
+      </div>
+
+      <!-- PROJECTS GRID -->
+      <h3>4. Proje Kartları — Grid Layout</h3>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">HTML — Proje Kartları</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-comment">&lt;!-- 
+  id="projeler" = navbar'daki href="#projeler" buraya kaydırır
+  Bu "smooth scroll" navigasyon için şart
+--&gt;</span>
+<span class="t-tag">&lt;section</span> <span class="t-attr">id</span>=<span class="t-val">"projeler"</span> <span class="t-attr">class</span>=<span class="t-val">"projeler"</span><span class="t-tag">&gt;</span>
+
+  <span class="t-tag">&lt;h2&gt;</span>Projeler<span class="t-tag">&lt;/h2&gt;</span>
+  <span class="t-tag">&lt;p</span> <span class="t-attr">class</span>=<span class="t-val">"section-subtitle"</span><span class="t-tag">&gt;</span>Son çalışmalarım<span class="t-tag">&lt;/p&gt;</span>
+
+  <span class="t-comment">&lt;!-- Kart container: Grid layout ile kartları dizer --&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"kart-grid"</span><span class="t-tag">&gt;</span>
+
+    <span class="t-comment">&lt;!-- article: bağımsız, kendi başına anlam taşıyan içerik --&gt;</span>
+    <span class="t-tag">&lt;article</span> <span class="t-attr">class</span>=<span class="t-val">"proje-kart"</span><span class="t-tag">&gt;</span>
+      <span class="t-tag">&lt;span</span> <span class="t-attr">class</span>=<span class="t-val">"kart-ikon"</span><span class="t-tag">&gt;</span>🛒<span class="t-tag">&lt;/span&gt;</span>
+      <span class="t-tag">&lt;h3&gt;</span>E-Ticaret Sitesi<span class="t-tag">&lt;/h3&gt;</span>   <span class="t-comment">← h2 (bölüm başlığı) sonrası h3 gelir, h4 değil</span>
+      <span class="t-tag">&lt;p&gt;</span>React, CSS Grid<span class="t-tag">&lt;/p&gt;</span>
+      <span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"proje1.html"</span><span class="t-tag">&gt;</span>Görüntüle →<span class="t-tag">&lt;/a&gt;</span>
+    <span class="t-tag">&lt;/article&gt;</span>
+
+    <span class="t-comment">&lt;!-- Diğer kartlar aynı yapıda... --&gt;</span>
+    <span class="t-tag">&lt;article</span> <span class="t-attr">class</span>=<span class="t-val">"proje-kart"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/article&gt;</span>
+    <span class="t-tag">&lt;article</span> <span class="t-attr">class</span>=<span class="t-val">"proje-kart"</span><span class="t-tag">&gt;</span>...<span class="t-tag">&lt;/article&gt;</span>
+
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/section&gt;</span></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">CSS — Grid ve Kartlar</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-comment">/* ========== PROJELER BÖLÜMÜ ========== */</span>
+
+<span class="t-sel">.projeler</span> {
+  <span class="t-prop">padding</span>: <span class="t-val">60px 32px</span>;
+  <span class="t-prop">background</span>: <span class="t-val">#fff</span>;
+  <span class="t-prop">text-align</span>: <span class="t-val">center</span>;
+}
+
+<span class="t-comment">/* CSS Grid ile responsive kart düzeni */</span>
+<span class="t-sel">.kart-grid</span> {
+  <span class="t-prop">display</span>: <span class="t-val">grid</span>;
+  
+  <span class="t-comment">/* SIHIRLI SATIR: media query yazmadan responsive grid!
+     repeat(auto-fit, ...) = sığdığı kadar sütun aç
+     minmax(250px, 1fr) = min 250px, max kalan alanı eşit böl
+     Dar ekranda: 1 sütun | Orta: 2 sütun | Geniş: 3 sütun */</span>
+  <span class="t-prop">grid-template-columns</span>: <span class="t-val">repeat(auto-fit, minmax(250px, 1fr))</span>;
+  
+  <span class="t-prop">gap</span>: <span class="t-val">1.5rem</span>;               <span class="t-comment">← Kartlar arası boşluk</span>
+  <span class="t-prop">margin-top</span>: <span class="t-val">2rem</span>;
+  <span class="t-prop">text-align</span>: <span class="t-val">left</span>;           <span class="t-comment">← Kart içeriğini sola hizala</span>
+}
+
+<span class="t-sel">.proje-kart</span> {
+  <span class="t-prop">background</span>: <span class="t-val">#f8f6ff</span>;
+  <span class="t-prop">border</span>: <span class="t-val">1px solid #e8e0ff</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-val">12px</span>;
+  <span class="t-prop">padding</span>: <span class="t-val">1.5rem</span>;
+  <span class="t-prop">transition</span>: <span class="t-val">transform 0.2s, box-shadow 0.2s</span>;  <span class="t-comment">← Hem hareketi hem gölgeyi animate et</span>
+}
+
+<span class="t-sel">.proje-kart:hover</span> {
+  <span class="t-prop">transform</span>: <span class="t-val">translateY(-6px)</span>;        <span class="t-comment">← Hover'da yukarı kalk</span>
+  <span class="t-prop">box-shadow</span>: <span class="t-val">0 12px 30px rgba(124,106,255,0.15)</span>;  <span class="t-comment">← Mor tonda gölge</span>
+}
+
+<span class="t-comment">/* ========== RESPONSIVE ========== */</span>
+
+<span class="t-comment">/* Mobil: tek sütun */</span>
+<span class="t-sel">@media (max-width: 600px)</span> {
+  <span class="t-sel">.hero</span> { <span class="t-prop">padding</span>: <span class="t-val">40px 16px</span>; }
+  <span class="t-sel">.hero h1</span> { <span class="t-prop">font-size</span>: <span class="t-val">1.6rem</span>; }   <span class="t-comment">← Başlık küçülür</span>
+  <span class="t-sel">.navbar</span> { <span class="t-prop">padding</span>: <span class="t-val">0.75rem 1rem</span>; }
+  <span class="t-comment">/* .kart-grid auto-fit ile zaten tek sütuna iner, ek CSS gerekmez */</span>
+}</pre>
+      </div>
+
+      <!-- FOOTER -->
+      <h3>5. Footer</h3>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">HTML + CSS — Footer</span><button class="copy-btn" onclick="copyCode(this)">kopyala</button></div>
+        <pre><span class="t-comment">&lt;!-- Footer: sayfanın en alt bölümü (semantic) --&gt;</span>
+<span class="t-tag">&lt;footer&gt;</span>
+  <span class="t-tag">&lt;p&gt;</span>&amp;copy; 2024 Ali.dev  <span class="t-comment">&lt;!-- &amp;copy; = © karakteri --&gt;</span>
+    <span class="t-comment">&lt;!-- &amp;amp; = &amp; | &amp;lt; = &lt; | &amp;gt; = &gt; (HTML entity'leri) --&gt;</span>
+  <span class="t-tag">&lt;/p&gt;</span>
+<span class="t-tag">&lt;/footer&gt;</span>
+
+<span class="t-comment">/* CSS */</span>
+<span class="t-sel">footer</span> {
+  <span class="t-prop">background</span>: <span class="t-val">#1a1a2e</span>;
+  <span class="t-prop">color</span>: <span class="t-val">#666</span>;
+  <span class="t-prop">text-align</span>: <span class="t-val">center</span>;
+  <span class="t-prop">padding</span>: <span class="t-val">2rem</span>;
+  <span class="t-prop">font-size</span>: <span class="t-val">0.85rem</span>;
+}</pre>
+      </div>
+
+      <div class="tip good">
+        <strong>Genel Tablo:</strong> Bir web sitesi görüntüsü gördüğünde şu soruları sor: (1) Hangi bölümler var? → header, main, footer (2) Layout nasıl? → flex mi, grid mi? (3) Tekrar eden elemanlar var mı? → kart, buton, link → class ver. Bu sistematik yaklaşımla herhangi bir tasarımı koda dökülebilirsin.
+      </div>
+
+    </div><!-- /tab-simulation -->
+
   </main>
-</div>
+</div><!-- /.app -->
 
 <script>
 // === TAB SİSTEMİ ===
@@ -2147,6 +2296,7 @@ function showTab(tab) {
   document.getElementById('tab-learn').style.display = tab === 'learn' ? '' : 'none';
   document.getElementById('tab-quiz').style.display = tab === 'quiz' ? '' : 'none';
   document.getElementById('tab-cheatsheet').style.display = tab === 'cheatsheet' ? '' : 'none';
+  document.getElementById('tab-simulation').style.display = tab === 'simulation' ? '' : 'none';
   if (tab === 'quiz' && !quizBuilt) buildQuiz();
 }
 
@@ -2182,27 +2332,6 @@ function updateFlex() {
     `display: flex; justify-content: ${jc}; align-items: ${ai}; flex-direction: ${fd};`;
 }
 
-// === BOX MODEL İNTERAKTİF ===
-function updateBM(input, labelId, elId, prop) {
-  const val = input.value;
-  document.getElementById('bm-' + labelId).textContent = val;
-  document.getElementById(elId).style.padding = val + 'px';
-  refreshBMCode();
-}
-function updateBMBorder(input) {
-  const val = input.value;
-  document.getElementById('bm-bv').textContent = val;
-  document.getElementById('bmBorderEl').style.borderWidth = val + 'px';
-  refreshBMCode();
-}
-function refreshBMCode() {
-  const mv = document.getElementById('bm-mv').textContent;
-  const pv = document.getElementById('bm-pv').textContent;
-  const bv = document.getElementById('bm-bv').textContent;
-  document.getElementById('bmCodeOut').textContent =
-    `.kutu { margin: ${mv}px; padding: ${pv}px; border: ${bv}px solid red; }`;
-}
-
 // === COPY ===
 function copyCode(btn) {
   const pre = btn.closest('.code-block').querySelector('pre');
@@ -2218,179 +2347,66 @@ const questions = [
     q: 'HTML\'de <code>&lt;head&gt;</code> etiketinin içine ne konulur?',
     opts: ['Görünen sayfa içeriği','Meta bilgiler, başlık, CSS linkleri','Resimler ve videolar','Navigasyon menüsü'],
     ans: 1,
-    exp: '<strong>head</strong> etiketi görünmez içerikler içindir: &lt;title&gt;, &lt;meta&gt;, &lt;link rel="stylesheet"&gt; gibi.'
+    exp: '<strong>✅ Doğru cevap: Meta bilgiler, başlık, CSS linkleri.</strong><br><br><code>&lt;head&gt;</code> etiketi sayfada <em>görünmeyen</em> ama tarayıcının ve arama motorlarının okuduğu bilgileri barındırır: <code>&lt;title&gt;</code> (sekme başlığı), <code>&lt;meta charset&gt;</code> (karakter seti), <code>&lt;link rel="stylesheet"&gt;</code> (CSS bağlantısı).<br><br>❌ Yanlış seçenekler neden yanlış: Görünen içerik, resimler ve navigasyon — bunların hepsi <code>&lt;body&gt;</code> içine girer. Kural basit: kullanıcının göreceği her şey body\'de, tarayıcıya söyleyeceğin her şey head\'de.'
   },
   {
     q: 'Aşağıdakilerden hangisi <strong>semantic</strong> bir HTML etiketidir?',
     opts: ['&lt;div&gt;','&lt;span&gt;','&lt;article&gt;','&lt;b&gt;'],
     ans: 2,
-    exp: '<strong>article</strong> anlamlı (semantic) bir etikettir. div ve span anlamsız kapsayıcıdır.'
+    exp: '<strong>✅ Doğru cevap: &lt;article&gt;</strong><br><br><code>&lt;article&gt;</code> "bu içerik kendi başına bir anlam taşır, bağımsız yayınlanabilir" der. Blog yazısı, haber kartı, yorum bu etikete girer.<br><br>❌ Neden diğerleri yanlış: <code>&lt;div&gt;</code> ve <code>&lt;span&gt;</code> anlamsız kapsayıcıdır — sadece gruplama yaparlar, içerik hakkında hiçbir şey söylemezler. <code>&lt;b&gt;</code> görsel olarak kalın yapar ama anlam taşımaz; anlamlı vurgu için <code>&lt;strong&gt;</code> kullanılır.'
   },
   {
     q: '<code>position: absolute</code> kullanan bir elemanın parent\'ı hangi position değerine sahip olmalı?',
     opts: ['static','fixed','relative','absolute'],
     ans: 2,
-    exp: 'absolute eleman, en yakın <strong>position: relative</strong> parent\'a göre konumlanır. Parent relative olmazsa sayfa köküne göre konumlanır.'
+    exp: '<strong>✅ Doğru cevap: relative</strong><br><br><code>position: absolute</code> olan eleman, DOM\'da en yakın "positioned" (static dışı) parent\'ını referans alır. Bu genellikle <code>position: relative</code> yapılmış bir parent\'tır. Klasik pattern: parent\'a <code>relative</code>, child\'a <code>absolute</code>.<br><br>❌ Neden diğerleri yanlış: <code>static</code> varsayılan değer, "ben konumlandırılmadım" demektir — absolute eleman bunu referans alamaz. <code>fixed</code> ekrana yapışır, absolute\'u etkisi altına almaz. Parent\'ı da <code>absolute</code> yapmak teknik olarak çalışır ama genellikle istenen davranış değildir.'
   },
   {
     q: 'CSS\'de hangi seçicinin specificity değeri en yüksektir?',
     opts: ['p { }','.sinif { }','#kimlik { }','* { }'],
     ans: 2,
-    exp: 'Specificity sıralaması: <strong>#id (100) > .class (10) > tag (1) > * (0)</strong>. Dolayısıyla #kimlik kazanır.'
+    exp: '<strong>✅ Doğru cevap: #kimlik { } — ID seçici (100 puan)</strong><br><br>Specificity hesabı şöyle: ID = 100, class = 10, tag = 1, * = 0. Yani <code>#kimlik</code> (100) > <code>.sinif</code> (10) > <code>p</code> (1) > <code>*</code> (0).<br><br>Örnek: <code>#buton</code> ile <code>.buton.kirmizi.buyuk</code> çatışırsa, 3 class = 30 puan olsa da tek ID = 100 puan kazanır.<br><br>❌ Neden diğerleri yanlış: Tag (p) ve evrensel (*) seçiciler en düşük specificity\'ye sahiptir. Spesifik olmayan seçiciler her zaman daha spesifik olanlara yenik düşer.'
   },
   {
     q: 'Flexbox\'ta elemanları <strong>dikey olarak ortaya</strong> almak için hangi özellik kullanılır?',
     opts: ['justify-content: center','align-items: center','flex-direction: center','text-align: center'],
     ans: 1,
-    exp: '<strong>align-items: center</strong> flex container\'da çocukları dikey (cross axis) olarak ortalar. justify-content ise ana eksende çalışır.'
+    exp: '<strong>✅ Doğru cevap: align-items: center</strong><br><br>Flexbox\'ta 2 eksen var: ana eksen (main axis) ve çapraz eksen (cross axis). Varsayılan yönde (row) ana eksen yataydır. <code>justify-content</code> ana ekseni (yatay), <code>align-items</code> çapraz ekseni (dikey) kontrol eder.<br><br>Altın formül için: <code>display:flex + justify-content:center + align-items:center</code> → hem yatay hem dikey ortalar.<br><br>❌ Neden diğerleri yanlış: <code>flex-direction: center</code> diye bir değer yoktur (row/column alır). <code>text-align</code> sadece metin hizalama içindir, flex layout\'u etkilemez.'
   },
   {
     q: '<code>box-sizing: border-box</code> ne işe yarar?',
     opts: ['Box\'a border ekler','padding ve border\'ı width\'in içine dahil eder','margin\'ı sıfırlar','Box\'u görünmez yapar'],
     ans: 1,
-    exp: '<strong>border-box</strong> ile padding ve border, belirtilen width\'in içine dahil olur. Yani width: 200px + padding: 20px = toplam 200px (padding içeride hesaplanır).'
+    exp: '<strong>✅ Doğru cevap: padding ve border\'ı width\'in içine dahil eder</strong><br><br>Varsayılan (content-box): <code>width: 200px + padding: 20px</code> = gerçek genişlik 240px. Bu layout\'u bozar.<br>border-box ile: <code>width: 200px</code> = her zaman 200px. Padding ve border içeride hesaplanır.<br><br>Bu yüzden her projenin başına <code>* { box-sizing: border-box; }</code> yazılır — tüm elemanlar tutarlı davranır.<br><br>❌ Neden diğerleri yanlış: border-box border <em>eklemez</em>, sadece hesaplama yöntemini değiştirir. margin\'ı sıfırlamaz ve görünürlüğü değiştirmez.'
   },
   {
     q: '<code>&lt;label for="email"&gt;</code> ile <code>&lt;input id="email"&gt;</code> bağlantısı ne sağlar?',
     opts: ['Görsel stil bağlantısı','Erişilebilirlik ve kullanılabilirlik','Veri doğrulama','Form gönderme'],
     ans: 1,
-    exp: '<strong>for-id eşleşmesi</strong> ile label\'a tıklandığında ilgili input odaklanır. Bu erişilebilirlik (accessibility) için çok önemlidir.'
+    exp: '<strong>✅ Doğru cevap: Erişilebilirlik ve kullanılabilirlik</strong><br><br>for-id eşleşmesi şu iki şeyi sağlar: (1) Label\'a tıkladığında o input otomatik odaklanır — kullanıcı deneyimini iyileştirir. (2) Ekran okuyucular (görme engelliler için) hangi label\'ın hangi input\'u tanımladığını anlar.<br><br>Bu bağlantı olmadan form teknik olarak çalışır ama erişilebilirlik açısından hatalıdır. Profesyonel kodda her input\'un bir label\'ı olmalıdır.<br><br>❌ Neden diğerleri yanlış: for-id CSS stil uygulamaz. Veri doğrulama <code>required</code>, <code>pattern</code> gibi niteliklerle yapılır. Form gönderme <code>button type="submit"</code> ile olur.'
   },
   {
     q: 'CSS Grid\'de <code>1fr</code> ne anlama gelir?',
     opts: ['1 piksel','Sabit 100px genişlik','Kullanılabilir alanın 1 "kesri" (orantılı bölümü)','%1 genişlik'],
     ans: 2,
-    exp: '<strong>fr (fraction)</strong> kullanılabilir alanı orantılı böler. <code>1fr 2fr</code> → biri 1/3, diğeri 2/3 genişliğe sahip olur.'
+    exp: '<strong>✅ Doğru cevap: Kullanılabilir alanın 1 "kesri"</strong><br><br><code>fr</code> = fraction (kesir). Kullanılabilir alan tüm fr değerlerine bölünür. Örnek: <code>1fr 2fr</code> → biri toplam alanın 1/3\'ünü, diğeri 2/3\'ünü alır. <code>1fr 1fr 1fr</code> → 3 eşit sütun.<br><br>fr\'nin px veya %\'den farkı: padding, gap, border hesaplandıktan sonra kalan alanı dinamik olarak böler. Responsive tasarım için idealdir.<br><br>❌ Neden diğerleri yanlış: 1px sabit piksel değeridir, fr ile ilgisi yok. % ise tüm container genişliğinin yüzdesidir — fr gibi gap\'i hesaba katmaz.'
   },
   {
     q: 'BEM metodolojisinde <code>--</code> (çift tire) ne anlama gelir?',
     opts: ['Element','CSS yorumu','Modifier (değiştirici/varyasyon)','Nested element'],
     ans: 2,
-    exp: 'BEM\'de: <code>.block</code> (blok), <code>.block__element</code> (çift alt tire = element), <code>.block--modifier</code> (çift tire = <strong>modifier/varyasyon</strong>).'
+    exp: '<strong>✅ Doğru cevap: Modifier (değiştirici/varyasyon)</strong><br><br>BEM = Block, Element, Modifier. Sözdizimi: <code>.block__element--modifier</code><br>• <code>.kart</code> → Block (ana bileşen)<br>• <code>.kart__baslik</code> → Element (kart\'ın parçası, çift alt çizgi)<br>• <code>.kart--buyuk</code> → Modifier (kart\'ın varyasyonu, çift tire)<br><br>Modifier bir bileşenin farklı durumunu veya versiyonunu tanımlar: renk, boyut, durum (aktif/pasif).<br><br>❌ Neden diğerleri yanlış: Element çift alt çizgi (__) kullanır. CSS yorumu /* */ şeklindedir. BEM\'de "nested element" kavramı yoktur — derinlemesine iç içe sınıf kullanımı önerilmez.'
   },
   {
     q: 'Mobile-first yaklaşımında media query nasıl yazılır?',
     opts: ['@media (max-width: 768px)','@media (min-width: 768px)','@media screen','@media mobile'],
     ans: 1,
-    exp: '<strong>Mobile-first</strong>\'te önce mobil stil yazılır, sonra büyük ekranlar için <code>min-width</code> ile genişletilir. max-width ise masaüstünden küçüğe inen "desktop-first" yaklaşımıdır.'
+    exp: '<strong>✅ Doğru cevap: @media (min-width: 768px)</strong><br><br>Mobile-first mantığı: Önce en küçük ekran için stili yaz (CSS\'in başı = mobil). Sonra <code>min-width</code> ile "ekran en az bu kadar geniş olunca şu stili uygula" dersin. Büyüyen ekrana göre genişlersin.<br><br>Desktop-first (eski yöntem) ise tam tersi: önce büyük ekran, sonra <code>max-width</code> ile küçüğe inersin.<br><br>Mobile-first neden daha iyi: Web trafiğinin çoğu mobil cihazdan gelir. Mobil stili temel alıp üstüne eklemek, her şeyi büyük yazıp sonra kısmaktan daha temiz kod üretir.<br><br>❌ Neden diğerleri yanlış: <code>max-width</code> desktop-first yaklaşımıdır. <code>@media screen</code> tüm ekranlar için geçerli, breakpoint değil. <code>@media mobile</code> diye bir sözdizimi yoktur.'
   }
 ];
 
 let quizBuilt = false;
 let answers = {};
-
-const questions = [
-  {
-    q: 'HTML\'de <code>&lt;head&gt;</code> etiketinin içine ne konulur?',
-    opts: ['Görünen sayfa içeriği','Meta bilgiler, başlık, CSS linkleri','Resimler ve videolar','Navigasyon menüsü'],
-    ans: 1,
-    feedback: [
-      '❌ Yanlış. Görünen içerik (metin, resim, buton...) <strong>&lt;body&gt;</strong> içine gider.',
-      '✓ Doğru! <strong>&lt;head&gt;</strong> ekranda görünmez ama sayfayı tanımlayan meta bilgileri içerir: &lt;title&gt;, &lt;meta charset&gt;, &lt;meta viewport&gt;, &lt;link rel="stylesheet"&gt; hepsi buraya.',
-      '❌ Yanlış. Resimler <strong>&lt;img&gt;</strong> etiketi ile &lt;body&gt; içine yerleştirilir.',
-      '❌ Yanlış. Navigasyon menüsü (<strong>&lt;nav&gt;</strong>) &lt;body&gt; içindeki &lt;header&gt; altına yazılır.'
-    ]
-  },
-  {
-    q: 'Aşağıdakilerden hangisi <strong>semantic</strong> bir HTML etiketidir?',
-    opts: ['&lt;div&gt;','&lt;span&gt;','&lt;article&gt;','&lt;b&gt;'],
-    ans: 2,
-    feedback: [
-      '❌ Yanlış. <strong>&lt;div&gt;</strong> anlamsız bir blok kapsayıcı — içeriği hakkında hiçbir bilgi taşımaz.',
-      '❌ Yanlış. <strong>&lt;span&gt;</strong> de anlamsız, satır içi kapsayıcı.',
-      '✓ Doğru! <strong>&lt;article&gt;</strong> bağımsız bir içerik birimini tanımlar — blog yazısı, haber gibi. Tarayıcı bu anlam bilgisini kullanır.',
-      '❌ Yanlış. <strong>&lt;b&gt;</strong> görsel kalınlık etiketi, semantic değil. Anlam vurgusu için <strong>&lt;strong&gt;</strong> kullanılır.'
-    ]
-  },
-  {
-    q: '<code>position: absolute</code> kullanan elemanın parent\'ı hangi position değerine sahip olmalı?',
-    opts: ['static','fixed','relative','absolute'],
-    ans: 2,
-    feedback: [
-      '❌ Yanlış. <strong>static</strong> varsayılan değerdir — absolute child buna göre konumlanamaz, sayfanın köküne gider.',
-      '❌ Yanlış. <strong>fixed</strong> parent olarak çalışır teknik olarak, ama parent kendisi ekrana yapışık olduğundan istenmeyen sonuçlar doğurur.',
-      '✓ Doğru! <strong>position: relative</strong> — absolute eleman en yakın non-static parent\'ı referans alır. Relative en az yan etkili ve en yaygın kullanılan seçenek.',
-      '❌ Yanlış. Absolute içinde absolute çalışır ama parent zaten akıştan çıkmış olur, bu genellikle amaçlanmaz.'
-    ]
-  },
-  {
-    q: 'CSS\'de hangi seçicinin specificity puanı en yüksektir?',
-    opts: ['p { }','.sinif { }','#kimlik { }','* { }'],
-    ans: 2,
-    feedback: [
-      '❌ Yanlış. <strong>p</strong> etiket seçicisi sadece 1 puan — en zayıf türlerden.',
-      '❌ Yanlış. <strong>.sinif</strong> class seçici 10 puan — #id kadar güçlü değil.',
-      '✓ Doğru! Sıralama: <strong>#id (100) > .class (10) > etiket (1) > * (0)</strong>. Yüksek puan kazanır.',
-      '❌ Yanlış. <strong>*</strong> evrensel seçici 0 puan — specificity sıralamasında en alt.'
-    ]
-  },
-  {
-    q: 'Flexbox\'ta elemanları <strong>dikey olarak ortaya</strong> almak için hangi özellik kullanılır?',
-    opts: ['justify-content: center','align-items: center','flex-direction: center','text-align: center'],
-    ans: 1,
-    feedback: [
-      '❌ Yanlış. <strong>justify-content</strong> ana eksende çalışır — row yönünde bu yataydır.',
-      '✓ Doğru! <strong>align-items: center</strong> çeliş ekseninde (cross axis) hizalar. Row yönünde çeliş ekseni dikeydir — yani dikey ortalama.',
-      '❌ Yanlış. <strong>flex-direction: center</strong> diye bir değer yoktur. row, column, row-reverse, column-reverse alır.',
-      '❌ Yanlış. <strong>text-align</strong> metin içeriğini hizalar, flex item\'ları değil.'
-    ]
-  },
-  {
-    q: '<code>box-sizing: border-box</code> ne işe yarar?',
-    opts: ['Kutunun etrafına otomatik border ekler','padding ve border\'ı width\'in içine dahil eder','margin\'ı sıfırlar','Kutuyu görünmez yapar'],
-    ans: 1,
-    feedback: [
-      '❌ Yanlış. Border-box border eklemez, sadece boyut hesaplama modelini değiştirir.',
-      '✓ Doğru! <strong>border-box</strong> ile width: 300px + padding: 20px = hala 300px. Normal modelde (content-box) bu 340px olurdu — layout bozulurdu.',
-      '❌ Yanlış. Margin\'ı etkilemez, sadece padding ve border\'ın width hesabına dahil edilmesini sağlar.',
-      '❌ Yanlış. Görünürlükle alakası yok. Gizlemek için <strong>display: none</strong> kullanılır.'
-    ]
-  },
-  {
-    q: '<code>&lt;label for="email"&gt;</code> ile <code>&lt;input id="email"&gt;</code> bağlantısı ne sağlar?',
-    opts: ['Görsel stil bağlantısı','Erişilebilirlik — label\'a tıklayınca input odaklanır','Otomatik form doğrulama','Sunucuya veri gönderme'],
-    ans: 1,
-    feedback: [
-      '❌ Yanlış. Görsel stil CSS\'in işidir, for/id bağlantısının görsel etkisi yoktur.',
-      '✓ Doğru! <strong>for/id eşleşmesi</strong> erişilebilirliği sağlar: label\'a tıklayınca cursor o input\'a gider. Ekran okuyucular da bu bağlantıyı kullanır.',
-      '❌ Yanlış. Doğrulama <strong>type</strong> ve <strong>required</strong> gibi input özellikleriyle yapılır.',
-      '❌ Yanlış. Gönderim form\'un <strong>action</strong> ve <strong>method</strong> özellikleriyle belirlenir.'
-    ]
-  },
-  {
-    q: 'CSS Grid\'de <code>1fr</code> ne anlama gelir?',
-    opts: ['1 piksel','Sabit 100px genişlik','Kullanılabilir alanın orantılı birimi','Ekranın %1\'i'],
-    ans: 2,
-    feedback: [
-      '❌ Yanlış. fr piksel değil, esnek oransal birimdir. Değeri ekrana ve diğer sütunlara göre değişir.',
-      '❌ Yanlış. fr sabit değildir. Sabit için px kullanılır.',
-      '✓ Doğru! <strong>fr (fraction)</strong> kullanılabilir alanı orantılı böler. 1fr 2fr 1fr → ortadaki %50, diğerleri %25\'er alır.',
-      '❌ Yanlış. fr yüzde de değil. % işaretiyle yüzde kullanılır. fr kullanılabilir alanı paylaşır.'
-    ]
-  },
-  {
-    q: 'BEM metodolojisinde <code>--</code> (çift tire) ne ifade eder?',
-    opts: ['Element bağlantısı','CSS yorum işareti','Modifier — varyasyon veya durum','Nested element'],
-    ans: 2,
-    feedback: [
-      '❌ Yanlış. Element bağlantısı çift alt tire ile yapılır: <strong>.block__element</strong>.',
-      '❌ Yanlış. CSS yorum satırı <strong>/* yorum */</strong> şeklinde yazılır.',
-      '✓ Doğru! BEM: .block, .block__element (__ = element), <strong>.block--modifier</strong> (-- = modifier/varyasyon). .kart--aktif → aktif durumdaki kart.',
-      '❌ Yanlış. BEM\'de her element doğrudan bloğa bağlanır: .kart__baslik, .kart__resim şeklinde.'
-    ]
-  },
-  {
-    q: 'Mobile-first yaklaşımında media query nasıl yazılır?',
-    opts: ['@media (max-width: 768px)','@media (min-width: 768px)','@media screen only','@media (device: mobile)'],
-    ans: 1,
-    feedback: [
-      '❌ Yanlış. <strong>max-width</strong> desktop-first yaklaşımıdır — büyükten küçüğe gider. Mobile-first\'in tam tersi.',
-      '✓ Doğru! <strong>Mobile-first</strong>\'te varsayılan stiller mobil için yazılır, büyük ekranlar için <code>min-width</code> ile genişletilir: küçük → büyük.',
-      '❌ Yanlış. <strong>@media screen only</strong> geçerli sözdizimi değil. Doğrusu: @media only screen { }.',
-      '❌ Yanlış. <strong>@media (device: mobile)</strong> diye bir özellik yoktur. min-width, max-width gibi gerçek özellikler kullanılır.'
-    ]
-  }
-];
 
 function buildQuiz() {
   quizBuilt = true;
@@ -2410,7 +2426,7 @@ function buildQuiz() {
           <button class="quiz-opt" onclick="answerQ(${i}, ${j})" data-idx="${j}">${o}</button>
         `).join('')}
       </div>
-      <div class="quiz-explanation" id="exp-${i}"></div>
+      <div class="quiz-explanation" id="exp-${i}">${q.exp}</div>
     `;
     container.appendChild(card);
   });
@@ -2420,29 +2436,17 @@ function answerQ(qIdx, optIdx) {
   if (answers[qIdx] !== undefined) return;
   answers[qIdx] = optIdx;
 
-  const q = questions[qIdx];
   const card = document.getElementById('qcard-' + qIdx);
   const buttons = card.querySelectorAll('.quiz-opt');
-  const correct = q.ans;
-  const isRight = optIdx === correct;
+  const correct = questions[qIdx].ans;
 
   buttons.forEach((btn, j) => {
     btn.disabled = true;
     if (j === correct) btn.classList.add('correct');
-    else if (j === optIdx && !isRight) btn.classList.add('wrong');
+    else if (j === optIdx && optIdx !== correct) btn.classList.add('wrong');
   });
 
-  const exp = document.getElementById('exp-' + qIdx);
-  exp.classList.add('show');
-  exp.style.borderLeft = isRight ? '3px solid var(--green)' : '3px solid var(--red)';
-  exp.style.background = isRight ? 'rgba(79,255,176,0.07)' : 'rgba(255,90,90,0.07)';
-
-  const verdictColor = isRight ? 'var(--green)' : 'var(--red)';
-  exp.innerHTML = `<div style="font-weight:600;font-size:14px;color:${verdictColor};margin-bottom:.4rem;">${q.feedback[optIdx]}</div>`;
-
-  if (!isRight) {
-    exp.innerHTML += `<div style="margin-top:.6rem;padding:.6rem .8rem;background:rgba(79,255,176,.07);border-left:2px solid var(--green);border-radius:0 6px 6px 0;font-size:12px;">${q.feedback[correct]}</div>`;
-  }
+  document.getElementById('exp-' + qIdx).classList.add('show');
 
   if (Object.keys(answers).length === questions.length) {
     setTimeout(showScore, 600);
